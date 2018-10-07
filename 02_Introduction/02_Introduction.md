@@ -26,7 +26,7 @@ Two major problems still faced by system/application programming languages are :
 
   There’s a growing list of organizations using Rust in production, including Dropbox, Coursera, Chef, Postmates, npm, and many more .Rust is extraordinarily interoperable, so you can incrementally add Rust code to your system without a big commitment up front like other languages.For example Microsoft Azure IoT Edge – a platform used to run Azure services and artificial intelligence on IoT devices has components implemented in Rust
 
-<!-- 
+<!-- External links for this chapter
  //day2
  1. good intro : https://stackoverflow.com/tags/rust/info
  2. projects using rust : https://en.wikipedia.org/wiki/Rust_(programming_language)#Projects_using_Rust
