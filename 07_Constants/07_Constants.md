@@ -40,20 +40,19 @@ Rust’s naming convention for constants is to use all uppercase with underscore
  ```rust
 fn main() {
 let salary = 100.00;
-let salary = 1.50 * salary; // 50 % hike
+let salary = 1.50 * salary; // read first salary
 println!("salary after hike is :{}",salary);
 
- let name="Mohtashim";
- let name= name.len();
- println!("name changed to integer : {}",name);
 }
 ```
 
-From the above example lets take varialbe salary , its value is 100.00 floating value . Its is then multiplied and assigned to another variable of same name. This is allowed in Rust. Since salary is immutable or readonly you can only read the contents of the variable. Second variable which shadows or hides the first variable while printing.
+From the above example lets take variable salary , its value is 100.00 floating value . Its is then multiplied and assigned to another variable of same name. This is allowed in Rust.  
+
+Since salary is immutable or readonly you can only read the contents of the variable. Second variable which shadows or hides the first variable while displaying output.
 
 output is : `salary after hike is :150`
 
-Let us take another example where a string variable is used with name assigned . Now we are shadowing the string variable to an integer type. Changing the type while shadowing is allowed in Rust as shown below.
+Let us take another example where a string variable is used with a name assigned . Now we are shadowing the string variable to an integer type. Changing the type while shadowing is allowed in Rust as shown below.
 
 ```rust
 fn main() {
