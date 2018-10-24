@@ -54,6 +54,8 @@ length is 14
 | 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
 | 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
 
+<!-- TODO: clone(), -->
+
 ```rust
 fn main() {
     let mut name=String::from("Tutorials");
