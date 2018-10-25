@@ -38,4 +38,3 @@ For example see the following program
 1. Assigning value from one variable to another variable
 2. Passing value  to function
 3. Returning value from function
-
