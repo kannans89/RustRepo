@@ -24,6 +24,8 @@ let instance_name =Name_of_structure {
 
 ```
 
+Accessing values using  *dot* notation
+To access a specific value of field we can use following syntax `instance_name.field1`
 ## Example
 
 ```rust
