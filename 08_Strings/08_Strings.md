@@ -65,6 +65,23 @@ fn main() {
 
 ```
 
+## Other String functions
+
+- to_string
+- push_str
+- push
+
+```rust
+fn main(){
+    
+    let number = 2020;
+    let number_as_string= number.to_string();
+    println!("{}",number_as_string);
+    println!("{}",number_as_string=="2020");
+}
+
+```
+
 <!-- 
 1. string functions:
 https://doc.rust-lang.org/std/string/struct.String.html
