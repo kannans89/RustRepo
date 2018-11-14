@@ -202,4 +202,9 @@ elder is:
 Name is :Mohtashim company is TutorialsPoint age is 50
 
 ```
+
+## Struct Update Syntax
+
+
 <!-- TODO: priting struct directly gives error #[Derive(Debug)] -->
+<!-- TODO:Clone method in Rust -->
