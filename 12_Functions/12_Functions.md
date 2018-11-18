@@ -147,3 +147,15 @@ fn display(param_name:String){
 }
 
 ```
+
+## Methods
+
+- Methods are similar to functions but they are defined with contex of a structure
+
+- The first parameter is always self
+
+```rust
+ struct
+
+
+```

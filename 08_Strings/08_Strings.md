@@ -82,6 +82,112 @@ fn main(){
 
 ```
 
+Example of push and push_str is given below
+
+```rust
+  fn main(){
+    
+ let mut company = "Tutorial".to_string();
+ company.push('s');
+ println!("{}",company);
+ 
+ company.push_str(" Point");
+  println!("{}",company);
+    
+}
+
+```
+
+## Concatenation with plus + Operator
+
++ operator calls the add method of the Add trait. Syntax of add trait is given below.First parameter is a self and second parameter is a reference.
+  ```rust
+     add(self,&str)->String{
+
+     }
+  ```
+  
+  Let us see string concatenation example.
+  
+  ```rust
+  fn main(){
+  let n1 = "Tutorials".to_string();
+  let n2 = "Point".to_string();
+  
+  let n3 = n1 + &n2; // n1 will be moved
+  
+  println!("{}",n3);
+  
+   // println!("{}",n1);//Error here
+  
+  }
+  ```
+
+Note that n1 will be moved to the method `add` which is internally called so the line `println!("{}",n1)` will give error as n1 is moved.
+
+## Format! Macro
+
+To solve the problem of concatenating string without ownership change , we can use format macro. It is easy to use format macro than using + operator.
+
+```rust
+
+  fn main(){
+  let n1 = "Tutorials".to_string();
+  let n2 = "Point".to_string();
+  
+  let n3 = format!("{} {}",n1,n2);
+  
+  println!("{}",n3);
+  
+   // println!("{}",n1);//Error here
+  
+  }
+
+ ```
+
+
+ ## How to access characters of String
+
+ You can access string charactes from a string object using string slice.
+ 
+ ```rust
+  fn main(){
+  let n1 = "Tutorials".to_string();
+  
+  let c1 = &n1[0..5]; // characters from  0 1 2 3 4
+  println!("{}",c1);
+  
+  }
+
+
+ ```
+
+The elegant way to access the characters from a string is using `chars` method.Let us see an example.
+
+```rust
+ fn main(){
+  let n1 = "Tutorials".to_string();
+  
+  let z = String::new();
+  for n in n1.chars(){
+      println!("{}",n);
+  }
+  
+  }
+
+```
+
+chars() also work on string literals.
+
+```rust
+ fn main(){
+  for n in "CodingGround".chars(){
+      println!("{}",n);
+  }
+}
+
+```
+
 <!-- 
 1. string functions:
 https://doc.rust-lang.org/std/string/struct.String.html
