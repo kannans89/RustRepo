@@ -208,3 +208,10 @@ Name is :Mohtashim company is TutorialsPoint age is 50
 
 <!-- TODO: priting struct directly gives error #[Derive(Debug)] -->
 <!-- TODO:Clone method in Rust -->
+
+## Method in structure
+
+- Methods are functions inside a structure(similar to class in other OOP languages) or enum
+
+method will take self as argument as given below
+
