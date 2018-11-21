@@ -59,6 +59,14 @@ Rust says Hello to TutorialsPoint !!
 
 ```
 
+## Using Coding Ground
+
+ Open the REPL shell [here](https://www.tutorialspoint.com/compile_rust_online.php) .Execute the program as shown below.
+
+
+ 
+
+
 <!-- External links for this chapter
 
 1. http://devdocs.io/rust/book/second-edition/ch01-02-hello-world

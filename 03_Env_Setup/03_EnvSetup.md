@@ -1,6 +1,12 @@
 
 # Environment Setup
 
+Installation of Rust is made easy through **rustup**, a command line tool for managing Rust versions and associated tools. You’ll need an internet connection for the download.
+
+## Installation on Windows
+
+Installation of visual studio 2013 or higher with C++ tools is mandatory to run the rust program on windows.You can download here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
+
 - Installation link for windows   [Rust Lang](https://www.rust-lang.org/en-US/install.html)
 
 - Download the **rustup-init.exe**
@@ -16,8 +22,7 @@ directory, located at:
 
   C:\Users\Admin\.cargo\bin
 
-This path will then be added to your PATH environment variable by modifying the
-HKEY_CURRENT_USER/Environment/PATH registry key.
+This path will then be added to your PATH environment variable.
 
 You can uninstall at any time with rustup self uninstall and these changes will
 be reverted.
@@ -98,7 +103,33 @@ rustc 1.29.0 (aa3ca1994 2018-09-11)
 
 ```
 
-- VSCode extensions to be installed is **Rust (rls)** .This adds code completion,code formatting,refactoring features for Rust in Visual Studio Code .
+## Installation on Linux / Mac
+
+ To install rustup on Linux or macOS open a terminal and enter following 
+ command
+
+ ```rust
+  $ curl https://sh.rustup.rs -sSf | sh
+ ```
+The command downloads a script and starts the installation of the rustup tool, which installs the latest stable version of Rust. You might be prompted for your password. If the install is successful, the following line will appear:
+
+`Rust is installed now. Great!`
+
+The installation script automatically adds Rust to your system PATH after your next login. If you want to start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
+
+`$ source $HOME/.cargo/env`
+
+Alternatively, you can add the following line to your ~/.bash_profile:
+
+`$ export PATH="$HOME/.cargo/bin:$PATH"`
+
+Note that when you try to compile a Rust program and get errors indicating that a linker could not execute, that means a linker isn’t installed on your system and you’ll need to install one manually.
+
+C compilers usually come with the correct linker. Check your platform’s documentation for how to install a C compiler. Also, some common Rust packages depend on C code and will need a C compiler. Therefore, it might be worth installing one .
+
+## Using TutorialsPoint RUST REPL
+
+A Read-Evaluate-Print Loop (REPL) is an easy to use interactive shell to compile and execute computer programs . If you want to compile and  execute Rust programs online within the browser use TutorialsPoint [**coding ground** ](https://www.tutorialspoint.com/compile_rust_online.php)
 
 <!--
   External References for this chapter
