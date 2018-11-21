@@ -10,4 +10,4 @@ This tutorial adopts a simple and practical approach to describe the concepts of
 This tutorial has been prepared for beginners to help them understand the basic and advanced concepts of Rust.
 
 # Prerequisites
-An understanding of basic programming concepts is a pre-requisite for this course.
+An understanding of basic programming concepts is necessary for this course.
