@@ -158,4 +158,59 @@ output is shown below
 
 `[10, 0, 30, 40]`
 
-<!-- TODO: array functions -->
+## Array to Functions
+
+  ### Arrays  passed by value
+
+```rust
+fn main() {
+
+  let  arr = [10,20,30];
+ update(arr);
+  
+  print!("Inside main {:?}",arr);
+}
+
+fn update(mut arr:[i32;3]){
+   for i in 0..3{
+    arr[i]=0;
+    }
+     println!("Inside update  {:?}",arr);
+}
+
+```
+
+output will be
+
+```rust
+Inside update  [0, 0, 0]
+Inside main [10, 20, 30]
+```
+
+
+### Arrays  passed by reference
+
+```rust
+ fn main() {
+
+  let  mut arr = [10,20,30];
+ update(&mut arr);
+  
+  print!("Inside main {:?}",arr);
+}
+
+fn update(arr:&mut [i32;3]){
+   for i in 0..3{
+    arr[i]=0;
+    }
+     println!("Inside update  {:?}",arr);
+}
+
+```
+
+output is shown
+
+```rust
+Inside update  [0, 0, 0]
+Inside main [0, 0, 0]
+```

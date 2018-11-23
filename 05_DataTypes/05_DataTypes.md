@@ -9,7 +9,7 @@ true/false -->boolean
 Rust is a statically typed language.
 The compiler can usually infer what type we want to use based on the value and how to use it.
 
-Rust can automatically infer teh data type  1 if you type--> integer.
+Rust can automatically infer the data type  1 if you type--> integer.
 We need to define a type of variable in cases when many types are possible , for example we converting a String to numeric type.
 eg: '101' --> 101
 Two types of data types

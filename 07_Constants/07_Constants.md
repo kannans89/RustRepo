@@ -32,6 +32,41 @@ Rust’s naming convention for constants is to use all uppercase with underscore
 
 - Constants can be declared in any scope, including the global scope, which makes them useful for values that many parts of the code need to know about.
 
+Let us see an example
+
+The following program is illegal:
+It is so because arrays must be of a length known at compile time, and even if "n" is immutable, and so, in a sense, constant, its initial value could be determined at runtime, and so it is not allowed to specify the size of an array
+
+```rust
+fn main() {
+
+let N: usize = 20;
+let arr = [0; N];
+
+print!("{}",arr[10])
+
+    
+}
+
+```
+
+But the following program is valid:
+
+```rust
+ fn main() {
+
+const N: usize = 20;
+let arr = [0; N];
+
+print!("{}",arr[10])
+
+    
+}
+```
+
+The "const" keyword allows us to declare an identifier having a value defined at compile time, and of course no more changeable at runtime. In its declaration, it is required to specify its type.
+
+
 ## Shadowing
 
  Rust allows programmers to declare a new variable with the same name as a previous variable, and the new variable shadows the previous variable.
