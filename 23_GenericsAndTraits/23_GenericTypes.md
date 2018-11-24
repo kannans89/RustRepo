@@ -1,3 +1,4 @@
 # Generic Types
 
-Removing duplicate by extracting a function
+Removing duplicate by extracting a function .
+

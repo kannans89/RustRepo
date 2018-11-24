@@ -38,7 +38,7 @@ fn print_vector(x:Vec<i32>){
   |                   ^ value used here after move
    ```
 
-So what is borrowing ? Instead of giving over control to `print_vector`, we can let `print_vector` borrow vector `v` for a while. so we can change syntax from print_vector(v) to `print_vector(&v)` . Now the function will take the address or reference.
+So what is borrowing ? Instead of giving over control to `print_vector`, we can let `print_vector` borrow vector `v` for a while. so we can change syntax from print_vector(v) to `print_vector(&v)` . Now the function will take the address or reference. The advantage of this approach is that it is technically ok to access the vector **v** after the function call.
 
 ```rust
 
@@ -46,7 +46,7 @@ fn main(){
     // a list of nos
     let v = vec![10,20,30];
     print_vector(&v); // passing reference
-    println!("{}",v[0]);
+    println!("v[0]={}",v[0]);
 
 }
 
@@ -55,6 +55,64 @@ fn print_vector(x:&Vec<i32>){
     println!("Inside print_vector function {:?}",x);
 }
 
+
+
+```
+
+## Mutable References
+
+Let us see the following code
+
+```rust
+
+fn main(){
+      let mut a = 100;
+      let b = &mut a;
+      *b  +=2;
+      println!("a={}",a);
+      //you cannot use a untill you unborrow a from its control
+
+}
+
+```
+
+The code will give your error *cannot borrow `a` as immutable because it is also borrowed as mutable*
+This ideally means *b* has borrowed value from *a* but it didn't return or release it after use.
+To make this code work we can give a scope for variable *b*
+
+```rust
+fn main(){
+      let mut a = 100;
+      {
+      let b = &mut a;
+      *b  +=2;
+      }
+      println!("a={}",a);
+      //you cannot use a untill you unborrow a from its control
+}
+
+```
+
+so what is the rule protecting against data races
+
+- you can have more than one reference to a resource , however
+  there can only one mutable reference to a resource.
+
+
+
+Imagine you are iterating across a mutable vector and during iteration you
+are modifying the vector as shown below . This will give a compilation error in Rust as this result in undefined bhavior of the vector collection.
+There by it brings in memory safety.This is one of the problems which plague other programming languages.
+
+```rust
+fn main(){
+
+      let mut z = vec![10,20,30];
+
+      for i in &z {
+           print!("i={}\t",i);
+           z.push(40);// compilation error
+      }
 
 
 ```
