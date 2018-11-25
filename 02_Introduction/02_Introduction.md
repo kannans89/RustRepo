@@ -1,30 +1,30 @@
 # Introduction
 
-Rust is a system level programming language . This was developed by Graydon Hoare in 2006 and was taken over by Mozilla Labs in 2009 .
+Rust is a systems level programming language ,developed by *Graydon Hoare* and was taken over later by Mozilla Labs.
 
-## System Programming vs Application Programming
+## Systems Programming vs Application Programming
 
-Application programming languages like Java/C#  aims to produce  software which provides services to the user directly.They helps build business applications like spread sheets , wordprocessors , web applications or mobile apps.
+Application programming languages like Java/C#  aim to produce  software which provides services to the user directly.They help us build business applications like spread sheets , word processors , web applications or mobile apps.
 
 Systems programming languages like C/C++ aims to produce software and software platforms which provide services to other software.This includes operating systems, game engines ,compilers also these  programming languages requires a great degree of hardware interaction.
 
-Two major problems still faced by system/application programming languages are :
+Two major problems faced by system/application programming languages are :
 
 1. It is difficult to write secure code.
 2. It is difficult to  write multi-threaded code.
 
 ## Why Rust
 
- Rust is a systems programming language focused on three goals safety,speed and concurrency.
- It is designed for writing highly reliable and fast software in a simple way. It can be used from high-level code down to hardware-specific code. It leverages the features of both high level and low level languages.  
+ Rust is focused on three goals **safety**,**speed** and **concurrency**.
+ It is designed for writing highly reliable and fast software in a simple way. It can be used to write high-level programs down to hardware-specific programs.
 
- Common use cases of rust include embedding program in other languages,writing programs with specific space and time requirements , writing low level code for device drivers , operations systems,compilers. The Rust compiler itself is written in Rust.  
-
-  Rust assures more confidence when doing systems-level programming. For experienced programmers Rust guarantees spending less of your time and attention on avoiding pitfalls, which makes it possible to reach for more ambitious goals. For newer systems programmers, it means a shorter path to being able to start writing production code.
-
-## Who uses Rust
-
-  There’s a growing list of organizations using Rust in production, including Dropbox, Coursera, Chef, Postmates, npm, and many more .Rust is extraordinarily interoperable, so you can incrementally add Rust code to your system without a big commitment up front like other languages.For example Microsoft Azure IoT Edge – a platform used to run Azure services and artificial intelligence on IoT devices has components implemented in Rust
+ 1. Rust programming language doesn't have a Garbage Collector(GC) by design.This improves the performance at runtime .
+ 2. Rust takes additional measures to bring memory safety at compile time itself ,which means
+    - No dangling pointers
+    - No leaks
+    - No null pointer dereferences
+    - No buffer overruns
+ 3. Rust focus on  Memory safety has big implications for multi threaded code as well as security .
 
 <!-- External links for this chapter
  //day2

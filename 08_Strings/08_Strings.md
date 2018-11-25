@@ -57,6 +57,18 @@ length is 14
 <!-- TODO: clone(), -->
 
 ```rust
+fn main(){
+
+    let name1 = "Hello TutorialsPoint".to_string(); //String object
+    let name2 = name1.replace("Hello","Howdy");
+
+    println!("{}",name2);
+
+}
+```
+
+
+```rust
 fn main() {
     let mut name=String::from("Tutorials");
     name.push_str(" Point");
@@ -187,6 +199,37 @@ chars() also work on string literals.
 }
 
 ```
+
+## Common String object operations
+
+  String object is allocated in the heap . It also guarantess a valid utf8 sequence similar to string literal. &str is fairly inflexible string object. When you want to grow your string dynamically like a vector we need to use String object.
+
+   Let us build a comma delimited string of alphabets.
+ 
+```rust
+
+fn main(){
+
+    let mut start = 'a' as u8;
+    let mut alphabets=String::new();
+
+    while start <= ('z' as u8){
+        alphabets.push(start as char);
+        if(start as char!='z'){
+            alphabets.push_str(",");
+        }
+        start+=1;
+
+    }
+
+    println!("{}",alphabets);
+}
+
+ ```
+
+output
+
+`a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z`
 
 <!-- 
 1. string functions:

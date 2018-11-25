@@ -98,8 +98,6 @@ so what is the rule protecting against data races
 - you can have more than one reference to a resource , however
   there can only one mutable reference to a resource.
 
-
-
 Imagine you are iterating across a mutable vector and during iteration you
 are modifying the vector as shown below . This will give a compilation error in Rust as this result in undefined bhavior of the vector collection.
 There by it brings in memory safety.This is one of the problems which plague other programming languages.
@@ -113,6 +111,5 @@ fn main(){
            print!("i={}\t",i);
            z.push(40);// compilation error
       }
-
 
 ```
