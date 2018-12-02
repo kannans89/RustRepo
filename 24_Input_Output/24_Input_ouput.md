@@ -108,4 +108,4 @@ The "stdout" standard library function returns a handle to the standard output s
 The "write" function gets an argument of "&[u8]" type, which is a reference to a slice of bytes. Such bytes are printed to the console as an UTF-8 string. So, if you want to print an object that is not a slice of bytes in UTF-8 format, first you have to translate it to such a thing.
 To convert both a static string and a dynamic string to a reference to a slice of bytes, you can use the "as_bytes" function. 
 
-<!-- .unwrap() function significance -->
+<!-- .unwrap() function significance , what is fallible?? -->
