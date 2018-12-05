@@ -1,17 +1,17 @@
 
 # Environment Setup
 
-Installation of Rust is made easy through **rustup**, a command line tool for managing Rust versions and associated tools. You’ll need an internet connection for the download.
+Installation of Rust is made easy through **rustup**, a command line tool for managing Rust versions and associated tools.
 
 ## Installation on Windows
 
-Installation of visual studio 2013 or higher with C++ tools is mandatory to run the rust program on windows.You can download here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
+- Installation of visual studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download VisualStudio from here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
 
-- Installation link for windows   [Rust Lang](https://www.rust-lang.org/en-US/install.html)
+- Next we need rustup tool for windows , the installation link is given here   [Rust Lang](https://www.rust-lang.org/en-US/install.html)
 
-- Download the **rustup-init.exe**
+- Download the rustup tool from above link by clicking on **rustup-init.exe** hyperlink
 
-- After download double click on the **rustup-init**  file following window appears.
+- After download double click on the **rustup-init**  file ,the following screen will  appear.
 
 ```javascript
 This will download and install the official compiler for the Rust programming
