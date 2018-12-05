@@ -122,3 +122,46 @@ output is shown below
 5==*y is true
 x==*y is true
 ```
+
+## Drop Trait
+
+Drop is similar to destrcutor.
+
+In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. If they forget, the system might become overloaded and crash. In Rust, you can specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically. As a result, you don’t need to be careful about placing cleanup code everywhere in a program that an instance of a particular type is finished with—you still won’t leak resources!
+
+
+```rust
+
+use std::ops::Deref;
+
+struct ProBox<T>(T);
+
+impl<T> ProBox<T> {
+    fn new(x:T)->ProBox<T>{
+        ProBox(x)
+    }
+}
+
+impl<T> Deref for ProBox<T> {
+  type Target = T;
+
+    fn deref(&self) -> &T {
+      &self.0
+    }
+}
+
+
+impl<T> Drop for ProBox<T>{
+   fn drop(&mut self){
+    
+       println!("dropping Probox object from memory ");
+   }    
+}
+
+fn main() {
+    let x = 50;
+    ProBox::new(x);
+    ProBox::new("Hello");
+    
+}
+```
