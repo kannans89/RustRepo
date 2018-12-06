@@ -5,7 +5,7 @@ Installation of Rust is made easy through **rustup**, a console based tool for m
 
 ## Installation on Windows
 
-- Installation of Visual Studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download Visual Studio from here [VS 2013 Express] (http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
+- Installation of Visual Studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download Visual Studio from here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
 
 - Download and install rustup tool for windows .**rustup-init.exe** is available for download here-[Rust Lang](https://www.rust-lang.org/en-US/install.html)
 
