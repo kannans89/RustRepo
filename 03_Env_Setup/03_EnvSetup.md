@@ -1,11 +1,11 @@
 
 # Environment Setup
 
-Installation of Rust is made easy through **rustup**, a command line tool for managing Rust versions and associated tools.
+Installation of Rust is made easy through **rustup**, a console based tool for managing Rust versions and associated tools.
 
 ## Installation on Windows
 
-- Installation of visual studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download VisualStudio from here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
+- Installation of Visual Studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download Visual Studio from here [VS 2013 Express] (http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
 
 - Download and install rustup tool for windows .**rustup-init.exe** is available for download here-[Rust Lang](https://www.rust-lang.org/en-US/install.html)
 
@@ -17,7 +17,7 @@ Installation of Rust is made easy through **rustup**, a command line tool for ma
 
 ![installation_screen2](https://user-images.githubusercontent.com/9062443/49558030-a9105880-f92f-11e8-8ee8-7116034ba5ec.png)
 
-From the installation screen it is clear that rust related files are stored in the following folder `C:\Users\{PC}\.cargo\bin`
+From the installation screen it is clear that Rust related files are stored in the following folder `C:\Users\{PC}\.cargo\bin`
 Following are contents of the folder.
 
 ```javascript
@@ -51,7 +51,7 @@ rustc 1.29.0 (aa3ca1994 2018-09-11)
 
 ## Installation on Linux / Mac
 
- To install rustup on Linux or macOS open a terminal and enter following 
+ To install **rustup** on Linux or macOS open a terminal and enter following 
  command
 
  ```rust
