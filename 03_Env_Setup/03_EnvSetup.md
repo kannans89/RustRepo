@@ -7,71 +7,17 @@ Installation of Rust is made easy through **rustup**, a command line tool for ma
 
 - Installation of visual studio 2013 or higher with C++ tools is mandatory to run the Rust program on windows.First download VisualStudio from here [VS 2013 Express](http://download.microsoft.com/download/2/5/5/255DCCB6-F364-4ED8-9758-EF0734CA86B8/vs2013.3_dskexp_ENU.iso )
 
-- Next we need rustup tool for windows , the installation link is given here   [Rust Lang](https://www.rust-lang.org/en-US/install.html)
+- Download and install rustup tool for windows .**rustup-init.exe** is available for download here-[Rust Lang](https://www.rust-lang.org/en-US/install.html)
 
-- Download the rustup tool from above link by clicking on **rustup-init.exe** hyperlink
+- Double click on the **rustup-init.exe**  file. the following screen will  appear.
 
-- After download double click on the **rustup-init**  file ,the following screen will  appear.
-
-```javascript
-This will download and install the official compiler for the Rust programming
-language, and its package manager, Cargo.
-
-It will add the cargo, rustc, rustup and other commands to Cargo's bin
-directory, located at:
-
-  C:\Users\Admin\.cargo\bin
-
-This path will then be added to your PATH environment variable.
-
-You can uninstall at any time with rustup self uninstall and these changes will
-be reverted.
-
-Current installation options:
-
-   default host triple: x86_64-pc-windows-msvc
-     default toolchain: stable
-  modify PATH variable: yes
-
-1) Proceed with installation (default)
-2) Customize installation
-3) Cancel installation
->
-
-```
+![installation_screen](https://user-images.githubusercontent.com/9062443/49558134-073d3b80-f930-11e8-8e4f-85af4004ed15.png)
 
 - Press `enter`key to do default installation . Once installation is completed following screen appears.
 
-```javascript
-info: syncing channel updates for 'stable-x86_64-pc-windows-msvc'
-info: latest update on 2018-09-13, rust version 1.29.0 (aa3ca1994 2018-09-11)
-info: downloading component 'rustc'
- 51.5 MiB /  51.5 MiB (100 %) 582.4 KiB/s ETA:   0 s
-info: downloading component 'rust-std'
- 45.1 MiB /  45.1 MiB (100 %) 684.8 KiB/s ETA:   0 s
-info: downloading component 'cargo'
-  2.7 MiB /   2.7 MiB (100 %) 704.0 KiB/s ETA:   0 s
-info: downloading component 'rust-docs'
-  8.2 MiB /   8.2 MiB (100 %) 307.2 KiB/s ETA:   0 s
-info: installing component 'rustc'
-info: installing component 'rust-std'
-info: installing component 'cargo'
-info: installing component 'rust-docs'
-info: default toolchain set to 'stable'
+![installation_screen2](https://user-images.githubusercontent.com/9062443/49558030-a9105880-f92f-11e8-8ee8-7116034ba5ec.png)
 
-  stable installed - rustc 1.29.0 (aa3ca1994 2018-09-11)
-
-
-Rust is installed now. Great!
-
-To get started you need Cargo's bin directory (%USERPROFILE%\.cargo\bin) in
-your PATH environment variable. Future applications will automatically have the
-correct environment, but you may need to restart your current shell.
-
-
-```
-
-From the installation screen it is clear that rust related files are stored in the following folder `C:\Users\Admin\.cargo\bin`
+From the installation screen it is clear that rust related files are stored in the following folder `C:\Users\{PC}\.cargo\bin`
 Following are contents of the folder.
 
 ```javascript
@@ -86,7 +32,7 @@ rustfmt.exe
 rustup.exe
 ```
 
-- After installation is succeeded . You can check the **cargo** package manager through terminal as given below
+- **cargo** is the package manager for Rust.  To verify if **cargo** is installed execute the following command:
 
 ```javascript
 C:\Users\Admin>cargo -V
@@ -95,7 +41,7 @@ cargo 1.29.0 (524a578d7 2018-08-05)
 
 ```
 
-- Verify the compiler version in terminal as below
+- The compiler for Rust is **rustc**. To verify the compiler version , execute the follwing command:
 
 ```javascript
 C:\Users\Admin>rustc --version
@@ -111,7 +57,7 @@ rustc 1.29.0 (aa3ca1994 2018-09-11)
  ```rust
   $ curl https://sh.rustup.rs -sSf | sh
  ```
-The command downloads a script and starts the installation of the rustup tool, which installs the latest stable version of Rust. You might be prompted for your password. If the install is successful, the following line will appear:
+The command downloads a script and starts the installation of the rustup tool, which installs the latest stable version of Rust. You might be prompted for your password. If the installation is successful, the following line will appear:
 
 `Rust is installed now. Great!`
 
@@ -127,9 +73,9 @@ Note that when you try to compile a Rust program and get errors indicating that 
 
 C compilers usually come with the correct linker. Check your platform’s documentation for how to install a C compiler. Also, some common Rust packages depend on C code and will need a C compiler. Therefore, it might be worth installing one .
 
-## Using TutorialsPoint RUST REPL
+## Using TutorialsPoint *Coding Ground for RUST*
 
-A Read-Evaluate-Print Loop (REPL) is an easy to use interactive shell to compile and execute computer programs . If you want to compile and  execute Rust programs online within the browser use TutorialsPoint [**coding ground** ](https://www.tutorialspoint.com/compile_rust_online.php)
+A Read-Evaluate-Print Loop (REPL) is an easy to use interactive shell to compile and execute computer programs. If you want to compile and  execute Rust programs online within the browser use TutorialsPoint [**Coding Ground** ](https://www.tutorialspoint.com/compile_rust_online.php)
 
 <!--
   External References for this chapter
