@@ -1,5 +1,6 @@
 # HelloWorld
 
+In this chapter let us write a helloworld program.
 - Check the rust compiler path is set properly by opening a terminal and typing
 
 ```javascript
