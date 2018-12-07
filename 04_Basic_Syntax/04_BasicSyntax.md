@@ -94,7 +94,7 @@ Example
 
 ## Execute Online
 
- You can also execute Rust online through  TutorialsPoint Coding Ground  [click here](https://www.tutorialspoint.com/compile_rust_online.php) .Write the *hello-world* program in the editor tab and click on execute button to view result.
+ Rust programs can be executed online through  TutorialsPoint   [Coding Ground](https://www.tutorialspoint.com/compile_rust_online.php) .Write the *HelloWorld* program in the editor tab and click on execute button to view result.
 
 ![01_coding_ground](https://user-images.githubusercontent.com/9062443/48670121-4ac63600-eb38-11e8-9f62-b0fb5de88a84.png)
 
