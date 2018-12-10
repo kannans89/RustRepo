@@ -13,7 +13,7 @@ Systems and application programming languages face two major problems:
 1. It is difficult to write secure code.
 2. It is difficult to  write multi-threaded code.
 
-## Why Rust 
+## Why Rust?
 
  Rust focuses on three goals **safety**,**speed** and **concurrency**.
  It is designed for developing highly reliable and fast software in a simple way. It can be used to write high-level programs down to hardware-specific programs.

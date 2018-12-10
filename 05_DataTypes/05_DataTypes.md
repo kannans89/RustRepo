@@ -1,29 +1,15 @@
 
 # Data Types
 
-Every value in Rust is of a certain data type.
-3.5--> float
-'c' --> character
-true/false -->boolean
+The Type System represents the different types of values supported by the language. The Type System checks validity of the supplied values, before they are stored or manipulated by the program. This ensures that the code behaves as expected. The Type System further allows for richer code hinting and automated documentation too.
 
-Rust is a statically typed language.
-The compiler can usually infer what type we want to use based on the value and how to use it.
-
-Rust can automatically infer the data type  1 if you type--> integer.
-We need to define a type of variable in cases when many types are possible , for example we converting a String to numeric type.
-eg: '101' --> 101
-Two types of data types
-
-- Scalar
-- Compound
+Rust is a statically typed language.Every value in Rust is of a certain data type.The compiler can automatically infer data type of the variable based on the value assigned to it.
 
 ## Declare a variable
 
-You can declare a variable using `let` keyword.
+Use the `let` keyword to declare a variable.
 
 ```rust
-//https://www.tutorialspoint.com/compile_rust_online.php
-
 fn main() {
  let company_string = "TutorialsPoint"; // string type
  let rating_float=4.5;  // float type
@@ -39,9 +25,16 @@ fn main() {
 
 ```
 
-Note above example we have not  specified the type of the variable.Rust will take default type looking at value assigned . We have used different scalar data types in this example
+In the above example the data type of the variables will be inferred from the value assigned to it. For example: Rust will assign  string data type to  the variable `company_string`, float data type to `rating_float` etc.
 
-Output is given below . In println function we are using a special syntax using `{}` , which is the *placeholder* , that will be replaced by the variable value passed after comma.
+The `println` macro takes two arguments:
+
+- A special syntax `{}` , which is the *placeholder*
+- The variable name or a constant
+
+The placeholder will be replaced by the variable value
+
+The output of the above code snippet will be -
 
 ```rust
 company name  is:TutorialsPoint
@@ -54,14 +47,16 @@ company icon  is:♥
 
 A scalar type represents a single value.For eg:  10,3.14,'c' .Rust has four primary scalar types.
 
-- integer
-- floating-point
+- Integer
+- Floating-point
 - Booleans
-- characters
+- Characters
 
 ### Integer
 
-An integer is a number without a fractional component.Integer types in Rust is as shown
+An integer is a number without a fractional component.Simply put, integer data type is used to represent whole numbers.
+
+Integers can be further classified as Signed and Unsigned.Signed integers can store both negative and positive values.Unsigned integers can only store positive values. A detailed description if integer types is given below:
 
 |Sr No |  Size    | Signed|UnSigned
 |:----:|:----------|:-------|:----------|
@@ -72,9 +67,9 @@ An integer is a number without a fractional component.Integer types in Rust is a
 | 5    | 128 bit    | i128     | u128   |
 | 6    | arch     | isize     | usize   |
 
-signed integers can store both negative as well as positive values.Unsigned integers can only store positive values.The last row shows size of integer is `arch` which means datatype size of signed and unsigned will be derived from the *architecture* of the machine.It will be 32 bit for 32bit machine and if system is 64bit signed and unsigned integer size  will be 64bit.The primary situation in which you’d use isize or usize is when indexing some sort of collection.
+The size of an integer can be `arch` . This means the size of the data type will be derived from the *architecture* of the machine. An integer whose size is `arch`  will be 32 bits on an x86 machine and 64 bits on an x64 machine. An `arch` integer is primarily used when indexing some sort of collection.
 
-Lets see an example to use an integer variable using let statement
+**Illustration 1**
 
 ```rust
   fn main() {
@@ -89,7 +84,7 @@ Lets see an example to use an integer variable using let statement
  }
 ```
 
-output is as shown below
+The output will be as given below
 
 ```rust
   result value is 10
@@ -97,7 +92,7 @@ output is as shown below
   mark is 10 and count is 30
 ```
 
-You could try replacing number `20` with a floating point value and see what error the compiler gives .
+The above code will return a compilation error if you replace the value of `age` with a floating point value.
 
 #### Integer range
 
@@ -107,7 +102,7 @@ You could try replacing number `20` with a floating point value and see what err
   
 #### Integer Overflow
 
-In a variable of integer if you try to store value beyond the range overflow can happen.What will happen if we try to store a value 256 on an unsigned u8 variable . The valid range of unsigned u8 variable is 0 to 255.Let us understand this through an example.
+An integer overflow occurs when the value assigned to an integer variable exceeds the Rust defined range for the data type. Let us understand this with an example :
 
 ```rust
     fn main() {
@@ -125,7 +120,8 @@ In a variable of integer if you try to store value beyond the range overflow can
  }
 ```
 
-The output will show a warning `warning: literal out of range for u8` for weight,height and score variables.You can understand from out put that overflow values after 255 will start from 0,1,2 etc. The final output without warning is shown below
+The valid range of unsigned u8 variable is 0 to 255. In the above example, the variables are assigned values greater than 255 (upper limit for an integer variable in Rust).
+On execution, the above code will return a warning `warning: literal out of range for u8` for weight,height and score variables.The overflow values after 255 will start from 0,1,2 etc. The final output without warning is shown below
 
 ```rust
 age is 255
@@ -136,7 +132,7 @@ score is 2
 
 ### Float
 
-Rust has two primitive types **f32** and **f64** for floating-point numbers.
+Float data type in Rust can be classified as  **f32** and **f64**.
 The f32 type is a single-precision float, and f64 has double precision.The default type is f64.Let us understand this with an example.
 
 ```rust
@@ -150,14 +146,16 @@ The f32 type is a single-precision float, and f64 has double precision.The defau
  }
 ```
 
-output is shown below
+The output will be as shown below-
 
 ```rust
     interest  is 8.35
     cost is 15000.6
 ```
 
-What will happen in rust if we assign and integer type to floating point.Let us see through an example given below.
+### Automatic Type Casting
+
+Automatic type casting is not allowed in Rust.Consider the following  code snippet. An integer value is assigned to the float variable *interest*.
 
 ```rust
    fn main() {
@@ -167,7 +165,7 @@ What will happen in rust if we assign and integer type to floating point.Let us 
 
 ```
 
-Output shows mismatched types error as given below . Automatic type casting is not allowed in Rust.
+The compiler throws a *mismatched types error* as given below. 
 
 ```rust
    error[E0308]: mismatched types
@@ -185,7 +183,7 @@ error: aborting due to previous error(s)
 
 #### Number Separator
 
-For easy readability of large numbers we can use a visual  separator `_` underscore to separate digits.That is 50,000 can be written as 50_000 . This can be understood throught an exmaple.
+For easy readability of large numbers we can use a visual  separator `_` underscore to separate digits.That is 50,000 can be written as 50_000 . This is shown in the below example.
 
 ```rust
   fn main() {
@@ -198,7 +196,7 @@ For easy readability of large numbers we can use a visual  separator `_` undersc
 
 ```
 
-output is :
+The output is given below :
 
 ```rust
 float value 11000.555001
@@ -207,7 +205,9 @@ int value 50000
 
 ### Boolean
 
-Boolean types have two possible values true or false.To declare a variable of boolean we use the keyword **bool**
+Boolean types have two possible values *true* or *false*.Use the **bool** keyword to declare a boolean variable.
+
+**Illustration**
 
 ```rust
 fn main() {
@@ -217,14 +217,17 @@ fn main() {
 
 ```
 
-output will be as shown
+Output of the above code  will be -
 
 `Is Rust Programming Fun ? true`
 
 ### Character
 
-Rust supports letters or alphabetic types .To declare a variable of character type we use the keyword **char** . Rust’s char type represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
-Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive.Let us see an example.
+The character data type in Rust supports numbers,alphabets,unicode and special characters.Use the **char** keyword to declare a variable of character data type.
+Rust’s *char* type represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
+Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive.
+
+Let us see an example.
 
 ```rust
  fn main() {
@@ -235,6 +238,13 @@ Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusi
  println!("alphabet is {}",alphabet);
  println!("emoji is {}",emoji);
 }
+```
+The output of the above code will be - 
+
+```rust
+special character is @
+alphabet is A
+emoji is 😁
 ```
 
  <!--  External  Ref
