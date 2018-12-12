@@ -2,27 +2,56 @@
 
 There are two main string types in Rust.
 
-1. String Literal (&str) :  
-2. String Collection(String) :
+1. String Literal (**&str**) :  
+2. String Collection(**String**) :
 
 ## String Literal
 
-String literals are also known as string slices.This uses borrowing concept.
-String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module
-*std::str**  is part of core language. This is immutable.
+We use string leterals(&str) when value of string is known at compile time itself.
+String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*  is part of core language. String literals are immutable and uses borrowing concept of the Rust language.
+
+In the below program we have declared two string literals , also known as string slices.
+
+```rust
+ fn main() {
+ 
+ let company:&str="TutorialsPoint"; 
+ let location:&str = "Hyderabad";
+ println!("company is : {} location :{}",company,location);
+ 
+}
+
+```
+
+String literals have a static lifetime, which means the strings `company` and `location` are guaranteed to be valid for the duration of the entire program.We can explicitly specify the variables's lifetime as well as shown
+
+```rust
+  fn main() {
+ 
+ let company:&'static str="TutorialsPoint"; 
+ let location:&'static str = "Hyderabad";
+ println!("company is : {} location :{}",company,location);
+ 
+}
+```
+
+output will remain the same as static keyword is optional in declaring string literals
+
+`company is : TutorialsPoint location :Hyderabad`
 
 ## String Collection
 
-The String type is provided in Standard Library , not part of core language.It is code as a public structure as shown `pub struct String`.
-Uses ownership concept. String is a growable collection ,  it is mutable and UTF-8 encoded type.
+The String type is provided in Standard Library , not part of core language.It is programmed as a public structure as shown `pub struct String`.Unlike string literal **String** uses ownership concept of Rust language. String is a growable collection ,  it is mutable and UTF-8 encoded type.
+
+Another is that not every string value can be known when we write our code: for example, what if we want to take user input and store it? For these situations, Rust has a to use **String**. 
 
 ### Syntax
 
- To create a string you can use two ways
+ To create a String you use any of the following syntax
  1. String::new()
    This creates an empty string
  2. String::from()
-    This creates a string with some default value in from() method.
+    This creates a string with some default value passed as parameter to from() method.
 
 ```rust
 fn main(){
@@ -49,7 +78,7 @@ length is 14
 |:----:|:----------|:----|:-----------------|
 | 1    | new()     | pub const fn new() -> String|Creates a new empty String.
 | 2    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
-|3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
+| 3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
 | 4    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
 | 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
 | 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
