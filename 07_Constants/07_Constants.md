@@ -106,8 +106,8 @@ Constants on the other hand cannot be shadowed if the same program is executed w
     fn main() {
 
  const NAME:&str="Mohtashim";
- const NAME:usize= name.len(); //Error : `name` already defined
- println!("name changed to integer : {}",name);
+ const NAME:usize= NAME.len(); //Error : `NAME` already defined
+ println!("name changed to integer : {}",NAME);
 }
 
 
