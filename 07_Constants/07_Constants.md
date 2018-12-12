@@ -41,7 +41,7 @@ It is so because arrays must be of a length known at compile time, and even if "
 fn main() {
 
 let N: usize = 20;
-let arr = [0; N];
+let arr = [0; N]; //Error: non-constant used with constant
 
 print!("{}",arr[10])
 
