@@ -67,7 +67,7 @@ print!("{}",arr[10])
 The "const" keyword allows us to declare an identifier having a value defined at compile time, and of course no more changeable at runtime. In its declaration, it is required to specify its type.
 
 
-## Shadowing
+## Shadowing of variables and constants
 
  Rust allows programmers to declare a new variable with the same name as a previous variable, and the new variable shadows the previous variable.
  Let us understand this with an example.
@@ -75,7 +75,7 @@ The "const" keyword allows us to declare an identifier having a value defined at
  ```rust
 fn main() {
 let salary = 100.00;
-let salary = 1.50 * salary; // read first salary
+let salary = 1.50 * salary; // reads first salary
 println!("salary after hike is :{}",salary);
 
 }
@@ -99,3 +99,16 @@ fn main() {
 ```
 
 output is `name changed to integer : 9`
+
+Constants on the other hand cannot be shadowed if the same program is executed with constants as shown below , will giver error
+
+```rust
+    fn main() {
+
+ const name:&str="Mohtashim";
+ const name:usize= name.len(); //Error : `name` already defined
+ println!("name changed to integer : {}",name);
+}
+
+
+```
