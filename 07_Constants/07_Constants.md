@@ -35,7 +35,7 @@ Rust’s naming convention for constants is to use all uppercase with underscore
 Let us see an example
 
 The following program is illegal:
-It is so because arrays must be of a length known at compile time, and even if "n" is immutable, and so, in a sense, constant, its initial value could be determined at runtime, and so it is not allowed to specify the size of an array
+It is so because arrays must be of a length known at compile time, here variable "N" initial value could be only determined at runtime, and so it is not allowed to use variables to specify the size of an array as shown below
 
 ```rust
 fn main() {
