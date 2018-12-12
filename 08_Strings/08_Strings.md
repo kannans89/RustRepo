@@ -82,8 +82,11 @@ length is 14
 | 4    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
 | 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
 | 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
+| 7   | is_empty()  |pub fn is_empty(&self) -> bool |Returns true if input string is empty.
+| 8   | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
+| 9  | .contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
 
-<!-- TODO: clone(), -->
+
 
 ```rust
 fn main(){
