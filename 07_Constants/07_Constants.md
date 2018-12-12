@@ -105,8 +105,8 @@ Constants on the other hand cannot be shadowed if the same program is executed w
 ```rust
     fn main() {
 
- const name:&str="Mohtashim";
- const name:usize= name.len(); //Error : `name` already defined
+ const NAME:&str="Mohtashim";
+ const NAME:usize= name.len(); //Error : `name` already defined
  println!("name changed to integer : {}",name);
 }
 
