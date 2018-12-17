@@ -214,3 +214,38 @@ output is shown
 Inside update  [0, 0, 0]
 Inside main [0, 0, 0]
 ```
+
+##declaration array n constants
+Let us see an example
+
+The following program is illegal:
+It is so because an array's length must be known at compile time.Here variable "N" initial value could be only determined at runtime, and so it is not allowed to use variables to specify the size of an array as shown below
+
+```rust
+fn main() {
+
+let N: usize = 20;
+let arr = [0; N]; //Error: non-constant used with constant
+
+print!("{}",arr[10])
+
+    
+}
+
+```
+
+But the following program is valid:
+
+```rust
+ fn main() {
+
+const N: usize = 20;
+let arr = [0; N];
+
+print!("{}",arr[10])
+
+    
+}
+```
+
+The "const" keyword allows us to declare an identifier having a value defined at compile time, and of course no more changeable at runtime. In its declaration, it is required to specify its type.
