@@ -1,19 +1,26 @@
 # Variables
 
-A variable provides us with named storage that our programs can manipulate. Each variable in Rust has a specific type, which determines the size and layout of the variable's memory; the range of values that can be stored within that memory;and the set of operations that can be applied to the variable.
+A variable is a named storage that  programs can manipulate.Simply put, a variable helps programs to store values.
+Variables in Rust are associated with a specific data type. The data type determines the size and layout of the variable's memory, the range of values that can be stored within that memory and the set of operations that can be performed on the variable.
 
-The name of a variable can be composed of letters, digits, and the underscore character. It must begin with either a letter or an underscore. Upper and lowercase letters are distinct because Rust is case-sensitive .
+## Variable Naming-Rules
+
+- The name of a variable can be composed of letters, digits, and the underscore character.
+- It must begin with either a letter or an underscore.
+- Upper and lowercase letters are distinct because Rust is case-sensitive .
 
 ## Syntax
 
-When you define a variable the type is optional in Rust.It will take the type from the value assigned.The syntax is given below.
+The data type is optional while declaring a variable in Rust. The data type is inferred from the value assigned to the variable.
+
+The syntax for declaring a variable is given below.
 
 ```rust
   let variable_name=value;// no type specified
   let variable_name:dataType = value; //type specified
 ```
 
-A simple example would be as given below.
+### Illustration
 
 ```rust
  fn main() {
@@ -24,11 +31,12 @@ A simple example would be as given below.
 
 ```
 
-output will be `fees is 25000 and salary is 35000`.
+The output of the above code will be `fees is 25000 and salary is 35000`.
 
 ## Immutable
 
-By default variables are immutable or read only in Rust by design.When a variable is immutable, once a value is bound to a variable name, you can’t change that value.
+By default variables are immutable i.e.read only in Rust.In other words, the variable's value cannot be changed once a value is bound to a variable name.
+
 Let us understand this with an example.
 
 ```rust
@@ -41,7 +49,7 @@ Let us understand this with an example.
 
 ```
 
-output will be like this
+The output will be -
 
 ```rust
  error[E0384]: re-assignment of immutable variable `fees`
@@ -61,7 +69,10 @@ The error message indicates that the cause of the error is that you cannot assig
 
 ## Mutable
 
-Mutable variable values can be changed . Variables are immutable by default but we can apply a keyword **mut** in front of variable to make it mutable.Syntax is as shown below.
+Variables are immutable by default.
+Prefix the variable name with **mut** keyword to make it mutable. The value of a mutable variable can be changed.
+
+The syntax for declaring a mutable variable is as shown below-
 
 ```rust
  let mut variable_name=value;
@@ -80,7 +91,7 @@ Let us understand this with an example
 
 ```
 
-output will be as shown
+The output of the snippet is  given below-
 
 ```rust
   fees is 25000
