@@ -2,27 +2,59 @@
 
 There are two main string types in Rust.
 
-1. String Literal (&str) :  
-2. String Collection(String) :
+1. String Literal (**&str**) :  
+2. String Object(**String**) :
 
 ## String Literal
 
-String literals are also known as string slices.This uses borrowing concept.
-String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module
-*std::str**  is part of core language. This is immutable.
+We use string leterals(&str) when value of string is known at compile time itself.
+String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*  is part of core language. String literals are immutable and uses borrowing concept of the Rust language.
 
-## String Collection
+In the below program we have declared two string literals , also known as string slices.
 
-The String type is provided in Standard Library , not part of core language.It is code as a public structure as shown `pub struct String`.
-Uses ownership concept. String is a growable collection ,  it is mutable and UTF-8 encoded type.
+```rust
+ fn main() {
+ 
+ let company:&str="TutorialsPoint"; 
+ let location:&str = "Hyderabad";
+ println!("company is : {} location :{}",company,location);
+ 
+}
+
+```
+
+String literals have a static lifetime, which means the strings `company` and `location` are guaranteed to be valid for the duration of the entire program.We can explicitly specify the variables's lifetime as well as shown
+
+```rust
+  fn main() {
+ 
+ let company:&'static str="TutorialsPoint"; 
+ let location:&'static str = "Hyderabad";
+ println!("company is : {} location :{}",company,location);
+ 
+}
+```
+
+output will remain the same as static keyword is optional in declaring string literals
+
+`company is : TutorialsPoint location :Hyderabad`
+
+## String Object
+
+The String object type is provided in Standard Library , not part of core language.It is programmed as a public structure as shown `pub struct String`.Unlike string literal **String** uses ownership concept of Rust language. String is a growable collection ,  it is mutable and UTF-8 encoded type.
+
+Note that every string value can be known when we write our code: for example, what if we want to take user input and store it? For these situations, Rust has a to use **String**  object type.
+
+ String object is allocated in the heap . When you want to grow your string dynamically like a vector we need to use String object.
+
 
 ### Syntax
 
- To create a string you can use two ways
+ To create a String you use any of the following syntax
  1. String::new()
    This creates an empty string
  2. String::from()
-    This creates a string with some default value in from() method.
+    This creates a string with some default value passed as parameter to from() method.
 
 ```rust
 fn main(){
@@ -49,13 +81,21 @@ length is 14
 |:----:|:----------|:----|:-----------------|
 | 1    | new()     | pub const fn new() -> String|Creates a new empty String.
 | 2    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
-|3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
+| 3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
 | 4    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
 | 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
 | 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
+| 7   | is_empty()  |pub fn is_empty(&self) -> bool |Returns true if input string is empty.
+| 8   | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
+| 9  | contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
+|10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
 
-<!-- TODO: clone(), -->
 
+
+## Convert a String literal to Object
+
+   To access all methods of String object we can easily convert a string literal to object type using `to_string()` method.Let us see an example.
+   
 ```rust
 fn main(){
 
@@ -67,6 +107,10 @@ fn main(){
 }
 ```
 
+output of the code is  `Howdy TutorialsPoint`
+
+
+We can also use String::from() method to convert a string literal to string object type as shown. We are appending another string to original string using push_str method.
 
 ```rust
 fn main() {
@@ -77,17 +121,15 @@ fn main() {
 
 ```
 
-## Other String functions
+output is `Tutorials Point`
 
-- to_string
-- push_str
-- push
 
+In this example we are converting a number to a string object 
 ```rust
 fn main(){
     
     let number = 2020;
-    let number_as_string= number.to_string();
+    let number_as_string= number.to_string(); // convert number to string
     println!("{}",number_as_string);
     println!("{}",number_as_string=="2020");
 }
@@ -110,36 +152,38 @@ Example of push and push_str is given below
 
 ```
 
-## Concatenation with plus + Operator
+## Concatenation of Strings with + operator
 
-+ operator calls the add method of the Add trait. Syntax of add trait is given below.First parameter is a self and second parameter is a reference.
+Concatenate string means we will add two string objects and return a new string object.
++ operator interanlly uses an *add* method . Syntax of this add function takes two parameters.First parameter is a self that is String object itself and second parameter is a reference of second string object.
+
   ```rust
-     add(self,&str)->String{
+  //add function 
+  
+     add(self,&str)->String{ // returns a String object
 
      }
   ```
   
-  Let us see string concatenation example.
+  Let us see an example of  string concatenation .
   
   ```rust
   fn main(){
   let n1 = "Tutorials".to_string();
   let n2 = "Point".to_string();
   
-  let n3 = n1 + &n2; // n1 will be moved
+  let n3 = n1 + &n2; // n2 reference is passed 
   
   println!("{}",n3);
   
-   // println!("{}",n1);//Error here
-  
   }
   ```
-
-Note that n1 will be moved to the method `add` which is internally called so the line `println!("{}",n1)` will give error as n1 is moved.
+  
+ output is as shown:`TutorialsPoint`
 
 ## Format! Macro
 
-To solve the problem of concatenating string without ownership change , we can use format macro. It is easy to use format macro than using + operator.
+Another way to add to String objects together is usign a macro function called format .Example is shown below.
 
 ```rust
 
@@ -151,16 +195,40 @@ To solve the problem of concatenating string without ownership change , we can u
   
   println!("{}",n3);
   
-   // println!("{}",n1);//Error here
-  
+   
   }
 
  ```
 
+## split string with white spaces
 
- ## How to access characters of String
+```rust
+   fn main(){
+    
+    let msg = "Tutorials Point has good tutorials".to_string();
+    
+    let mut i =1;
+    for token in msg.split_whitespace(){
+        println!("token {} {}",i,token);
+        i+=1;
+    }
+}
 
- You can access string charactes from a string object using string slice.
+```
+
+output: ```rust
+token 1 Tutorials
+token 2 Point
+token 3 has
+token 4 good
+token 5 tutorials
+
+```
+
+ ## How to access chars from string
+
+ You can access string charactes from a string object using string slice.From string object `Tutorials' we need to slice out `Tutor`.
+ Syntax of the string slice will take start index and end index .For example in given string 'Tutorials' we are slices from 0 index to index 5 ,without including 5th index.
  
  ```rust
   fn main(){
@@ -173,6 +241,7 @@ To solve the problem of concatenating string without ownership change , we can u
 
 
  ```
+output : `Tutor`
 
 The elegant way to access the characters from a string is using `chars` method.Let us see an example.
 
@@ -182,7 +251,7 @@ The elegant way to access the characters from a string is using `chars` method.L
   
   let z = String::new();
   for n in n1.chars(){
-      println!("{}",n);
+       println!("{}",n);
   }
   
   }
@@ -200,36 +269,31 @@ chars() also work on string literals.
 
 ```
 
-## Common String object operations
+## String vs &str
 
-  String object is allocated in the heap . It also guarantess a valid utf8 sequence similar to string literal. &str is fairly inflexible string object. When you want to grow your string dynamically like a vector we need to use String object.
+Let us understand the difference with an example as shown . The `print_me(String) ` function takes input as String object.
+So if we ivoke this function with string literal it should give us error . We will try to convert string object to literal using `as_str()` function and vice versa with `to_string()` method.
 
-   Let us build a comma delimited string of alphabets.
- 
 ```rust
+ fn main(){
 
-fn main(){
+ print_me(String::from("TutorialsPoint")); // string object
+ 
+ let s3 = "Hyderabad".to_string(); // convert string literal to object
+ let s4= s3.as_str();  // convert object to literal
+ 
+ // print_me(s4);  // Error for literal
+ 
+  print_me(s4.to_string());//  literal to object works
+  
+ }
+  
+  
+  fn print_me(msg: String) {
+    println!("the string object is {}", msg);
+  }
 
-    let mut start = 'a' as u8;
-    let mut alphabets=String::new();
-
-    while start <= ('z' as u8){
-        alphabets.push(start as char);
-        if(start as char!='z'){
-            alphabets.push_str(",");
-        }
-        start+=1;
-
-    }
-
-    println!("{}",alphabets);
-}
-
- ```
-
-output
-
-`a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z`
+```
 
 <!-- 
 1. string functions:
