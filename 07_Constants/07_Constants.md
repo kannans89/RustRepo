@@ -40,7 +40,7 @@ The following example illustrated using constants in Rust-
 ## Shadowing of variables and constants
 
  Rust allows programmers to declare variables with the same name. In such a case the new variable overrides the previous variable.
- 
+
  Let us understand this with an example.
 
  ```rust
@@ -82,7 +82,6 @@ Unlike variables,constants cannot be shadowed. If variables in the above program
  const NAME:&str="Mohtashim";
  const NAME:usize= NAME.len(); //Error : `NAME` already defined
  println!("name changed to integer : {}",NAME);
+
 }
-
-
 ```
