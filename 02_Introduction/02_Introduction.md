@@ -13,7 +13,7 @@ Systems and application programming languages face two major problems:
 1. It is difficult to write secure code.
 2. It is difficult to  write multi-threaded code.
 
-## Why Rust?
+## Why Rust
 
  Rust focuses on three goals **safety**,**speed** and **concurrency**.
  It is designed for developing highly reliable and fast software in a simple way. It can be used to write high-level programs down to hardware-specific programs.
@@ -21,7 +21,7 @@ Systems and application programming languages face two major problems:
  1. **Performance**: Rust programming language doesn't have a Garbage Collector(GC) by design.This improves the performance at runtime .
  2. **Memory safety at compile time** :Software built using Rust are safe from memory issues like dangling pointers,buffer overruns and memory leaks.
  3. **Multi threaded applications** :Rust's ownership and memory safety rules provide concurrency without data races.
-
+ 4. **Support for WebAssembly(Wasm)**: WebAssembly helps to execute high computation intensive algorithms in the browser, on embedded devices, or anywhere else. It runs at the speed of native code . Rust can be compiled to WebAssembly for fast, reliable execution.
 
 <!-- External links for this chapter
  //day2

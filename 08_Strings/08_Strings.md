@@ -7,18 +7,15 @@ There are two main string types in Rust.
 
 ## String Literal
 
-We use string leterals(&str) when value of string is known at compile time itself.
-String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*  is part of core language. String literals are immutable and uses borrowing concept of the Rust language.
+We use string leterals(&str) when value of string is known at compile time itself.String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*  is part of core language. String literals are immutable and uses borrowing concept of the Rust language.
 
 In the below program we have declared two string literals , also known as string slices.
 
 ```rust
  fn main() {
- 
- let company:&str="TutorialsPoint"; 
- let location:&str = "Hyderabad";
- println!("company is : {} location :{}",company,location);
- 
+    let company:&str="TutorialsPoint";
+    let location:&str = "Hyderabad";
+    println!("company is : {} location :{}",company,location);
 }
 
 ```
@@ -27,11 +24,9 @@ String literals have a static lifetime, which means the strings `company` and `l
 
 ```rust
   fn main() {
- 
- let company:&'static str="TutorialsPoint"; 
+ let company:&'static str="TutorialsPoint";
  let location:&'static str = "Hyderabad";
  println!("company is : {} location :{}",company,location);
- 
 }
 ```
 
@@ -46,7 +41,6 @@ The String object type is provided in Standard Library , not part of core langua
 Note that every string value can be known when we write our code: for example, what if we want to take user input and store it? For these situations, Rust has a to use **String**  object type.
 
  String object is allocated in the heap . When you want to grow your string dynamically like a vector we need to use String object.
-
 
 ### Syntax
 
@@ -90,12 +84,10 @@ length is 14
 | 9  | contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
 |10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
 
-
-
 ## Convert a String literal to Object
 
    To access all methods of String object we can easily convert a string literal to object type using `to_string()` method.Let us see an example.
-   
+
 ```rust
 fn main(){
 
@@ -108,7 +100,6 @@ fn main(){
 ```
 
 output of the code is  `Howdy TutorialsPoint`
-
 
 We can also use String::from() method to convert a string literal to string object type as shown. We are appending another string to original string using push_str method.
 
@@ -123,11 +114,10 @@ fn main() {
 
 output is `Tutorials Point`
 
+In this example we are converting a number to a string object
 
-In this example we are converting a number to a string object 
 ```rust
 fn main(){
-    
     let number = 2020;
     let number_as_string= number.to_string(); // convert number to string
     println!("{}",number_as_string);
@@ -140,14 +130,11 @@ Example of push and push_str is given below
 
 ```rust
   fn main(){
-    
  let mut company = "Tutorial".to_string();
  company.push('s');
  println!("{}",company);
- 
  company.push_str(" Point");
   println!("{}",company);
-    
 }
 
 ```
@@ -158,16 +145,17 @@ Concatenate string means we will add two string objects and return a new string 
 + operator interanlly uses an *add* method . Syntax of this add function takes two parameters.First parameter is a self that is String object itself and second parameter is a reference of second string object.
 
   ```rust
-  //add function 
-  
+  //add function
      add(self,&str)->String{ // returns a String object
 
      }
-  ```
-  
-  Let us see an example of  string concatenation .
-  
-  ```rust
+
+```
+
+Let us see an example of  string concatenation .
+
+```rust
+
   fn main(){
   let n1 = "Tutorials".to_string();
   let n2 = "Point".to_string();
@@ -177,9 +165,10 @@ Concatenate string means we will add two string objects and return a new string 
   println!("{}",n3);
   
   }
-  ```
   
- output is as shown:`TutorialsPoint`
+```
+
+Output is as shown:`TutorialsPoint`
 
 ## Format! Macro
 
@@ -195,7 +184,6 @@ Another way to add to String objects together is usign a macro function called f
   
   println!("{}",n3);
   
-   
   }
 
  ```
