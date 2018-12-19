@@ -72,3 +72,73 @@ after this fire **cargo build**
 
 rand and all transivtive dependencis also downloaed. it automatically downloaed internal dependencies.
 
+## What are modules
+
+Modules helps to organize  the code into logical groups.For example *network* module contains networking related functions and *draw* module contains drawing related functions.This is similar to packages or namespaces in other programming languages.
+
+Let us see the syntax of module.
+
+```rust
+     //public module
+   pub mod a_public_module{
+      pub fn a_public_function(){
+          //public function
+      }
+
+      fn a_private_function(){
+             //private function
+      }
+   }
+
+   //private module
+   mod a_private_module{
+         fn a_private_function(){
+
+         }
+   }
+
+```
+
+Modules should be prefixed with `pub` keyword to make it public so that it can be accessible outside the module.Let us see an example.
+
+```rust
+  
+pub mod movies {
+            pub fn play(name:String){
+                println!("Playing  movie {}",name);
+            }
+}
+
+fn main(){
+    movies::play("Herold and Kumar".to_string());
+}
+
+```
+
+## Use Keyword
+
+Modules can also be nested as shown below example .If we want to call play method it will be difficult to remember the full module path like `movies::english::comedy::play`.There is an easy way to solve this problem with `use` keyword.
+
+```rust
+pub mod movies {
+    pub mod english {
+        pub mod comedy{
+            pub fn play(name:String){
+                println!("Playing comedy movie {}",name);
+            }
+        }
+    }
+}
+
+use movies::english::comedy::play;
+
+fn main(){
+   // short path syntax
+   play("Herold and Kumar".to_string());
+   play("The Hangover".to_string());
+
+   //full path syntax
+   movies::english::comedy::play("Airplane!".to_string());
+}
+
+```
