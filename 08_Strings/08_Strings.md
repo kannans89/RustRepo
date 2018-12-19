@@ -1,15 +1,15 @@
 # String
 
-There are two main string types in Rust.
+String type in Rust can be classifed as-
 
 1. String Literal (**&str**) :  
 2. String Object(**String**) :
 
 ## String Literal
 
-We use string leterals(&str) when value of string is known at compile time itself.String literals are a list of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*  is part of core language. String literals are immutable and uses borrowing concept of the Rust language.
+String literals(&str) are used when value of the string is known at compile time .String literals are a set of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*. String literals are also knwn as string slices.
 
-In the below program we have declared two string literals , also known as string slices.
+The following example declares two string literals-comapny and location.
 
 ```rust
  fn main() {
@@ -20,8 +20,7 @@ In the below program we have declared two string literals , also known as string
 
 ```
 
-String literals have a static lifetime, which means the strings `company` and `location` are guaranteed to be valid for the duration of the entire program.We can explicitly specify the variables's lifetime as well as shown
-
+String literals are static by default. This means that string literals are guaranteed to be valid for the duration of the entire program.We can also explicitly specify the variable as static as shown below-
 ```rust
   fn main() {
  let company:&'static str="TutorialsPoint";
@@ -29,26 +28,34 @@ String literals have a static lifetime, which means the strings `company` and `l
  println!("company is : {} location :{}",company,location);
 }
 ```
-
-output will remain the same as static keyword is optional in declaring string literals
+The output of the above program will be - 
 
 `company is : TutorialsPoint location :Hyderabad`
 
 ## String Object
 
-The String object type is provided in Standard Library , not part of core language.It is programmed as a public structure as shown `pub struct String`.Unlike string literal **String** uses ownership concept of Rust language. String is a growable collection ,  it is mutable and UTF-8 encoded type.
+The String object type is provided in Standard Library. Unlike string literal, the string object type is not a part of the core language.
+//need clarity 
+It is programmed as a public structure as shown `pub struct String`.Unlike string literal **String** uses ownership concept of Rust language. 
 
-Note that every string value can be known when we write our code: for example, what if we want to take user input and store it? For these situations, Rust has a to use **String**  object type.
+String is a growable collection.It is mutable and UTF-8 encoded type.
 
- String object is allocated in the heap . When you want to grow your string dynamically like a vector we need to use String object.
+The **String**  object type can be used to represent string values that are provided at runtime.
+
+ String object is allocated in the heap . 
+ 
+ //is this reqd 
+ When you want to grow your string dynamically like a vector we need to use String object.
 
 ### Syntax
 
- To create a String you use any of the following syntax
+ To create a String object you use any of the following syntax
  1. String::new()
    This creates an empty string
  2. String::from()
-    This creates a string with some default value passed as parameter to from() method.
+    This creates a string with some default value passed as parameter to the from() method.
+
+The following example illustrates the use of a String object.
 
 ```rust
 fn main(){
@@ -60,8 +67,9 @@ fn main(){
 }
 
 ```
+//explain code here 
 
-output is as shown below
+The output is as shown below
 
 ```rust
 length is 0
@@ -69,7 +77,7 @@ length is 14
 
 ```
 
-### Common methods in String is
+### Common methods - String Object
 
 |Sr No |  method | signature  | description
 |:----:|:----------|:----|:-----------------|
@@ -88,7 +96,8 @@ length is 14
 
 ## Convert a String literal to Object
 
-   To access all methods of String object we can easily convert a string literal to object type using `to_string()` method.Let us see an example.
+   To access all methods of String object we can easily convert a string literal to object type using `to_string()` method.
+   Let us see an example.
 
 ```rust
 fn main(){
@@ -100,8 +109,9 @@ fn main(){
 
 }
 ```
+//explain code here 
 
-output of the code is  `Howdy TutorialsPoint`
+The output of the above code will be   `Howdy TutorialsPoint`
 
 We can also use String::from() method to convert a string literal to string object type as shown. We are appending another string to original string using push_str method.
 
@@ -114,9 +124,14 @@ fn main() {
 
 ```
 
-output is `Tutorials Point`
+The output will be 
 
-In this example we are converting a number to a string object
+`Tutorials Point`
+
+
+## Illustration :Type Casting- Number to String  
+
+The following example ilustrates converting a number to a string object
 
 ```rust
 fn main(){
@@ -127,6 +142,11 @@ fn main(){
 }
 
 ```
+The output will be :
+//output goes here
+
+
+## Illustration: push() and push_str() 
 
 Example of push and push_str is given below
 
@@ -140,6 +160,12 @@ Example of push and push_str is given below
 }
 
 ```
+The output will be :
+
+//paste output here 
+
+
+## Illustration: len() and trim()
 
 Example to use trim method in string .It removes spaces before and after the content.
 
@@ -157,7 +183,7 @@ Example to use trim method in string .It removes spaces before and after the con
 
 ```
 
-output is :
+The output will be :
 
 ```rust
  Before trim :
@@ -173,8 +199,8 @@ length is  15
 
 ## Concatenation of Strings with + operator
 
-Concatenate string means we will add two string objects and return a new string object.
-+ operator interanlly uses an *add* method . Syntax of this add function takes two parameters.First parameter is a self that is String object itself and second parameter is a reference of second string object.
+A string value can be appended to another string. This is called concatenation or interpolation. The result of string concatenation is a new string object.
+The *+* operator internally uses an *add* method . Syntax of this add function takes two parameters.First parameter is *self* i.e. String object itself and the second parameter is a reference of the second string object. This is shown below-
 
   ```rust
   //add function
@@ -184,7 +210,7 @@ Concatenate string means we will add two string objects and return a new string 
 
 ```
 
-Let us see an example of  string concatenation .
+## Illustration- String Concatenation.
 
 ```rust
 
@@ -200,11 +226,13 @@ Let us see an example of  string concatenation .
   
 ```
 
-Output is as shown:`TutorialsPoint`
+The Output will be as given below:
 
-## Format! Macro
+`TutorialsPoint`
 
-Another way to add to String objects together is usign a macro function called format .Example is shown below.
+## Illustration- Format! Macro
+
+Another way to add to String objects together is usign a macro function called format . The use of Format! is as shown below.
 
 ```rust
 
@@ -219,8 +247,9 @@ Another way to add to String objects together is usign a macro function called f
   }
 
  ```
+//output
 
-## split string with white spaces
+## Illustration:Split string with white spaces
 
 ```rust
    fn main(){
@@ -236,7 +265,7 @@ Another way to add to String objects together is usign a macro function called f
 
 ```
 
-output:
+Output:
 
  ```rust
 token 1 Tutorials
@@ -247,7 +276,7 @@ token 5 tutorials
 
 ```
 
-## split string with a delimiter
+## Illustration: split string with a delimiter
 
 The split methods returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
 
@@ -282,10 +311,13 @@ lastname is Sudhakaran
 company is Tutorialspoint
 
 ```
- ## How to access chars from string
+ ## Accessing chars from string
 
- You can access string charactes from a string object using string slice.From string object `Tutorials' we need to slice out `Tutor`.
- Syntax of the string slice will take start index and end index .For example in given string 'Tutorials' we are slices from 0 index to index 5 ,without including 5th index.
+ You can access string charactes from a string object using string slice function.From string object `Tutorials` we need to slice out `Tutor`.
+ Syntax of the string slice function is-
+ //add syntax here
+ 
+ The example fetches charcters from index 0 through 4 (5 characters) from the string 'Tutorials'.
  
  ```rust
   fn main(){
@@ -298,9 +330,11 @@ company is Tutorialspoint
 
 
  ```
-output : `Tutor`
+Output : 
 
-The elegant way to access the characters from a string is using `chars` method.Let us see an example.
+`Tutor`
+
+Another way of accessing characters from a string is by using the `chars` method.Let us see an example.
 
 ```rust
  fn main(){
@@ -314,8 +348,10 @@ The elegant way to access the characters from a string is using `chars` method.L
   }
 
 ```
+//output
 
-chars() also work on string literals.
+
+The chars() function can be used  with string literals too. The following example uses the char() function to fetch characters from a string literal.
 
 ```rust
  fn main(){
@@ -326,6 +362,9 @@ chars() also work on string literals.
 
 ```
 
+//output
+
+// redo
 ## String vs &str
 
 `String` object uses dynamic heap to store or modify the string data.`str` is an immutable sequence of UTF-8 bytes of dynamic length somewhere in memory. Since the size is unknown, one can only handle it behind a pointer. This means that str most commonly appears as `&str`
