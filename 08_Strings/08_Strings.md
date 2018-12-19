@@ -364,4 +364,8 @@ https://doc.rust-lang.org/std/primitive.str.html#method.chars
 https://doc.rust-lang.org/std/str/index.html
 
 
+https://stackoverflow.com/questions/24158114/what-are-the-differences-between-rusts-string-and-str/24159933#24159933
+
+http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html
+
 -->
