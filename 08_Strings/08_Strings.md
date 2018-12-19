@@ -204,7 +204,9 @@ Another way to add to String objects together is usign a macro function called f
 
 ```
 
-output: ```rust
+output:
+
+ ```rust
 token 1 Tutorials
 token 2 Point
 token 3 has
@@ -213,6 +215,41 @@ token 5 tutorials
 
 ```
 
+## split string with a delimiter
+
+The split methods returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
+
+```rust
+fn main() {
+  
+  let fullname = "Kannan,Sudhakaran,Tutorialspoint";
+  
+  for token in  fullname.split(","){
+      println!("token is {}",token);
+  }
+  
+  //store in a Vector
+  println!("\n");
+  let tokens:Vec<&str>= fullname.split(",").collect();
+  println!("firstName is {}",tokens[0]);
+  println!("lastname is {}",tokens[1]);
+  println!("company is {}",tokens[2]);
+}
+
+```
+
+output
+
+```rust
+token is Kannan
+token is Sudhakaran
+token is Tutorialspoint
+
+firstName is Kannan
+lastname is Sudhakaran
+company is Tutorialspoint
+
+```
  ## How to access chars from string
 
  You can access string charactes from a string object using string slice.From string object `Tutorials' we need to slice out `Tutor`.
