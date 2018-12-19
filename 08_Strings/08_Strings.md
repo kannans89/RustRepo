@@ -83,6 +83,8 @@ length is 14
 | 8   | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
 | 9  | contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
 |10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
+|11|trim()|pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
+|12|split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
 
 ## Convert a String literal to Object
 
@@ -136,6 +138,36 @@ Example of push and push_str is given below
  company.push_str(" Point");
   println!("{}",company);
 }
+
+```
+
+Example to use trim method in string .It removes spaces before and after the content.
+
+```rust
+  fn main() {
+  
+  let fullname = "     Tutorials Point  \r\n";
+  println!("Before trim :\n{}",fullname);
+   println!("length is  {}",fullname.len());
+   
+   println!();
+   println!("After  trim :\n{}",fullname.trim());
+   println!("length is  {}",fullname.trim().len());
+}
+
+```
+
+output is :
+
+```rust
+ Before trim :
+     Tutorials Point  
+
+length is  24
+
+After  trim :
+Tutorials Point
+length is  15
 
 ```
 
@@ -297,7 +329,7 @@ chars() also work on string literals.
 ## String vs &str
 
 Let us understand the difference with an example as shown . The `print_me(String) ` function takes input as String object.
-So if we ivoke this function with string literal it should give us error . We will try to convert string object to literal using `as_str()` function and vice versa with `to_string()` method.
+So if we invoke this function with string literal it should give us error . We will try to convert string object to literal using `as_str()` function and vice versa with `to_string()` method.
 
 ```rust
  fn main(){
@@ -308,6 +340,7 @@ So if we ivoke this function with string literal it should give us error . We wi
  let s4= s3.as_str();  // convert object to literal
  
  // print_me(s4);  // Error for literal
+ //print_me("Hello I am a literal"); //Error
  
   print_me(s4.to_string());//  literal to object works
   
