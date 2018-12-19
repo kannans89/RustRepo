@@ -149,7 +149,6 @@ Example to use trim method in string .It removes spaces before and after the con
   let fullname = "     Tutorials Point  \r\n";
   println!("Before trim :\n{}",fullname);
    println!("length is  {}",fullname.len());
-   
    println!();
    println!("After  trim :\n{}",fullname.trim());
    println!("length is  {}",fullname.trim().len());
