@@ -2,8 +2,8 @@
 
 String type in Rust can be classifed as-
 
-1. String Literal (**&str**) :  
-2. String Object(**String**) :
+1. String Literal (**&str**)
+2. String Object(**String**)
 
 ## String Literal
 
