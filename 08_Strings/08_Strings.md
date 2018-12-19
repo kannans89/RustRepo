@@ -328,6 +328,8 @@ chars() also work on string literals.
 
 ## String vs &str
 
+`String` object uses dynamic heap to store or modify the string data.`str` is an immutable sequence of UTF-8 bytes of dynamic length somewhere in memory. Since the size is unknown, one can only handle it behind a pointer. This means that str most commonly appears as `&str`
+
 Let us understand the difference with an example as shown . The `print_me(String) ` function takes input as String object.
 So if we invoke this function with string literal it should give us error . We will try to convert string object to literal using `as_str()` function and vice versa with `to_string()` method.
 
@@ -335,8 +337,9 @@ So if we invoke this function with string literal it should give us error . We w
  fn main(){
 
  print_me(String::from("TutorialsPoint")); // string object
- 
+
  let s3 = "Hyderabad".to_string(); // convert string literal to object
+
  let s4= s3.as_str();  // convert object to literal
  
  // print_me(s4);  // Error for literal
