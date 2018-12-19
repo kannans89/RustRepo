@@ -29,7 +29,7 @@ Assume the values in variables a and b are 10 and 5 respectively.
 
 **NOTE** : The ++ and -- operators are not supported in Rust.
 
-The sample code is given below
+## Illustration
 
 ```rust
 fn main() {
@@ -56,7 +56,7 @@ println!("Remainder: {}  ",res);
 
 ```
 
-output
+Output:
 
 ```rust
 Sum:    12  
@@ -69,7 +69,7 @@ Remainder: 0
 
 ## Relational Operators
 
-Relational Operators test or define the kind of relationship between two entities. Relational operators return a Boolean value, i.e., true/ false.
+Relational Operators test or define the kind of relationship between two entities.Relational operators are used to compare two or more values.Relational operators return a Boolean value, i.e. true or false.
 
 Assume the value of A is 10 and B is 20.
 
@@ -83,7 +83,7 @@ Assume the value of A is 10 and B is 20.
 |6| !=	|Not equal	|(A != B) is True
 
 
-sample code as shown 
+## Illustration
 
 ```rust
 fn main() {
@@ -114,7 +114,7 @@ println!("A is not equal to B: {} ",res);
 
 ```
 
-ouput is shown below 
+Output:
 
 ```rust
 Value of A:10 
@@ -130,7 +130,7 @@ A is not equal to B: true
 
 ## Logical Operators
 
-Logical Operators are used to combine two or more conditions. Logical operators too return a Boolean value. Assume the value of variable A is 10 and B is 20.
+Logical Operators are used to combine two or more conditions. Logical operators too, return a Boolean value. Assume the value of variable A is 10 and B is 20.
 
 |Sr No |  Operator | Description  | Example
 |:----:|:----------|:----|:-----------------|
@@ -138,6 +138,7 @@ Logical Operators are used to combine two or more conditions. Logical operators 
 | 2| || (OR) |	The operator returns true if at least one of the expressions specified return true	|(A > 10 || B >10) is True
 |3| ! (NOT) |	The operator returns the inverse of the expression’s result. For E.g.: !(>5) returns false	| !(A >10 ) is True
 
+// Sample code here 
 
 ```rust
 
@@ -159,7 +160,7 @@ Assume variable A = 2 and B = 3
 |6| >> (Right Shift) |Binary Right Shift Operator. The left operand’s value is moved right by the number of bits specified by the right operand. |	(A >> 1) is 1
 |7| >>> (Right shift with Zero) |	This operator is just like the >> operator, except that the bits shifted in on the left are always zero.|	(A >>> 1) is 1
 
-code sample is shown below
+## Illustration
 
 ```rust
 
@@ -191,7 +192,7 @@ println!("(a >> b) => {}",result);
 
 ```
 
-output is shown below
+Output
 
 ```rust
 (a & b) => 2
