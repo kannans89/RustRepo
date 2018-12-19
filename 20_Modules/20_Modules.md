@@ -239,3 +239,6 @@ fn main(){
 In this code we are importing an external package called *movies_lib*.Check the Cargo.toml of current project to verify the crate name.
 
 - Now we need to build this binary project and execute it as shown
+using cargo build and cargo run.
+
+![output](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/20_modules.PNG)
