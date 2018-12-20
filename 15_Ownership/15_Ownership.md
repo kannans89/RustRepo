@@ -42,13 +42,13 @@ For example see the following program
 
 ## More on Ownership
 
-the key selling point of rust as a language is its memory safety.Memory safety is achieved by tight control on who can use what and when restictions.
+the key selling point of rust as a language is its memory safety.Memory safety is achieved by tight control on who can use what and when restrictions.
 
 We were  unable to use a variable after a closure took over them.
 Let us suppose that we have a vector called v as shown
 
+```rust
 fn main(){
- 
   let v = vec![1,2,3]; // vector v owns the object in heap
   
  //only a single variable owns the heap memory at any given time
@@ -57,13 +57,9 @@ fn main(){
 
  //Rust is very smart in terms of memory access ,so it detects a race condition
 //as two variables point to same heap 
- 
-  
-
-
-  
-  
 }
+
+```
 
 The idea of only one variable binds to a resource , either v binds to resource or v2 binds to the resource
 
@@ -71,10 +67,9 @@ let v2=v;// now v2 is owner of the resource
 
 since v2 is owner of resource , v is no longer availble.
 
-
 so if you run the program above we get errr ,` value used here after move` on the println macro line.
 
-
+```rust
 fn main(){
  
   let v = vec![1,2,3]; // vector v owns the object in heap
@@ -82,33 +77,22 @@ fn main(){
  let v2 = v;  // moves ownership to v2  
  
  println!("{:?}",v);
-  
-
-
-  
-  
 }
+
+```
 
 ## what is move ??
 
-It means the onwership is moved from v to v2 as we assign v2=v , it also invalidates v after the move.
-
+It means the ownership is moved from v to v2 as we assign v2=v , it also invalidates v after the move.
 
 this happens when we pass an object in heap to a closure or function as shown.
 
+```rust
 fn main(){
- 
   let v = vec![1,2,3]; // vector v owns the object in heap
-  
-
  let v2 = v;  // moves ownership to v2
-  
- 
  display(v2); // v2 is moved to display and v2 is invalidated
- 
   println!("In main {:?}",v2); //v2 is No longer usable here
-
-  
 }
 
 fn display(v:Vec<i32>){
@@ -116,19 +100,15 @@ fn display(v:Vec<i32>){
      println!("inside display {:?}",v);
 }
 
+```
 
 One work around of this case is let the function return the owned object as shwon below
 
+```rust
 fn main(){
- 
   let v = vec![1,2,3]; // vector v owns the object in heap
-  
-
  let v2 = v;  // moves ownership to v2
-  
- 
   let v2_return =display(v2);
- 
   println!("In main {:?}",v2_return);
 
   
@@ -140,7 +120,11 @@ fn display(v:Vec<i32>)->Vec<i32>{ // returning same vector
      v
 }
 
+```
+
 If we consider the case of primitive types, contents from one variable is copied to another. So there is no ownership move happening .let us see an example 
+
+```rust
 
 fn main(){
  
@@ -150,6 +134,8 @@ fn main(){
   println!("u1 = {}",u1);
 }
 
+```
+
 output will be : 10
 
 This is because of an i32 variable needs less resources than an object which is allocated in heap.
@@ -158,26 +144,13 @@ This is because of an i32 variable needs less resources than an object which is 
 
  If we want the primitives behave like Ojbect types we can box it and in that case ownership move will occur .Let us see an example.
 
+```rust
 fn main(){
- 
   let u1 = Box::new(10);
   let u2=u1; // value has been moved
   
   println!("u1 = {}",u1); //Error: value used here after move
 }
+```
 
-
-The reson for error is same as we assign u1 to u2 .After assignment u1 will be invalidated.
-
-
-
-
-
-
-
-
-
-
-
-
-
+The reason for error is same as we assign u1 to u2 .After assignment u1 will be invalidated.
