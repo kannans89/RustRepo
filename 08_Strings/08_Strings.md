@@ -1,15 +1,15 @@
 # String
 
-String type in Rust can be classifed as-
+String type in Rust can be classified as-
 
 1. String Literal (**&str**)
 2. String Object(**String**)
 
 ## String Literal
 
-String literals(&str) are used when value of the string is known at compile time .String literals are a set of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*. String literals are also knwn as string slices.
+String literals(&str) are used when value of the string is known at compile time .String literals are a set of characters which are hardcoded into a variable. For example `let company="TutorialsPoint"` . String literals are found in module *std::str*. String literals are also known as string slices.
 
-The following example declares two string literals-comapny and location.
+The following example declares two string literals-*comapny* and *location*.
 
 ```rust
  fn main() {
@@ -35,17 +35,7 @@ The output of the above program will be -
 ## String Object
 
 The String object type is provided in Standard Library. Unlike string literal, the string object type is not a part of the core language.
-//need clarity 
-It is programmed as a public structure as shown `pub struct String`.Unlike string literal **String** uses ownership concept of Rust language. 
-
-String is a growable collection.It is mutable and UTF-8 encoded type.
-
-The **String**  object type can be used to represent string values that are provided at runtime.
-
- String object is allocated in the heap . 
- 
- //is this reqd 
- When you want to grow your string dynamically like a vector we need to use String object.
+It is defined as public structure in standard library  `pub struct String`.String is a growable collection.It is mutable and UTF-8 encoded type.The **String**  object type can be used to represent string values that are provided at runtime.String object is allocated in the heap.
 
 ### Syntax
 
@@ -67,7 +57,8 @@ fn main(){
 }
 
 ```
-//explain code here 
+
+In the above example we are creating an empty string object using `new` method . After that we are creating a String object from string literal using `from` method.
 
 The output is as shown below
 
@@ -102,16 +93,17 @@ length is 14
 ```rust
 fn main(){
 
-    let name1 = "Hello TutorialsPoint".to_string(); //String object
+    let name1 = "Hello TutorialsPoint , Hello!".to_string(); //String object
     let name2 = name1.replace("Hello","Howdy");
 
     println!("{}",name2);
 
 }
 ```
-//explain code here 
 
-The output of the above code will be   `Howdy TutorialsPoint`
+The *replace()* function takes two parameters first string pattern to search and second parameter is new value to be replaced. In above example *Hello* appears two times in the *name1* string , it is replaced by *Howdy*
+
+The output of the above code will be   `Howdy TutorialsPoint , Howdy!`
 
 We can also use String::from() method to convert a string literal to string object type as shown. We are appending another string to original string using push_str method.
 
@@ -128,10 +120,9 @@ The output will be
 
 `Tutorials Point`
 
-
 ## Illustration :Type Casting- Number to String  
 
-The following example ilustrates converting a number to a string object
+The following example illustrates converting a number to a string object
 
 ```rust
 fn main(){
@@ -142,11 +133,15 @@ fn main(){
 }
 
 ```
+
 The output will be :
-//output goes here
 
+```rust
+2020
+true
+```
 
-## Illustration: push() and push_str() 
+## Illustration: push() and push_str()
 
 Example of push and push_str is given below
 
@@ -162,8 +157,10 @@ Example of push and push_str is given below
 ```
 The output will be :
 
-//paste output here 
-
+```rust
+Tutorials
+Tutorials Point
+```
 
 ## Illustration: len() and trim()
 
@@ -231,30 +228,27 @@ The Output will be as given below:
 
 ## Illustration- Format! Macro
 
-Another way to add to String objects together is usign a macro function called format . The use of Format! is as shown below.
+Another way to add to String objects together is using a macro function called format . The use of Format! is as shown below.
 
 ```rust
 
   fn main(){
   let n1 = "Tutorials".to_string();
   let n2 = "Point".to_string();
-  
   let n3 = format!("{} {}",n1,n2);
-  
   println!("{}",n3);
   
   }
 
- ```
-//output
+```
+
+output is : `Tutorials Point`
 
 ## Illustration:Split string with white spaces
 
 ```rust
    fn main(){
-    
     let msg = "Tutorials Point has good tutorials".to_string();
-    
     let mut i =1;
     for token in msg.split_whitespace(){
         println!("token {} {}",i,token);
@@ -263,6 +257,8 @@ Another way to add to String objects together is usign a macro function called f
 }
 
 ```
+
+The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
 
 Output:
 
@@ -277,7 +273,7 @@ token 5 tutorials
 
 ## Illustration: split string with a delimiter
 
-The split methods returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
+The split method returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
 
 ```rust
 fn main() {
@@ -310,15 +306,24 @@ lastname is Sudhakaran
 company is Tutorialspoint
 
 ```
- ## Accessing chars from string
 
- You can access string charactes from a string object using string slice function.From string object `Tutorials` we need to slice out `Tutor`.
- Syntax of the string slice function is-
- //add syntax here
- 
- The example fetches charcters from index 0 through 4 (5 characters) from the string 'Tutorials'.
- 
- ```rust
+## Accessing chars from string
+
+ You can access string characters from a string object using  slice syntax.Sliced string is a pointer to the actual string object.So we need to specify the starting index of String and ending index . Index starts from 0 just like arrays.
+
+Syntax of the string slice function is-
+
+```rust
+    let sliced_value = &string_object[start_index..end_index]
+```
+
+Note that the end_index will not be included in final string .To understand this lets see an example .string object `n1` whose contents is  `Tutorials` we need to slice out `Tutor`.
+
+
+The example fetches characters from index 0 through 4 (5 characters) from the string 'Tutorials'.
+
+```rust
+
   fn main(){
   let n1 = "Tutorials".to_string();
   
