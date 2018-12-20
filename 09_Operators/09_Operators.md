@@ -138,11 +138,33 @@ Logical Operators are used to combine two or more conditions. Logical operators 
 | 2| || (OR) |	The operator returns true if at least one of the expressions specified return true	|(A > 10 || B >10) is True
 |3| ! (NOT) |	The operator returns the inverse of the expression’s result. For E.g.: !(>5) returns false	| !(A >10 ) is True
 
-// Sample code here 
+```rust
+fn main() {
+ let a=20;
+ let b=30;
+ if (a > 10) && (b > 10) {
+     println!("true");
+ }
+ let c=0;
+ let d=30;
+ if (c>10) || (d>10){
+     println!("true");
+ }
+ let is_elder=false;
+ if !is_elder {
+     println!("Not Elder");
+ }
+  
+}
+
+```
+
+output
 
 ```rust
-
-//sample code
+true
+true
+Not Elder
 
 ```
 
@@ -165,7 +187,7 @@ Assume variable A = 2 and B = 3
 ```rust
 
 fn main() {
-let a:i32 = 2;   // Bit presentation 10 
+let a:i32 = 2;   // Bit presentation 10
 let b:i32 = 3;   // Bit presentation 11
  
 let mut result:i32; 
@@ -203,4 +225,3 @@ Output
 (a >> b) => 0
 
 ```
-

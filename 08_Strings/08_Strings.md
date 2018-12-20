@@ -317,26 +317,28 @@ Syntax of the string slice function is-
     let sliced_value = &string_object[start_index..end_index]
 ```
 
-Note that the end_index will not be included in final string .To understand this lets see an example .string object `n1` whose contents is  `Tutorials` we need to slice out `Tutor`.
-
-
-The example fetches characters from index 0 through 4 (5 characters) from the string 'Tutorials'.
+Note that the end_index will not be included in final string .To understand this see a sample string `Tutorials` which has length 9 and
+index starting from 0 to 8.From the input string we are  slicing out `rials` .
 
 ```rust
 
-  fn main(){
+   fn main(){
   let n1 = "Tutorials".to_string();
   
-  let c1 = &n1[0..5]; // characters from  0 1 2 3 4
+  println!("length of string is {}",n1.len());
+  let c1 = &n1[4..9]; // characters from  4,5,6,7,8 indexes
   println!("{}",c1);
   
   }
 
 
  ```
-Output : 
+Output :
 
-`Tutor`
+```rust
+length of string is 9
+rials
+```
 
 Another way of accessing characters from a string is by using the `chars` method.Let us see an example.
 
@@ -352,51 +354,19 @@ Another way of accessing characters from a string is by using the `chars` method
   }
 
 ```
-//output
 
-
-The chars() function can be used  with string literals too. The following example uses the char() function to fetch characters from a string literal.
+output
 
 ```rust
- fn main(){
-  for n in "CodingGround".chars(){
-      println!("{}",n);
-  }
-}
-
-```
-
-//output
-
-// redo
-## String vs &str
-
-`String` object uses dynamic heap to store or modify the string data.`str` is an immutable sequence of UTF-8 bytes of dynamic length somewhere in memory. Since the size is unknown, one can only handle it behind a pointer. This means that str most commonly appears as `&str`
-
-Let us understand the difference with an example as shown . The `print_me(String) ` function takes input as String object.
-So if we invoke this function with string literal it should give us error . We will try to convert string object to literal using `as_str()` function and vice versa with `to_string()` method.
-
-```rust
- fn main(){
-
- print_me(String::from("TutorialsPoint")); // string object
-
- let s3 = "Hyderabad".to_string(); // convert string literal to object
-
- let s4= s3.as_str();  // convert object to literal
- 
- // print_me(s4);  // Error for literal
- //print_me("Hello I am a literal"); //Error
- 
-  print_me(s4.to_string());//  literal to object works
-  
- }
-  
-  
-  fn print_me(msg: String) {
-    println!("the string object is {}", msg);
-  }
-
+T
+u
+t
+o
+r
+i
+a
+l
+s
 ```
 
 <!-- 

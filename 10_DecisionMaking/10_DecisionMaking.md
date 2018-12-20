@@ -31,7 +31,7 @@ If the Boolean expression evaluates to true, then the block of code inside the i
 ```rust
  fn main(){
     let  num:i32 = 5;
-if num > 0 { 
+if num > 0 {
    println!("number is positive") ;
 }
 }
@@ -140,8 +140,10 @@ output
 ```
 
 ## Match Statement
-//explanation goe here
-### Syntax
+
+ The match statement checks a current value is matching from a list of values, this is very much similar to the switch statement in the C language.In the first place, notice that the expression following the match keyword doesn’t have to be enclosed in parentheses.
+
+ The syntax is shown below.
 
 ```rust
  let expressionResult = match variable_expression {
@@ -158,6 +160,8 @@ output
 
 ```
 
+In the below example  state_code is matched with a list of values `MH,KL,KA,GA` , if any match found a string value is returned to variable `state`.If not match found the default case `_`  value `Unkown` is returned.
+
 ```rust
 fn main(){
     let state_code="MH";
@@ -173,4 +177,12 @@ fn main(){
     };
     println!("State name is {}",state);
 }
+```
+
+output is:
+
+```rust
+Found match for  MH
+State name is Maharashtra
+
 ```
