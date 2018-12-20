@@ -11,8 +11,7 @@ Shown below is the general form of a typical decision-making structure found in 
 | 1 | *if* statement|  An *if* statement consists of a Boolean expression followed by one or more statements.
 | 2 | *if...else* statement|An *if* statement can be followed by an optional *else* statement, which executes when the Boolean expression is false.
 |3|*else...if* and nested *if* statement|You can use one *if* or *else if* statement inside another *if* or *else if* statement(s). |
-|4|*match* statement |
-A *match* statement allows a variable to be tested against a list of values.
+|4|*match* statement |A *match* statement allows a variable to be tested against a list of values|
 
 ## If Statement
 
@@ -141,7 +140,7 @@ output
 
 ## Match Statement
 
- The match statement checks a current value is matching from a list of values, this is very much similar to the switch statement in the C language.In the first place, notice that the expression following the match keyword doesn’t have to be enclosed in parentheses.
+ The match statement checks a current value is matching from a list of values, this is very much similar to the switch statement in the C language. In the first place, notice that the expression following the match keyword doesn’t have to be enclosed in parentheses.
 
  The syntax is shown below.
 
@@ -160,7 +159,7 @@ output
 
 ```
 
-In the below example  state_code is matched with a list of values `MH,KL,KA,GA` , if any match found a string value is returned to variable `state`.If not match found the default case `_`  value `Unkown` is returned.
+In the below example  state_code is matched with a list of values `MH,KL,KA,GA` , if any match found a string value is returned to variable `state`.If no match found the default case `_` matches and  value `Unkown` is returned.
 
 ```rust
 fn main(){
