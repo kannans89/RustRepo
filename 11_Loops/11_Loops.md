@@ -1,6 +1,6 @@
 # Loop
 
-You may encounter situations, when a block of code needs to be executed several number of times. In general, statements are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.
+There may be instances, where a block of code needs to be executed repeatedly. In general, programming instructions are executed sequentially: The first statement in a function is executed first, followed by the second, and so on.
 
 Programming languages provide various control structures that allow for more complicated execution paths.
 
@@ -33,7 +33,7 @@ The for loop executes the code block for a specified number of times. It can be 
 
  ```
 
- example of a for loop is as shown below
+ An example of a for loop is as shown below
 
  ```rust
 
@@ -48,9 +48,9 @@ The for loop executes the code block for a specified number of times. It can be 
 }
 
  ```
-Note the variable x is only accessible with in the for block statement. Outside it will be out of scope.
+Note that the variable x is only accessible within the for block statement. 
 
-output of the code is shown below
+The output of the code will be as shown below
 
 ```rust
 x is  1
@@ -91,7 +91,7 @@ fn main(){
 
 ```
 
-output is as shown below
+The output is as shown below
 
 ```rust
 inside loop x value is 1
@@ -129,7 +129,7 @@ The **break** statement is used to take the control out of a construct. Using br
 
 ```
 
-output of following is:
+The output of following is:
 
 ```rust
 x=1
