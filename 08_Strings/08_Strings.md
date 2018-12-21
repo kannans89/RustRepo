@@ -338,8 +338,16 @@ Syntax of the string slice function is-
     let sliced_value = &string_object[start_index..end_index]
 ```
 
-Note that the end_index will not be included in final string .To understand this see a sample string `Tutorials` which has length 9 and
+Note that the end_index will not be included in final string .
+
+To  diagram below shows a sample string `Tutorials` which has length 9 and
 index starting from 0 to 8.From the input string we are  slicing out `rials` .
+
+
+![string](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/string_slice.png)
+
+The following code shows how to slice the string.
+
 
 ```rust
 
