@@ -138,6 +138,8 @@ fn print_literal(data:&str ){
 
 ```
 
+output : `displaying string literal example_string`
+
 ## Illustration :Type Casting- Number to String  
 
 The following example illustrates converting a number to a string object

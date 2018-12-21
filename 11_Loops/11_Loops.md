@@ -23,13 +23,12 @@ A loop whose number of iterations are definite/fixed is termed as a definite loo
 The for loop executes the code block for a specified number of times. It can be used to iterate over a fixed set of values, such as an array. The syntax of the for loop is as below −
 
 #### Syntax
- 
- ```rust
+
+```rust
 
  for temp_variable in lower_bound..upper_bound {
    //statements
 }
-
 
  ```
 
@@ -48,7 +47,8 @@ The for loop executes the code block for a specified number of times. It can be 
 }
 
  ```
-Note that the variable x is only accessible within the for block statement. 
+
+Note that the variable x is only accessible within the for block statement.
 
 The output of the code will be as shown below
 
