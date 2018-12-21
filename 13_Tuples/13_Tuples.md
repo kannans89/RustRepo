@@ -1,10 +1,10 @@
 # Tuple
 
-Tuple is a compound data type . In scalar type you can only store one type of
-data for example in i32 variable we can store only one single integer value.
-In compound types we can store more than one value at a time and it can be of different type.  
+Tuple is a compound data type . A scalar type can store only one type of
+data . For example in an i32 variable can store only a single integer value.
+In compound types we can store more than one value at a time and it can be of different types.  
 
-Tuples have a fixed length that is once declared they cannot grow or shrink in size. Tuple index starts from **0**
+Tuples have a fixed length i.e. once declared they cannot grow or shrink in size. The tuple index starts from **0**
 
 ## Syntax
 
@@ -16,9 +16,8 @@ let tuple_name:(data_type1,data_type2,data_type3) = (value1,value2,value3);
  let tuple_name = (value1,value2,value3);
 ```
 
-## Example to display a tuple
-
-To display a tuple using `println!("{}",tuple)` syntax will not work . This is because tuple is a compound type . We have to use `println!("{:?}",tuple)` syntax.
+## Illustration
+The following example displays the values in a tuple.
 
 ```rust
 fn main() {
@@ -27,10 +26,15 @@ fn main() {
 }
 
 ```
+The `println!("{}",tuple)` syntax cannot be used to display values in a tuple. This is because a tuple is a compound type .Use the `println!("{:?}",tuple)` syntax to print values in a tuple.
 
-output is `(-325, 4.9, 22)`
+Output
 
-## Example accessing tuple index
+`(-325, 4.9, 22)`
+
+## Illustration 
+
+The following example prints individual values in a tuple.
 
 ```rust
 fn main() {
@@ -42,7 +46,7 @@ fn main() {
 
 ```
 
-output is shown below
+Output
 
 ```rust
 integer is :-325
@@ -50,9 +54,9 @@ float is :4.9
 unsigned integer is :2
 ```
 
-## Example passing tuple to a function
+## Illustration
 
-In the example print function takes a tuple as parameter
+The following example passes a tuple as parameter to a function. Tuples are passed as ----- to functions // confirm if it is by value or ref 
 
 ```rust
 fn main(){
@@ -61,6 +65,8 @@ fn main(){
     print(b);
 }
 
+//pass the tuple as a parameter
+
 fn print(x:(i32,bool,f64)){
     println!("Inside print method");
     println!("{:?}",x);
@@ -68,7 +74,7 @@ fn print(x:(i32,bool,f64)){
 
 ```
 
-output is shown below
+Output
 
 ```rust
 Inside print method
@@ -77,8 +83,9 @@ Inside print method
 
 ## Destructing
 
-When you assign a tuple to a variable it is known as destructing.For example
- in the below example `let (age,is_male,cgpa) = x;` variable x is tuple which is assigned to let statement . Each variable age,is_male,cgpa will contain the respective value of the tuple.
+When you assign a tuple to a variable it is known as destructing.
+
+Consider the following example-
 
 ```rust
 fn main(){
@@ -89,12 +96,14 @@ fn main(){
 
 fn print(x:(i32,bool,f64)){
     println!("Inside print method");
-    let (age,is_male,cgpa) = x;
+    let (age,is_male,cgpa) = x; //assigns a tuple to a variable
     println!("Age is {} , isMale? {},cgpa is {}",age,is_male,cgpa);
 }
 ```
+Variable x is a tuple which is assigned to let statement . Each variable age,is_male,cgpa will contain the corresponding values in a  tuple.
 
-output is shown below , this shows that we destructed the full tuple into individual variables.
+
+Output
 
 ```rust
 Inside print method
