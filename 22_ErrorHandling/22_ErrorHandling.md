@@ -7,13 +7,17 @@ In Rust errors are grouped into two major category.
 
 ## What is panic macro
 
+`panic!` macro allows a program to to terminate immediately and provide feedback to the caller of the program. It should be used when a program reaches an unrecoverable problem.
+
 ```rust
 fn main() {
-  
    panic!("Hello");
+   println!("End of main"); //unreachable statement
 }
 
 ```
+
+In the above example `println` will not be called as after panic the program will terminate immediately.
 
 output `thread 'main' panicked at 'Hello', main.rs:3`
 
@@ -47,7 +51,6 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
 
 The following program shows how to explicitly use panic macro and throw exception
-
 
 ```rust
 

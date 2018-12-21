@@ -84,17 +84,33 @@ length is 14
 |10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
 |11|trim()|pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
 |12|split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
+|13|to_string()|fn to_string(&self) -> String |Converts the given value to a String.
 
-## Convert a String literal to Object
+## Illustration : Creating an empty string using new()
 
-   To access all methods of String object we can easily convert a string literal to object type using `to_string()` method.
-   Let us see an example.
+In this example we are creating an empty string object using `new()` method.After that changing the string value to *hello*
 
 ```rust
+ fn main(){
+
+  let mut z = String::new();
+  z.push_str("hello");
+  println!("{}",z);
+ }
+```
+
+output : `hello`
+
+## Illustration: to_string() and replace()
+
+To access all methods of String object we can easily convert a string literal to object type using `to_string()` 
+  
+```rust
+
 fn main(){
 
     let name1 = "Hello TutorialsPoint , Hello!".to_string(); //String object
-    let name2 = name1.replace("Hello","Howdy");
+    let name2 = name1.replace("Hello","Howdy");//find and replace
 
     println!("{}",name2);
 
@@ -105,20 +121,22 @@ The *replace()* function takes two parameters first string pattern to search and
 
 The output of the above code will be   `Howdy TutorialsPoint , Howdy!`
 
-We can also use String::from() method to convert a string literal to string object type as shown. We are appending another string to original string using push_str method.
+## Illustration :Convert a String Object to literal as as_str()
+
+ In this example we crated a string object example_string and passing it to function which requires a literal string. So using `as_str()` we do conversion.
 
 ```rust
-fn main() {
-    let mut name=String::from("Tutorials");
-    name.push_str(" Point");
-    println!("{}",name);
+ fn main() {
+  
+  let example_string = String::from("example_string");
+  print_literal(example_string.as_str());
+}
+
+fn print_literal(data:&str ){
+    println!("displaying string literal {}",data);
 }
 
 ```
-
-The output will be 
-
-`Tutorials Point`
 
 ## Illustration :Type Casting- Number to String  
 
@@ -155,6 +173,7 @@ Example of push and push_str is given below
 }
 
 ```
+
 The output will be :
 
 ```rust
@@ -206,7 +225,7 @@ The *+* operator internally uses an *add* method . Syntax of this add function t
 
 ```
 
-## Illustration- String Concatenation.
+## Illustration- String Concatenation
 
 ```rust
 
@@ -307,7 +326,7 @@ company is Tutorialspoint
 
 ```
 
-## Accessing chars from string
+## Illustration : chars() and slicing
 
  You can access string characters from a string object using  slice syntax.Sliced string is a pointer to the actual string object.So we need to specify the starting index of String and ending index . Index starts from 0 just like arrays.
 
@@ -333,7 +352,8 @@ index starting from 0 to 8.From the input string we are  slicing out `rials` .
 
 
  ```
-Output :
+
+output :
 
 ```rust
 length of string is 9
@@ -346,7 +366,6 @@ Another way of accessing characters from a string is by using the `chars` method
  fn main(){
   let n1 = "Tutorials".to_string();
   
-  let z = String::new();
   for n in n1.chars(){
        println!("{}",n);
   }
