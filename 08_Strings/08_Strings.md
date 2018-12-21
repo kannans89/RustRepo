@@ -227,7 +227,7 @@ The *+* operator internally uses an *add* method . Syntax of this add function t
 
 ```
 
-## Illustration- String Concatenation
+## Illustration:String Concatenation
 
 ```rust
 
@@ -247,7 +247,7 @@ The Output will be as given below:
 
 `TutorialsPoint`
 
-## Illustration- Format! Macro
+## Illustration:Format! Macro
 
 Another way to add to String objects together is using a macro function called format . The use of Format! is as shown below.
 
@@ -315,7 +315,7 @@ fn main() {
 
 ```
 
-output
+Output
 
 ```rust
 token is Kannan
@@ -363,7 +363,7 @@ The following code shows how to slice the string.
 
  ```
 
-output :
+Output :
 
 ```rust
 length of string is 9
@@ -384,7 +384,7 @@ Another way of accessing characters from a string is by using the `chars` method
 
 ```
 
-output
+Output
 
 ```rust
 T
