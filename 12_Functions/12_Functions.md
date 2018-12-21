@@ -7,7 +7,7 @@ A function declaration tells the compiler about a function's name, return type, 
 |S.No| Name | Description
 |:----|:-----|:----------
 | 1   | Defining a function | TA function definition specifies what and how a specific task would be done
-| 2   | Calling a Function | A function must be called so as to execute it
+| 2   | Calling or invoking a Function | A function must be called so as to execute it
 | 3   | Returning Functions | Functions may also return value along with control, back to the caller
 | 4   | Parameterized Function | Parameters are a mechanism to pass values to functions.
 
@@ -35,13 +35,18 @@ fn  fn_hello(){
 
 ```
 
-output `hello from function fn_hello`
+The output will be-
+
+`hello from function fn_hello`
+
 
 ## Returning value from a Function
 
-Functions may also return value along with control,back to the caller. Such functions are called as returning functions.
+Functions may also return a value along with control,back to the caller. Such functions are called as returning functions.
 
 ### Syntax
+
+1. Returning Function
 
 ```rust
 // Syntax1
@@ -51,17 +56,19 @@ function function_name()  -> return_type {
 }
 ```
 
-Second syntax with no return keyword and semicolon.
+2. Non- Returning Function
 
 ```rust
 //Syntax2
 function function_name()  -> return_type {
-    value  //no semicolon ,shows return
+    value  //no semicolon ,no return
 }
 ```
 
-## Example
+## Illustration
 
+
+//include a non -returning function and explain it in short 
 ```rust
 fn main(){
     println!("pi value is {}",get_pi());
@@ -73,7 +80,7 @@ fn get_pi()->f64{
 
 ```
 
-output is shown below
+Output
 
 ```rust
  pi value is 3.142857142857143
@@ -83,8 +90,10 @@ output is shown below
 
 Parameters are a mechanism to pass values to functions. Parameters form a part of the function’s signature. The parameter values are passed to the function during its invocation. Unless explicitly specified, the number of values passed to a function must match the number of parameters defined.
 
-### Passing by Value
+Parameters can be passed to a function using one of the following techniques-
 
+### Passing by Value
+// explain in a line
 In the following example we have a variable `no` which is initally 5 and we are passing to 
 ```rust
 fn main(){
@@ -109,6 +118,7 @@ The value of no is:5
 ```
 
 ### Passing by Reference
+// explain in a line
 
 The following program shows how to pass a number as reference to another function . The second function takes the `no` i32 as reference and modifies it to zero . Finally when we print the no
 in main we the value will be mutated to zero.
@@ -127,7 +137,7 @@ fn mutate_no_to_zero(param_no:&mut i32){
 
 ```
 
-ouput will be `The value of no is:0` .
+The ouput will be `The value of no is:0` .
 
 
 ## Passing String 
@@ -148,9 +158,11 @@ fn display(param_name:String){
 
 ```
 
+
+// need clarity here 
 ## Methods
 
-- Methods are similar to functions but they are defined with contex of a structure
+- Methods are similar to functions but they are defined with context of a structure
 
 - The first parameter is always self
 
