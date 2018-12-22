@@ -17,15 +17,11 @@ Consider an example of a string which is assigned a value at runtime.The exact s
 
 The heap memory stores data values for which size is to unknown at compile time.It is used to store dynamic data. Simply put, a heap memory is allocated to data values that may change throughout the life cycle of the program.The heap is some part of memory which is less organized as compared to stack. 
 
-//appu: check this 
-
-When an object is created it is allocated space in memory and its reference or pointer is returned to stack variable.
-
 ## What is Ownership
 
 - Each value in Rust has a variable that is called **owner** of the value.Every data stored in Rust will have an owner associated with it.
  
-  For example: In the syntax `let age=30` , *age* is the owner of the value  *30*.
+For example: In the syntax `let age=30` , *age* is the owner of the value  *30*.
 
 - Each data can have only one owner at a time.
 - Two variables cannot point to the same memory location.They will be always pointing to different memory location.
@@ -34,12 +30,11 @@ When an object is created it is allocated space in memory and its reference or p
 
 The ownership of value can be transferred by -
 
-1. Assigning value from one variable to another variable
+1. Assigning value of one variable to another variable
 2. Passing value  to a function
 3. Returning value from a function
 
-
-## More on Ownership
+### Assigning value of one variable to another variable
 
 The key selling point of rust as a language is its memory safety.Memory safety is achieved by tight control on who can use what and when restrictions.
 
@@ -64,10 +59,14 @@ fn main(){
 
 ```
 
+
 The idea of ownership is that only one variable binds to a resource , either v binds to resource or v2 binds to the resource.
 The above example throws an error ,` value used here after move`,since v2 is the owner of resource , v is no longer availble.
 It means the ownership is moved from v to v2 as we assign v2=v , it also invalidates v after the move.
-This also happens when we pass an object in heap to a closure or function as shown.
+
+### Passing value  to a function
+
+The ownership of a value also changes when we pass an object in heap to a closure or function as shown below.
 
 ```rust
 fn main(){
@@ -84,13 +83,15 @@ fn display(v:Vec<i32>){
 
 ```
 
-One work around for this is let the function return the owned object as shown below
+### Returning value from a function
+
+Ownership passed to the function will be invalidated as function execution completes.One work around for this is let the function return the owned object back to the caller.
 
 ```rust
  fn main(){
   let v = vec![1,2,3]; // vector v owns the object in heap
  let v2 = v;  // moves ownership to v2
-  let v2_return =display(v2);
+let v2_return =display(v2);
   println!("In main {:?}",v2_return);
 
   
@@ -104,12 +105,13 @@ fn display(v:Vec<i32>)->Vec<i32>{ // returning same vector
 
 ```
 
-The above is true for complex data types. In case of primitive types, contents from one variable is copied to another. So there is no ownership move happening . This is because of a primitive variable needs less resources than an object.Consider the following example-
+## Ownership and Primitive types
+
+ In case of primitive types, contents from one variable is copied to another. So there is no ownership move happening . This is because of a primitive variable needs less resources than an object.Consider the following example-
 
 ```rust
 
 fn main(){
- 
   let u1 = 10;
   let u2=u1; // u1 value copied(not moved) to u2
   
