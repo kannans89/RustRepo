@@ -1,11 +1,13 @@
 # Error Handling
 
-In Rust errors are grouped into two major category.
+In Rust, errors are grouped into two major category.
+
+//explain what is recoverable and unrecoverable errors 
 
 1. Recoverable
 2. UnRecoverable
 
-## What is panic macro
+## Panic Macro
 
 `panic!` macro allows a program to to terminate immediately and provide feedback to the caller of the program. It should be used when a program reaches an unrecoverable problem.
 
@@ -21,7 +23,7 @@ In the above example `println` will not be called as after panic the program wil
 
 output `thread 'main' panicked at 'Hello', main.rs:3`
 
-## Unrecoverable Errors with Panic
+### Illustration
 
 Following program shows panic at runtime . The program on compilation will give a warning *index out of bounds* and run time it throws a panic.
 
