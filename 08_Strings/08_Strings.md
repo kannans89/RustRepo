@@ -73,21 +73,19 @@ length is 14
 |Sr No |  method | signature  | description
 |:----:|:----------|:----|:-----------------|
 | 1    | new()     | pub const fn new() -> String|Creates a new empty String.
-| 2    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
-| 3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
-| 4    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
-| 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
-| 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
-| 7   | is_empty()  |pub fn is_empty(&self) -> bool |Returns true if input string is empty.
-| 8   | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
-| 9  | contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
-|10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
-|11|trim()|pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
-|12|split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
-|13|to_string()|fn to_string(&self) -> String |Converts the given value to a String.
+| 2     |to_string()|fn to_string(&self) -> String |Converts the given value to a String.
+| 3    |replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
+| 4    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
+| 5    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
+| 6    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
+| 7    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
+| 8    |trim()     |pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
+| 9    | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
+| 10    |split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
+| 11   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
 
 
-## Illustration : Creating an empty string using new()
+## Illustration : new()
 
 An empty string object is created using the `new()` method and its value is set to *hello*.
 
@@ -104,10 +102,27 @@ Output
 
 `hello`
 
-## Illustration: to_string() and replace()
+## Illustration: to_string()
 
 To access all methods of String object, convert a string literal to object type using the `to_string()` function. 
   
+```rust
+fn main(){
+     let name1 = "Hello TutorialsPoint , Hello!".to_string(); 
+    println!("{}",name1);
+}
+```
+Output
+
+```rust
+Hello TutorialsPoint , Hello!
+```
+
+## Illustration: replace()
+
+The *replace()* function takes two parameters -the first parameter is a string pattern to search for and the second parameter is the new value to be replaced. In above example *Hello* appears two times in the *name1* string. The replace function repalces all ocuurences of the string *Hello* with *Howdy*
+
+
 ```rust
 
 fn main(){
@@ -120,13 +135,12 @@ fn main(){
 }
 ```
 
-The *replace()* function takes two parameters -the first parameter is a string pattern to search for and the second parameter is the new value to be replaced. In above example *Hello* appears two times in the *name1* string. The replace function repalces all ocuurences of the string *Hello* with *Howdy*
-
-The output of the above code will be   
+Output 
 
 `Howdy TutorialsPoint , Howdy!`
 
-## Illustration :Convert a String Object to literal using as_str()
+
+## Illustration :as_str()
 
  The as_str() function extracts a string slice containing the entire string.
 
@@ -147,7 +161,8 @@ Output
 
 `displaying string literal example_string`
 
-## Illustration :Type Casting- Number to String  
+
+## Illustration :as_str()-Type Casting- Number to String  
 
 The following example illustrates converting a number to a string object
 
@@ -167,57 +182,178 @@ The output will be :
 2020
 true
 ```
-
-## Illustration: push() and push_str()
-The push() function appends the given char to the end of this String. The push_str() function appends a given string slice onto the end of a String.
+## Illustration: push()
+The push() function appends the given char to the end of this String.
 
 ```rust
-  fn main(){
+ fn main(){
+ 
  let mut company = "Tutorial".to_string();
  company.push('s');
  println!("{}",company);
- company.push_str(" Point");
-  println!("{}",company);
+
 }
+
+```
+Output
+
+```
+Tutorials
+
+```
+
+## Illustration: push_str()
+The push_str() function appends a given string slice onto the end of a String.
+
+```rust
+ fn main(){
+let mut company = "Tutorials".to_string();
+company.push_str(" Point");
+println!("{}",company);
 
 ```
 
 The output will be :
 
 ```rust
-Tutorials
 Tutorials Point
+
 ```
 
-## Illustration: len() and trim()
-
-The len() function returns the total number of characters in a string.The trim() function removes leading and trailing spaces in a string.
+## Illustration: len() 
+The len() function returns the total number of characters in a string.
 
 ```rust
-  fn main() {
   
-  let fullname = "     Tutorials Point  \r\n";
-  println!("Before trim :\n{}",fullname);
+  fn main() {
+    let fullname = "     Tutorials Point";
+  println!("length is  {}",fullname.len());
+   
+  }
+  
+```
+
+## Illustration: trim()
+The trim() function removes leading and trailing spaces in a string.Note that this function will not remove the inline spaces.
+ 
+ ```rust
+ 
+ fn main() {
+  
+   let fullname = "     Tutorials Point  \r\n";
+   println!("Before  trim ");
    println!("length is  {}",fullname.len());
    println!();
-   println!("After  trim :\n{}",fullname.trim());
+   println!("After  trim ");
    println!("length is  {}",fullname.trim().len());
 }
-
 ```
 
 The output will be :
 
 ```rust
- Before trim :
-     Tutorials Point  
-
+Before  trim 
 length is  24
 
-After  trim :
-Tutorials Point
+After  trim 
 length is  15
+```
 
+## Illustration:split_whitespace()
+
+The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
+
+```rust
+   fn main(){
+    let msg = "Tutorials Point has good tutorials".to_string();
+    let mut i =1;
+    for token in msg.split_whitespace(){
+        println!("token {} {}",i,token);
+        i+=1;
+    }
+}
+
+```
+
+Output:
+
+ ```rust
+token 1 Tutorials
+token 2 Point
+token 3 has
+token 4 good
+token 5 tutorials
+
+```
+
+## Illustration: split() string
+
+The split() string method returns an iterator over substrings of a string slice, separated by characters matched by a pattern. 
+The limitation of the split() method is that the result cannot be stored for later use. The `collect` method can be used to store the result returned by split() as a vector.
+
+```rust
+fn main() {
+  
+  let fullname = "Kannan,Sudhakaran,Tutorialspoint";
+  
+  for token in  fullname.split(","){
+      println!("token is {}",token);
+  }
+  
+  //store in a Vector
+  println!("\n");
+  let tokens:Vec<&str>= fullname.split(",").collect();
+  println!("firstName is {}",tokens[0]);
+  println!("lastname is {}",tokens[1]);
+  println!("company is {}",tokens[2]);
+}
+
+```
+The above example splits the string `fullname` whenever it encounters a `,`.
+
+
+Output
+
+```rust
+token is Kannan
+token is Sudhakaran
+token is Tutorialspoint
+
+firstName is Kannan
+lastname is Sudhakaran
+company is Tutorialspoint
+
+```
+
+## Illustration : chars()
+
+Individual characters in a string can be accessed using the `chars` method.
+Let us see an example.
+
+```rust
+ fn main(){
+  let n1 = "Tutorials".to_string();
+  
+  for n in n1.chars(){
+       println!("{}",n);
+  }
+  
+  }
+
+```
+
+Output
+
+```rust
+T
+u
+t
+o
+r
+i
+a
+l
+s
 ```
 
 ## Concatenation of Strings with + operator
@@ -274,140 +410,6 @@ Output is
 `Tutorials Point`
 
 
-## Illustration:Split string with white spaces
-
-The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
-
-```rust
-   fn main(){
-    let msg = "Tutorials Point has good tutorials".to_string();
-    let mut i =1;
-    for token in msg.split_whitespace(){
-        println!("token {} {}",i,token);
-        i+=1;
-    }
-}
-
-```
-
-
-Output:
-
- ```rust
-token 1 Tutorials
-token 2 Point
-token 3 has
-token 4 good
-token 5 tutorials
-
-```
-
-
-## Illustration: split string with a delimiter
-
-The split method returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
-
-```rust
-fn main() {
-  
-  let fullname = "Kannan,Sudhakaran,Tutorialspoint";
-  
-  for token in  fullname.split(","){
-      println!("token is {}",token);
-  }
-  
-  //store in a Vector
-  println!("\n");
-  let tokens:Vec<&str>= fullname.split(",").collect();
-  println!("firstName is {}",tokens[0]);
-  println!("lastname is {}",tokens[1]);
-  println!("company is {}",tokens[2]);
-}
-
-```
-
-Output
-
-```rust
-token is Kannan
-token is Sudhakaran
-token is Tutorialspoint
-
-firstName is Kannan
-lastname is Sudhakaran
-company is Tutorialspoint
-
-```
-
-## Illustration : chars() and slicing
-
- You can access string characters from a string object using  slice syntax.Sliced string is a pointer to the actual string object.So we need to specify the starting and ending index of a String . Index starts from 0 just like arrays.
-
-Syntax of the string slice function is-
-
-```rust
-    let sliced_value = &string_object[start_index..end_index]
-```
-
-Note that the end_index will not be included in final string .
-
-The  diagram below shows a sample string `Tutorials` which has length 9 and
-index starting from 0 to 8.From the input string we are  slicing out `rials` .
-
-
-![string](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/string_slice.png)
-
-The following code shows how to slice the string.
-
-
-```rust
-
-   fn main(){
-  let n1 = "Tutorials".to_string();
-  
-  println!("length of string is {}",n1.len());
-  let c1 = &n1[4..9]; // characters from  4,5,6,7,8 indexes
-  println!("{}",c1);
-  
-  }
-
-
- ```
-
-Output :
-
-```rust
-length of string is 9
-rials
-```
-
-Another way of accessing characters from a string is by using the `chars` method.Let us see an example.
-
-```rust
- fn main(){
-  let n1 = "Tutorials".to_string();
-  
-  for n in n1.chars(){
-       println!("{}",n);
-  }
-  
-  }
-
-```
-
-Output
-
-```rust
-T
-u
-t
-o
-r
-i
-a
-l
-s
-```
 
 <!-- 
 1. string functions:
