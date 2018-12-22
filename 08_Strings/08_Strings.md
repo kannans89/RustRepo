@@ -275,6 +275,7 @@ Output is
 
 
 ## Illustration:Split string with white spaces
+
 The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
 
 ```rust
@@ -300,7 +301,8 @@ token 4 good
 token 5 tutorials
 
 ```
-//need change in explanation
+
+
 ## Illustration: split string with a delimiter
 
 The split method returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
