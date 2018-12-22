@@ -6,7 +6,7 @@ Variables have the following limitations −
 
 - Variables in a program are allocated memory in random order, thereby making it difficult to retrieve/read the values in the order of their declaration.
 
-An array is a homogenous collection of values. Simply put, an array is a collection of values of the same data type. 
+An array is a homogenous collection of values. Simply put, an array is a collection of values of the same data type.
 
 ## Features of an Array
 
@@ -17,9 +17,6 @@ An array is a homogenous collection of values. Simply put, an array is a collect
 - Each memory block represents an array element.
 
 - Array elements are identified by a unique integer called as the subscript / index of the element.
-
-//check this point
-- Like variables, arrays too, should be declared before they are used. Use the var keyword to declare an array.
 
 - Populating the array elements is known as array initialization.
 
@@ -42,6 +39,7 @@ let variable_name:[dataType;size] = [value1,value2,value3];
 let variable_name:[dataType;size] = [default_value_for_elements,size];
 
 ```
+
 In the first syntax, type of the array is inferred from the data type of the array’s first element during initialization.
 
 ### Illustration
@@ -67,8 +65,7 @@ Output
 
 ### Illustration
 
-The following program declares an array of 4 elements.The `{:?}` syntax of the *println!()* function is used to print all values in the array.
-The datatype is not explicitly specified during the variable declaration.In this case, the array will be of type integer.The `len()` function is used to compute the size of the array.
+The following program declares an array of 4 elements.The datatype is not explicitly specified during the variable declaration.In this case, the array will be of type integer.The `len()` function is used to compute the size of the array.
 
 ```rust
 fn main(){
@@ -86,7 +83,6 @@ Output
     array size is :4
 
 ```
-
 
 ### Illustration
 
