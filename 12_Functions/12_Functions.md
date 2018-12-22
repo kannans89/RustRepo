@@ -128,7 +128,6 @@ In the following example we have a variable `no` which is initially 5 and we are
 
 ```rust
 fn main(){
-     
      let mut no:i32 = 5;
      mutate_no_to_zero(&mut no);
      println!("The value of no is:{}",no);

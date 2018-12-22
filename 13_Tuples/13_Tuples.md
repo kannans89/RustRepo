@@ -1,8 +1,7 @@
 # Tuple
 
 Tuple is a compound data type . A scalar type can store only one type of
-data . For example in an i32 variable can store only a single integer value.
-In compound types we can store more than one value at a time and it can be of different types.  
+data . For example in an i32 variable can store only a single integer value.In compound types we can store more than one value at a time and it can be of different types.  
 
 Tuples have a fixed length i.e. once declared they cannot grow or shrink in size. The tuple index starts from **0**
 
@@ -17,6 +16,7 @@ let tuple_name:(data_type1,data_type2,data_type3) = (value1,value2,value3);
 ```
 
 ## Illustration
+
 The following example displays the values in a tuple.
 
 ```rust
@@ -26,6 +26,7 @@ fn main() {
 }
 
 ```
+
 The `println!("{}",tuple)` syntax cannot be used to display values in a tuple. This is because a tuple is a compound type .Use the `println!("{:?}",tuple)` syntax to print values in a tuple.
 
 Output
@@ -56,7 +57,7 @@ unsigned integer is :2
 
 ## Illustration
 
-The following example passes a tuple as parameter to a function. Tuples are passed as ----- to functions // confirm if it is by value or ref 
+The following example passes a tuple as parameter to a function. Tuples are passed as values to functions.
 
 ```rust
 fn main(){
@@ -83,7 +84,7 @@ Inside print method
 
 ## Destructing
 
-When you assign a tuple to a variable it is known as destructing.
+Destructing assignment is a feature of rust in which we unpack the values of a tuple.This is achieved by assigning a tuple to distinct variables.
 
 Consider the following example-
 
@@ -96,14 +97,14 @@ fn main(){
 
 fn print(x:(i32,bool,f64)){
     println!("Inside print method");
-    let (age,is_male,cgpa) = x; //assigns a tuple to a variable
+    let (age,is_male,cgpa) = x; //assigns a tuple to distinct variables
     println!("Age is {} , isMale? {},cgpa is {}",age,is_male,cgpa);
 }
 ```
+
 Variable x is a tuple which is assigned to let statement . Each variable age,is_male,cgpa will contain the corresponding values in a  tuple.
 
-
-Output
+output
 
 ```rust
 Inside print method
