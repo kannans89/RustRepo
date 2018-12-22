@@ -1,19 +1,21 @@
 # Enums
 
-Enums store a set of named constants.
+An enumeration is used to define named constant values. An enumerated type is declared using the enum keyword.
 
 ## Syntax
 
 ```rust
 enum enum_name{
-    category1,
-    category2,
-    category3
+    enum_list
 }
 
 ```
+Where,
 
-Let us see an example
+- enum_name specifies the enumeration type name
+- enum_ist is a comma-separated list of identifiers
+
+### Illustration 
 
 ```rust
 
