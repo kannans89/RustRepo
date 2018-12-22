@@ -73,21 +73,19 @@ length is 14
 |Sr No |  method | signature  | description
 |:----:|:----------|:----|:-----------------|
 | 1    | new()     | pub const fn new() -> String|Creates a new empty String.
-| 2    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
-| 3    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
-| 4    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
-| 5    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
-| 6   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
-| 7   | is_empty()  |pub fn is_empty(&self) -> bool |Returns true if input string is empty.
-| 8   | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
-| 9  | contains()  |pub fn contains<'a, P>(&'a self, pat: P) -> bool  |Returns true if the given pattern matches a sub string of input string.
-|10|replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
-|11|trim()|pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
-|12|split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
-|13|to_string()|fn to_string(&self) -> String |Converts the given value to a String.
+| 2     |to_string()|fn to_string(&self) -> String |Converts the given value to a String.
+| 3    |replace()|pub fn replace<'a, P>(&'a self, from: P, to: &str) -> String |Replaces all matches of a pattern with another string.
+| 4    | as_str()  | pub fn as_str(&self) -> &str  | Extracts a string slice containing the entire string.
+| 5    | push()     |pub fn push(&mut self, ch: char) |Appends the given char to the end of this String.
+| 6    | push_str() |pub fn push_str(&mut self, string: &str)   | Appends a given string slice onto the end of this String.
+| 7    | len()     |pub fn len(&self) -> usize |Returns the length of this String, in bytes.
+| 8    |trim()     |pub fn trim(&self) -> &str |Returns a string slice with leading and trailing whitespace removed
+| 9    | split_whitespace()  |pub fn split_whitespace(&self) -> SplitWhitespace |Split a string slice by whitespace,return an iterator
+| 10    |split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
+| 11   | chars()     |pub fn chars(&self) -> Chars |Returns an iterator over the chars of a string slice.
 
 
-## Illustration : Creating an empty string using new()
+## Illustration : new()
 
 An empty string object is created using the `new()` method and its value is set to *hello*.
 
@@ -104,27 +102,20 @@ Output
 
 `hello`
 
-## Illustration: to_string() replace()
+## Illustration: to_string()
 
 To access all methods of String object, convert a string literal to object type using the `to_string()` function. 
   
 ```rust
-
 fn main(){
-
-    let name1 = "Hello TutorialsPoint , Hello!".to_string(); 
-
+     let name1 = "Hello TutorialsPoint , Hello!".to_string(); 
     println!("{}",name1);
-
 }
-
 ```
-
 Output
 
 ```rust
 Hello TutorialsPoint , Hello!
-
 ```
 
 ## Illustration: replace()
@@ -266,62 +257,7 @@ length is  24
 
 After  trim 
 length is  15
-
 ```
-
-## Concatenation of Strings with + operator
-
-A string value can be appended to another string. This is called concatenation or interpolation. The result of string concatenation is a new string object.
-The *+* operator internally uses an *add* method . Syntax of this add function takes two parameters.First parameter is *self* i.e. String object itself and the second parameter is a reference of the second string object. This is shown below-
-
-  ```rust
-  //add function
-     add(self,&str)->String{ // returns a String object
-
-     }
-
-```
-
-### Illustration:String Concatenation
-
-```rust
-
-  fn main(){
-  let n1 = "Tutorials".to_string();
-  let n2 = "Point".to_string();
-  
-  let n3 = n1 + &n2; // n2 reference is passed 
-  
-  println!("{}",n3);
-  
-  }
-  
-```
-
-The Output will be as given below:
-
-`TutorialsPoint`
-
-### Illustration:Format! Macro
-
-Another way to add to String objects together is using a macro function called format . The use of Format! is as shown below.
-
-```rust
-
-  fn main(){
-  let n1 = "Tutorials".to_string();
-  let n2 = "Point".to_string();
-  let n3 = format!("{} {}",n1,n2);
-  println!("{}",n3);
-  
-  }
-
-```
-
-Output is
-
-`Tutorials Point`
-
 
 ## Illustration:split_whitespace()
 
@@ -419,6 +355,61 @@ a
 l
 s
 ```
+
+## Concatenation of Strings with + operator
+
+A string value can be appended to another string. This is called concatenation or interpolation. The result of string concatenation is a new string object.
+The *+* operator internally uses an *add* method . Syntax of this add function takes two parameters.First parameter is *self* i.e. String object itself and the second parameter is a reference of the second string object. This is shown below-
+
+  ```rust
+  //add function
+     add(self,&str)->String{ // returns a String object
+
+     }
+
+```
+
+### Illustration:String Concatenation
+
+```rust
+
+  fn main(){
+  let n1 = "Tutorials".to_string();
+  let n2 = "Point".to_string();
+  
+  let n3 = n1 + &n2; // n2 reference is passed 
+  
+  println!("{}",n3);
+  
+  }
+  
+```
+
+The Output will be as given below:
+
+`TutorialsPoint`
+
+### Illustration:Format! Macro
+
+Another way to add to String objects together is using a macro function called format . The use of Format! is as shown below.
+
+```rust
+
+  fn main(){
+  let n1 = "Tutorials".to_string();
+  let n2 = "Point".to_string();
+  let n3 = format!("{} {}",n1,n2);
+  println!("{}",n3);
+  
+  }
+
+```
+
+Output is
+
+`Tutorials Point`
+
+
 
 <!-- 
 1. string functions:
