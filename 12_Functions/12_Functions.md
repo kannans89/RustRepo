@@ -94,9 +94,9 @@ Parameters can be passed to a function using one of the following techniques-
 
 ### Passing by Value
 
-When a method is called, a new storage location is created for each value parameter.The values of the actual parameters are copied into them. Hence, the changes made to the parameter inside the method have no effect on the argument.
+When a method is invoked, a new storage location is created for each value parameter.The values of the actual parameters are copied into them. Hence, the changes made to the parameter inside the invoked method have no effect on the argument.
 
-In the following example we have a variable `no` which is initially 5 and we are passing to  
+In the following example we have a variable `no` which is initially 5 and we are passing to  `mutate_no_to_zero` which changes the value to zero.  After the function call when control returns back to main method the value will be the same.
 
 ```rust
 fn main(){
@@ -112,7 +112,8 @@ fn mutate_no_to_zero(mut param_no: i32){
 }
 
 ```
-output is 
+
+output is:
 
 ```rust
 param_no value is :0
@@ -120,10 +121,10 @@ The value of no is:5
 ```
 
 ### Passing by Reference
-// explain in a line
 
-The following program shows how to pass a number as reference to another function . The second function takes the `no` i32 as reference and modifies it to zero . Finally when we print the no
-in main we the value will be mutated to zero.
+When you pass parameters by reference, unlike value parameters, a new storage location is not created for these parameters.The reference parameters represent the same memory location as the actual parameters that are supplied to the method.You can pass the reference parameters using the **&** keyword.
+
+In the following example we have a variable `no` which is initially 5 and we are passing to  `mutate_no_to_zero` by reference which changes the value to zero. After the function call when control returns back to main method the value will be the zero.
 
 ```rust
 fn main(){
@@ -139,37 +140,27 @@ fn mutate_no_to_zero(param_no:&mut i32){
 
 ```
 
+The `*param_no` syntax is used to access value in the address passed.This is also known as *de referencing*
+
 The ouput will be `The value of no is:0` .
 
+## Passing String to function
 
-## Passing String 
+ In this example we are passing string object to another function. Due to ownership feature of rust the owner of string object is `name` variable. During `display` function call, ownership of string object is moved to the method and after that it get invalidated. So we cannot use name variable after invoking display as shown in example.
 
 ```rust
- 
   fn main(){
-     
      let  name:String = String::from("TutorialsPoint");
-     display(name);
-    // println!("The value of name is:{}",name); //Error
+     display(name); //cannot access name after display
+    // println!("The value of name is:{}",name); //Error since name variable is invalidated
 }
 
 fn display(param_name:String){
-    
     println!("param_name value is :{}",param_name);
 }
 
 ```
 
+output is :
 
-// need clarity here 
-## Methods
-
-- Methods are similar to functions but they are defined with context of a structure
-
-- The first parameter is always self
-
-```rust
- struct
-
-
-```
+`param_name value is :TutorialsPoint` 
