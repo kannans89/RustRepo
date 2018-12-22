@@ -93,11 +93,13 @@ Parameters are a mechanism to pass values to functions. Parameters form a part o
 Parameters can be passed to a function using one of the following techniques-
 
 ### Passing by Value
-// explain in a line
-In the following example we have a variable `no` which is initally 5 and we are passing to 
+
+When a method is called, a new storage location is created for each value parameter.The values of the actual parameters are copied into them. Hence, the changes made to the parameter inside the method have no effect on the argument.
+
+In the following example we have a variable `no` which is initially 5 and we are passing to  
+
 ```rust
 fn main(){
-     
      let  no:i32 = 5;
      mutate_no_to_zero(no);
      println!("The value of no is:{}",no);
