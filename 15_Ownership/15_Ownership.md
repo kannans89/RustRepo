@@ -30,19 +30,22 @@ When an object is created it is allocated space in memory and its reference or p
 - Each data can have only one owner at a time.
 - Two variables cannot point to the same memory location.They will be always pointing to different memory location.
 
-## Different ways to move ownership
+## Transferring ownership
+
+The ownership of value can be transferred by -
 
 1. Assigning value from one variable to another variable
-2. Passing value  to function
-3. Returning value from function
+2. Passing value  to a function
+3. Returning value from a function
 
 
 ## More on Ownership
 
-the key selling point of rust as a language is its memory safety.Memory safety is achieved by tight control on who can use what and when restrictions.
+The key selling point of rust as a language is its memory safety.Memory safety is achieved by tight control on who can use what and when restrictions.
 
-We were  unable to use a variable after a closure took over them.
-Let us suppose that we have a vector called v as shown
+Consider the following snippet-
+
+A vector called v is declared as shown below-
 
 ```rust
 fn main(){
@@ -54,35 +57,17 @@ fn main(){
 
  //Rust is very smart in terms of memory access ,so it detects a race condition
 //as two variables point to same heap 
-}
 
-```
-
-The idea of only one variable binds to a resource , either v binds to resource or v2 binds to the resource
-
-let v2=v;// now v2 is owner of the resource
-
-since v2 is owner of resource , v is no longer availble.
-
-so if you run the program above we get errr ,` value used here after move` on the println macro line.
-
-```rust
-fn main(){
- 
-  let v = vec![1,2,3]; // vector v owns the object in heap
-
- let v2 = v;  // moves ownership to v2  
- 
  println!("{:?}",v);
+
 }
 
 ```
 
-## what is move ??
-
+The idea of ownership is that only one variable binds to a resource , either v binds to resource or v2 binds to the resource.
+The above example throws an error ,` value used here after move`,since v2 is the owner of resource , v is no longer availble.
 It means the ownership is moved from v to v2 as we assign v2=v , it also invalidates v after the move.
-
-this happens when we pass an object in heap to a closure or function as shown.
+This also happens when we pass an object in heap to a closure or function as shown.
 
 ```rust
 fn main(){
@@ -99,10 +84,10 @@ fn display(v:Vec<i32>){
 
 ```
 
-One work around of this case is let the function return the owned object as shwon below
+One work around for this is let the function return the owned object as shown below
 
 ```rust
-fn main(){
+ fn main(){
   let v = vec![1,2,3]; // vector v owns the object in heap
  let v2 = v;  // moves ownership to v2
   let v2_return =display(v2);
@@ -119,7 +104,7 @@ fn display(v:Vec<i32>)->Vec<i32>{ // returning same vector
 
 ```
 
-If we consider the case of primitive types, contents from one variable is copied to another. So there is no ownership move happening .let us see an example 
+The above is true for complex data types. In case of primitive types, contents from one variable is copied to another. So there is no ownership move happening . This is because of a primitive variable needs less resources than an object.Consider the following example-
 
 ```rust
 
@@ -133,21 +118,4 @@ fn main(){
 
 ```
 
-output will be : 10
-
-This is because of an i32 variable needs less resources than an object which is allocated in heap.
-
-## Converting primitive to Object with Box types
-
- If we want the primitives behave like Ojbect types we can box it and in that case ownership move will occur .Let us see an example.
-
-```rust
-fn main(){
-  let u1 = Box::new(10);
-  let u2=u1; // value has been moved
-  
-  println!("u1 = {}",u1); //Error: value used here after move
-}
-```
-
-The reason for error is same as we assign u1 to u2 .After assignment u1 will be invalidated.
+The output will be : 10
