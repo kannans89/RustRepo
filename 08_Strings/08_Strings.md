@@ -161,27 +161,6 @@ Output
 
 `displaying string literal example_string`
 
-
-## Illustration :as_str()-Type Casting- Number to String  
-
-The following example illustrates converting a number to a string object
-
-```rust
-fn main(){
-    let number = 2020;
-    let number_as_string= number.to_string(); // convert number to string
-    println!("{}",number_as_string);
-    println!("{}",number_as_string=="2020");
-}
-
-```
-
-The output will be :
-
-```rust
-2020
-true
-```
 ## Illustration: push()
 The push() function appends the given char to the end of this String.
 
@@ -388,6 +367,28 @@ The *+* operator internally uses an *add* method . Syntax of this add function t
 The Output will be as given below:
 
 `TutorialsPoint`
+
+
+## Illustration:Type Casting
+
+The following example illustrates converting a number to a string object
+
+```rust
+fn main(){
+    let number = 2020;
+    let number_as_string= number.to_string(); // convert number to string
+    println!("{}",number_as_string);
+    println!("{}",number_as_string=="2020");
+}
+
+```
+
+The output will be :
+
+```rust
+2020
+true
+```
 
 ### Illustration:Format! Macro
 
