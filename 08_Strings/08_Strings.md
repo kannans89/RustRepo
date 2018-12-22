@@ -58,7 +58,7 @@ fn main(){
 
 ```
 
-In the above example we are creating an empty string object using `new` method . After that we are creating a String object from string literal using `from` method.
+The above example creates two strings- an empty string object using the `new` method and a string object from string literal using the `from` method.
 
 The output is as shown below
 
@@ -86,9 +86,10 @@ length is 14
 |12|split()|pub fn split<'a, P>(&'a self, pat: P) -> Split<'a, P> , where P is pattern  can be &str, char, or a closure that determines the split. |Return an iterator over substrings of this string slice, separated by characters matched by a pattern.
 |13|to_string()|fn to_string(&self) -> String |Converts the given value to a String.
 
+
 ## Illustration : Creating an empty string using new()
 
-In this example we are creating an empty string object using `new()` method.After that changing the string value to *hello*
+An empty string object is created using the `new()` method and its value is set to *hello*.
 
 ```rust
  fn main(){
@@ -99,11 +100,13 @@ In this example we are creating an empty string object using `new()` method.Afte
  }
 ```
 
-output : `hello`
+Output
+
+`hello`
 
 ## Illustration: to_string() and replace()
 
-To access all methods of String object we can easily convert a string literal to object type using `to_string()` 
+To access all methods of String object, convert a string literal to object type using the `to_string()` function. 
   
 ```rust
 
@@ -117,13 +120,15 @@ fn main(){
 }
 ```
 
-The *replace()* function takes two parameters first string pattern to search and second parameter is new value to be replaced. In above example *Hello* appears two times in the *name1* string , it is replaced by *Howdy*
+The *replace()* function takes two parameters -the first parameter is a string pattern to search for and the second parameter is the new value to be replaced. In above example *Hello* appears two times in the *name1* string. The replace function repalces all ocuurences of the string *Hello* with *Howdy*
 
-The output of the above code will be   `Howdy TutorialsPoint , Howdy!`
+The output of the above code will be   
 
-## Illustration :Convert a String Object to literal as as_str()
+`Howdy TutorialsPoint , Howdy!`
 
- In this example we crated a string object example_string and passing it to function which requires a literal string. So using `as_str()` we do conversion.
+## Illustration :Convert a String Object to literal using as_str()
+
+ The as_str() function extracts a string slice containing the entire string.
 
 ```rust
  fn main() {
@@ -138,7 +143,9 @@ fn print_literal(data:&str ){
 
 ```
 
-output : `displaying string literal example_string`
+Output 
+
+`displaying string literal example_string`
 
 ## Illustration :Type Casting- Number to String  
 
@@ -162,8 +169,7 @@ true
 ```
 
 ## Illustration: push() and push_str()
-
-Example of push and push_str is given below
+The push() function appends the given char to the end of this String. The push_str() function appends a given string slice onto the end of a String.
 
 ```rust
   fn main(){
@@ -185,7 +191,7 @@ Tutorials Point
 
 ## Illustration: len() and trim()
 
-Example to use trim method in string .It removes spaces before and after the content.
+The len() function returns the total number of characters in a string.The trim() function removes leading and trailing spaces in a string.
 
 ```rust
   fn main() {
@@ -227,7 +233,7 @@ The *+* operator internally uses an *add* method . Syntax of this add function t
 
 ```
 
-## Illustration- String Concatenation
+### Illustration:String Concatenation
 
 ```rust
 
@@ -247,7 +253,7 @@ The Output will be as given below:
 
 `TutorialsPoint`
 
-## Illustration- Format! Macro
+### Illustration:Format! Macro
 
 Another way to add to String objects together is using a macro function called format . The use of Format! is as shown below.
 
@@ -263,9 +269,13 @@ Another way to add to String objects together is using a macro function called f
 
 ```
 
-output is : `Tutorials Point`
+Output is
+
+`Tutorials Point`
+
 
 ## Illustration:Split string with white spaces
+The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
 
 ```rust
    fn main(){
@@ -279,7 +289,6 @@ output is : `Tutorials Point`
 
 ```
 
-The *split_whitespace()* splits the input string into different strings.It returns an iterator so we are iterating through the tokens using a for each loop.
 
 Output:
 
@@ -291,7 +300,7 @@ token 4 good
 token 5 tutorials
 
 ```
-
+//need change in explanation
 ## Illustration: split string with a delimiter
 
 The split method returns an iterator , so we are using for each loop to iterate over the result. Sometimes we need to store the split result in a collection , so we can use `collect` method as shown below.Collect method returns a Vector.
@@ -315,7 +324,7 @@ fn main() {
 
 ```
 
-output
+Output
 
 ```rust
 token is Kannan
@@ -330,7 +339,7 @@ company is Tutorialspoint
 
 ## Illustration : chars() and slicing
 
- You can access string characters from a string object using  slice syntax.Sliced string is a pointer to the actual string object.So we need to specify the starting index of String and ending index . Index starts from 0 just like arrays.
+ You can access string characters from a string object using  slice syntax.Sliced string is a pointer to the actual string object.So we need to specify the starting and ending index of a String . Index starts from 0 just like arrays.
 
 Syntax of the string slice function is-
 
@@ -338,8 +347,16 @@ Syntax of the string slice function is-
     let sliced_value = &string_object[start_index..end_index]
 ```
 
-Note that the end_index will not be included in final string .To understand this see a sample string `Tutorials` which has length 9 and
+Note that the end_index will not be included in final string .
+
+The  diagram below shows a sample string `Tutorials` which has length 9 and
 index starting from 0 to 8.From the input string we are  slicing out `rials` .
+
+
+![string](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/string_slice.png)
+
+The following code shows how to slice the string.
+
 
 ```rust
 
@@ -355,7 +372,7 @@ index starting from 0 to 8.From the input string we are  slicing out `rials` .
 
  ```
 
-output :
+Output :
 
 ```rust
 length of string is 9
@@ -376,7 +393,7 @@ Another way of accessing characters from a string is by using the `chars` method
 
 ```
 
-output
+Output
 
 ```rust
 T

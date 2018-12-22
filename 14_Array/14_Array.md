@@ -1,8 +1,35 @@
 # Array
 
-Array is a collection of values like tuple. In array all the values is of same type .In an array length is fixed.For variable length data structure we need to use collection.
+Variables have the following limitations −
 
-## Syntax
+- Variables are scalar in nature. In other words, a variable declaration can only contain a single at a time. This means that to store n values in a program n variable declarations will be needed. Hence, the use of variables is not feasible when one needs to store a larger collection of values.
+
+- Variables in a program are allocated memory in random order, thereby making it difficult to retrieve/read the values in the order of their declaration.
+
+An array is a homogenous collection of values. Simply put, an array is a collection of values of the same data type. 
+
+## Features of an Array
+
+- An array declaration allocates sequential memory blocks.
+
+- Arrays are static. This means that an array once initialized cannot be resized.
+
+- Each memory block represents an array element.
+
+- Array elements are identified by a unique integer called as the subscript / index of the element.
+
+//check this point
+- Like variables, arrays too, should be declared before they are used. Use the var keyword to declare an array.
+
+- Populating the array elements is known as array initialization.
+
+- Array element values can be updated or modified but cannot be deleted.
+
+## Declaring and Initializing Arrays
+
+Use the following syntax to declare and initialize an array in Rust  
+
+### Syntax
 
 ```rust
  //Syntax1
@@ -15,34 +42,11 @@ let variable_name:[dataType;size] = [value1,value2,value3];
 let variable_name:[dataType;size] = [default_value_for_elements,size];
 
 ```
+In the first syntax, type of the array is inferred from the data type of the array’s first element during initialization.
 
-The array index starts with **0** poistion ,similar to other programming languages.
+### Illustration
 
-## Example of an array initialization without any type
-
-Here we are declaring an array of 4 elements and displaying the
-entire array using `{:?}` syntax of *println!()* function.The datatype is not specified during the variable declaration.The size of array is computed using `len()` method.
-
-```rust
-fn main(){
-    let arr = [10,20,30,40];
-    println!("array is {:?}",arr);
-    println!("array size is :{}",arr.len());
-}
-
-```
-
-output is as shown below.
-
-```rust
-    array is [10, 20, 30, 40]
-    array size is :4
-
-```
-
-## Example of an array initialization with type
-
-In this example we are explicitly specifying the size of the array and the data type the array should be storing as below.
+The following example explicitly specifies the size and the data type the array.The `{:?}` syntax of the *println!()* function is used to print all values in the array.The `len()` function is used to compute the size of the array.
 
 ```rust
 fn main(){
@@ -53,7 +57,7 @@ fn main(){
 
 ```
 
-output is shown below
+Output
 
 ```rust
     array is [10, 20, 30, 40]
@@ -61,9 +65,32 @@ output is shown below
 
 ```
 
-## Example of initializing array with default values
+### Illustration
 
-In this example we are initializing all the elements of the array with default value of `-1`.
+The following program declares an array of 4 elements.The `{:?}` syntax of the *println!()* function is used to print all values in the array.
+The datatype is not explicitly specified during the variable declaration.In this case, the array will be of type integer.The `len()` function is used to compute the size of the array.
+
+```rust
+fn main(){
+    let arr = [10,20,30,40];
+    println!("array is {:?}",arr);
+    println!("array size is :{}",arr.len());
+}
+
+```
+
+Output
+
+```rust
+    array is [10, 20, 30, 40]
+    array size is :4
+
+```
+
+
+### Illustration
+
+The following example creates an array and initializes all its elements with a default value of `-1`.
 
 ```rust
 
@@ -75,7 +102,7 @@ fn main(){
 
 ```
 
-output is as shown
+Output
 
 ```rust
  array is [-1, -1, -1, -1]
@@ -83,10 +110,9 @@ output is as shown
 
 ```
 
-## Example of iterating array with index
+### Illustration
 
-In this example we are iterating across an array and displaying its index
-and value present in each index.Note that loop syntax is `0..4` which is 0 to size of the array.
+The following example iterates through an array and prints the indexes and their corresponding values.The loop retrives values from index 0 to 4 (index of the last array element).
 
 ```rust
 fn main(){
@@ -100,7 +126,7 @@ fn main(){
 }
 ```
 
-output is shown below
+Output
 
 ```rust
 array is [10, 20, 30, 40]
@@ -111,9 +137,9 @@ index is: 2 & value is : 30
 index is: 3 & value is : 40
 ```
 
-## Example of using iter() method in array
+### Illustration
 
-The iterate method returns each element from the array.
+The iter() function fetches values of all elements in an array.
 
 ```rust
 
@@ -129,7 +155,7 @@ The iterate method returns each element from the array.
   }
 ```
 
-output is below
+Output
 
 ```rust
 array is [10, 20, 30, 40]
@@ -141,10 +167,9 @@ value is :40
 
 ```
 
-## Example of mutating the elements of an array
+### Illustration
 
-In this example we are making a mutable array and updating the value
-of index 1 with 0;
+The `mut` keyword can be used to declare a mutable array. The following example declares a mutable array and modifies value of the second array element.
 
 ```rust
 fn main(){
@@ -154,13 +179,15 @@ fn main(){
 }
 
 ```
-output is shown below
+Output
 
 `[10, 0, 30, 40]`
 
-## Array to Functions
+## Passing Arrays as parameters to Functions
 
-  ### Arrays  passed by value
+An array can be passed by value or by reference to functions.
+
+  ### Illustration: Pass by value
 
 ```rust
 fn main() {
@@ -180,7 +207,7 @@ fn update(mut arr:[i32;3]){
 
 ```
 
-output will be
+Output
 
 ```rust
 Inside update  [0, 0, 0]
@@ -188,7 +215,7 @@ Inside main [10, 20, 30]
 ```
 
 
-### Arrays  passed by reference
+### Illustration : Pass by reference
 
 ```rust
  fn main() {
@@ -208,18 +235,16 @@ fn update(arr:&mut [i32;3]){
 
 ```
 
-output is shown
+Output
 
 ```rust
 Inside update  [0, 0, 0]
 Inside main [0, 0, 0]
 ```
 
-##declaration array n constants
-Let us see an example
+## Array declaration and constants
 
-The following program is illegal:
-It is so because an array's length must be known at compile time.Here variable "N" initial value could be only determined at runtime, and so it is not allowed to use variables to specify the size of an array as shown below
+Consider the following example.
 
 ```rust
 fn main() {
@@ -233,8 +258,11 @@ print!("{}",arr[10])
 }
 
 ```
+The compiler will result in an exception. This is because an array's length must be known at compile time.Here value of the variable "N" will be determined at runtime. In other words, variables cannot be used to define the size of an array.
 
-But the following program is valid:
+
+
+However, the following program is valid:
 
 ```rust
  fn main() {
@@ -248,4 +276,5 @@ print!("{}",arr[10])
 }
 ```
 
-The "const" keyword allows us to declare an identifier having a value defined at compile time, and of course no more changeable at runtime. In its declaration, it is required to specify its type.
+The value of an identifier prefixed with the "const" keyword is defined at compile time, and cannot be changed at runtime.
+//what is usize?

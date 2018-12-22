@@ -1,12 +1,14 @@
 # File Input/Output
 
-In addition to reading and writing to console,it is rather easy in Rust to read and write to files.
+In addition to reading and writing to console,Rust allows reading and writing to files. 
 
-## Read a File
+## Write to File
 
-Let us understand this with an example.Below program creates a file 'data.txt'in current folder of the file system.The create() method of File is used to do the same.
-Since this method is fallible we are unwrapping it.If success it return handle to the file.
-The last line *write_all* function will write bytes in newly created file.
+Let us understand this with an example.
+The following program creates a file 'data.txt'in the current folder of the file system.The create() method is used to create a file. The method returns a file handle if the file is created successfully.The last line *write_all* function will write bytes in newly created file.
+
+//clarity 
+Since this method is fallible we are unwrapping it.
 
 ```rust
 use std::io::Write;
@@ -17,12 +19,13 @@ fn main(){
 }
 ```
 
+## Read a File
 
-## Write to File
-
-Now letus verify the contents of file by reading the same file.
-
-
+The following program reads the contents in a file *data.txt* and prints it to the console.
+The "open" function is used to open an existing file. An absolute or relative path to the file is passed to the open() function as a parameter.
+The open() function throws an exception if the file does not exist, or if it is not accessible for whatever reason. If it succeeds, a file handle to such file is assigned to the "file" variable.
+//rephrase this 
+The "read_to_string" function of the "file" handle is used to read contents of that file into a string variable, passed by reference to a mutable object.
 ```rust
 use std::io::Read;
 
@@ -37,15 +40,12 @@ fn main(){
 
 ```
 
-The program invokes the "open" function to open an existing file named "data.txt" in the current folder. This function fails if the file does not exist, or if it is not accessible for whatever reason. If it succeeds, a file handle to such file is assigned to the "file" variable.
 
-The "read_to_string" function on the "file" handle to read all the contents of that file into a string variable, passed by reference to a mutable object.
 
 
 ## Copy a file
 
 Let us copy contents of a file and create a new file as shown below
-
 
 ```rust
 use std::io::Read;
@@ -70,8 +70,7 @@ fn main(){
 }
 
 ```
-
-The program can be launched as *main.exe data.txt datacopy.txt* . Here we are passing two command line agruments.The first one is the path of the source file, and the second one is the path of the destination file.
+Execute the above program as *main.exe data.txt datacopy.txt* . Two command line agruments are passed while executing the file- the path to the source file and the destination file respectively.
 
 ## Modify contents..
 The lines from the third to the sixth one assign to the "source" variable the contents of the first argument, and to the "destination" variable the contents of the second argument.
