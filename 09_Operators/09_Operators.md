@@ -24,7 +24,7 @@ Assume the values in variables a and b are 10 and 5 respectively.
 | 1    | +(Addition)     | returns the sum of the operands|a+b is 15
 | 2    | -(Subtraction)     | returns the difference of the values|a-b is 5
 | 3    | * (Multiplication)     | returns the product of the values	|a*b is 50
-|4|/ (Division)|	performs division operation and returns the quotient	|a / b is 2
+|4|/ (Division)|performs division operation and returns the quotient	|a / b is 2
 |5|% (Modulus)|	performs division operation and returns the remainder	| a % b is 0
 
 **NOTE** : The ++ and -- operators are not supported in Rust.

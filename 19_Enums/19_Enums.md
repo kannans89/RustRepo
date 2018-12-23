@@ -1,25 +1,23 @@
 # Enums
 
- An enumerated type is declared using the `enum` keyword.
- .This allows the creation of a type which may be one of a few different variants. Any variant which is valid as a struct is also valid as an enum.
-
-## Syntax
+In Rust programming when we have to select a value from a list of possible variants we  use enumeration data types.An enumerated type is declared using the `enum` keyword. Following is the syntax of enum.
 
 ```rust
 enum enum_name{
-    enum_list
+    variant1,
+    variant2,
+    variant3
 }
 
 ```
-Where,
 
-- enum_name specifies the enumeration type name
-- enum_ist is a comma-separated list of identifiers
+## Illustration
 
-### Illustration 
+In the given example we have a `GenderCategory` enum which have variants as Male and Female .When we display a enum  using print! macro we will get  error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`* . To supress the error we need to use attribute `#[derive(Debug)]` as shown in the example.
 
 ```rust
-
+// The `derive` attribute automatically creates the implementation
+// required to make this `enum` printable with `fmt::Debug`.
 #[derive(Debug)]
 enum GenderCategory {
      Male,Female
@@ -37,18 +35,29 @@ println!("{:?}",female);
 
 }
 ```
-//explain program here 
+
+ouptut is
+
+```
+Male
+Female
+```
 
 ## Enum with Struct
 
+In the example given we are creating a structure Person with gender having type of an enum.
 
 ```rust
+// The `derive` attribute automatically creates the implementation
+// required to make this `enum` printable with `fmt::Debug`.
 
 #[derive(Debug)]
 enum GenderCategory {
      Male,Female
  }
- 
+
+// The `derive` attribute automatically creates the implementation
+// required to make this `struct` printable with `fmt::Debug`.
 #[derive(Debug)]
 struct Person {
     name:String,
@@ -76,12 +85,21 @@ fn main() {
 
 
 ```
-## Putting Data into an enum
 
-Here we are attaching data to each variant of a structure.
+In the example we are creating two objects of Person `p1` and `p2` with specific values to each attributes . After that we are dispalying it into console . The output is -
 
 ```rust
+Person { name: "Mohtashim", gender: Male }
+Person { name: "Amy", gender: Female }
+```
 
+## Putting Data to an enum
+
+In Rust it is possible to  add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
+
+```rust
+// The `derive` attribute automatically creates the implementation
+// required to make this `enum` printable with `fmt::Debug`.
 #[derive(Debug)]
 enum GenderCategory {
      Male(String),Female(String)
@@ -99,13 +117,13 @@ fn main() {
 
 ```
 
+In the example we are passing data as `Mohtashim` and `Amy` while calling Male and Female enums.
+
 ## Option Enum
 
 This is another enum defined by the standard library. This is useful in scenarios where value should be something or else nothing.Rust doesn't support **null** values.
 
-### Syntax of Option Enum 
-
-The type *T* is a generic type , which means any type. We discuss generics later in this tutorials.
+Following is the syntax of Option enum.The type *T* is a generic type , which means any type. We will discuss generics in later chapter.
 
 ```rust
   enum Option<T> {
@@ -114,16 +132,13 @@ The type *T* is a generic type , which means any type. We discuss generics later
   }
 ```
 
-## Example of Opiton
-
-Option enum is already included in the standard library
+Since Option enum is already included in the standard library we do not have to import it to main function.The example shows variables of type `Option` . Since they are of Option type we can only assign either `Some` or `None`
 
 ```rust
-  fn main(){
-    
-    let ip = Some("127.23.81.133");
-    let age = Some(18);
-    let location:Option<String> = None;
+fn main(){
+    let ip:Option<&str> = Some("127.23.81.133");
+    let age:Option<i32> = Some(18);
+    let location:Option<&str> = None;
 
 
     println!("{:?}",ip);
@@ -142,7 +157,9 @@ None
 
 ```
 
-## Match with Enum
+## Matching Enum Values
+
+To compare the values stored in an enum we have to use `match` keyword.In the given example `print_size` function takes CarType enum as a parameter and displays if it is small ,medium or large sized using match statement.
 
 ```rust
 
@@ -176,17 +193,11 @@ fn main(){
 
 ```
 
-## Using if let with Option Enum
+output is :
 
 ```rust
-
- fn main(){
-    
-    let no_10= Some(10);
-    
-    if let Some(10) = no_10 {
-        println!("some enum value is 10");
-    }
-}
+Large sized Sports Utility  car
+Small sized car
+medium sized car
 
 ```
