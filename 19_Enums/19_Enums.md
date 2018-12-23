@@ -1,6 +1,7 @@
 # Enums
 
-An enumeration is used to define named constant values. An enumerated type is declared using the enum keyword.
+ An enumerated type is declared using the `enum` keyword.
+ .This allows the creation of a type which may be one of a few different variants. Any variant which is valid as a struct is also valid as an enum.
 
 ## Syntax
 
@@ -127,7 +128,7 @@ Option enum is already included in the standard library
 
     println!("{:?}",ip);
     println!("{:?}",age);
-     println!("{:?}",location);
+    println!("{:?}",location);
 }
 
 ```
