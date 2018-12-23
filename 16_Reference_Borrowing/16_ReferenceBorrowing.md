@@ -1,12 +1,8 @@
 # Reference and Borrowing
 
-### Borrowing for a while
-
-Previous chapter we discussed about issues related to ownership.It is very
-in convenient to pass control of a variable to another function and then return the value , ownership.So one of the notions that is supported by rust is called borrowing ( we can borrow ownership for a while).
+It is very inconvenient to pass the ownership of a variable to another function and then return the ownership. Rust supports a concept, borrowing, where the ownership of a value is transferred temporarily to an entity and then returned back to the original owner entity. 
    
-   Let us look at how this works. 
-  
+Consider the following-
 
    ```rust
   
@@ -26,10 +22,7 @@ fn print_vector(x:Vec<i32>){
 
    ```
 
-   In the above code , We have main fuction inside this function we call another
-   function `print_vector` , once we pass a vector to this function we are actually passing the ownership also . So once ownership is tranfered to that funtion the variable **v** can be  no longer used. 
-   The owership is moved .
-   The line `  println!("{}",v[0]);` gives an error as shown
+The above example, the main fuction invokes a function `print_vector()` . A vector is passed as parameter to this function . The ownership of the vector is also passed to the `print_vector()` function from the `main()`. The above code will result in an error as shown below  when the `main()` function tries to access the vector `v`. 
 
    ```rust
   |     print_vector(v);
@@ -38,7 +31,11 @@ fn print_vector(x:Vec<i32>){
   |                   ^ value used here after move
    ```
 
-So what is borrowing ? Instead of giving over control to `print_vector`, we can let `print_vector` borrow vector `v` for a while. so we can change syntax from print_vector(v) to `print_vector(&v)` . Now the function will take the address or reference. The advantage of this approach is that it is technically ok to access the vector **v** after the function call.
+This is because, a variable or value can no longer be used by the function that originally owned it once ownership is tranfered to another funtion.
+
+## What is Borrowing?
+
+Borrowing is when a function transfers its control over a variable/value to another function temporarily,for a while. This is achieved by passing a reference to the variable rather than passing the variable/value itself to the function.The ownership of the variable / value is transferred to the original owner of the variable after the function to which the control was passed to completes execution.
 
 ```rust
 
@@ -46,7 +43,7 @@ fn main(){
     // a list of nos
     let v = vec![10,20,30];
     print_vector(&v); // passing reference
-    println!("v[0]={}",v[0]);
+    println!("Printing the value from main() v[0]={}",v[0]);
 
 }
 
@@ -55,10 +52,18 @@ fn print_vector(x:&Vec<i32>){
     println!("Inside print_vector function {:?}",x);
 }
 
+```
+Output
 
+```rust
+
+Inside print_vector function [10, 20, 30]
+
+Printing the value from main() v[0]=10
 
 ```
 
+//appu: recheck
 ## Mutable References
 
 Let us see the following code
