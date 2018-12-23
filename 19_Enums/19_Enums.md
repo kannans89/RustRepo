@@ -43,9 +43,9 @@ Male
 Female
 ```
 
-## Enum with Struct
+## Struct and Enum
 
-In the example given we are creating a structure Person with gender having type of an enum.
+In the example given we are creating a structure Person with gender  type as an enum.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -93,7 +93,7 @@ Person { name: "Mohtashim", gender: Male }
 Person { name: "Amy", gender: Female }
 ```
 
-## Putting Data to an enum
+## Passing Data to an enum
 
 In Rust it is possible to  add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
 
@@ -148,7 +148,7 @@ fn main(){
 
 ```
 
-output is shwon below
+output is shown below
 
 ```rust
 Some("127.23.81.133")
