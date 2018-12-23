@@ -135,7 +135,7 @@ Logical Operators are used to combine two or more conditions. Logical operators 
 |Sr No |  Operator | Description  | Example
 |:----:|:----------|:----|:-----------------|
 | 1| && (And) |	The operator returns true only if all the expressions specified return true |	(A > 10 && B > 10) is False
-| 2|  `||`(OR) |The operator returns true if at least one of the expressions specified return true	|(A > 10 `||` B >10) is True
+| 2|  &#124;&#124;(OR) |The operator returns true if at least one of the expressions specified return true	|(A > 10 &#124;&#124; B >10) is True
 |3| ! (NOT) |	The operator returns the inverse of the expression’s result. For E.g.: !(>5) returns false	| !(A >10 ) is True
 
 ```rust
@@ -175,7 +175,7 @@ Assume variable A = 2 and B = 3
 |Sr No |  Operator | Description  | Example
 |:----:|:----------|:----|:-----------------|
 |1|& (Bitwise AND) |	It performs a Boolean AND operation on each bit of its integer arguments.|	(A & B) is 2
-|2| `|` (BitWise OR)|	It performs a Boolean OR operation on each bit of its integer arguments.|	(A `|` B) is 3
+|2| &#124; (BitWise OR)|	It performs a Boolean OR operation on each bit of its integer arguments.|	(A &#124; B) is 3
 |3| ^ (Bitwise XOR) |	It performs a Boolean exclusive OR operation on each bit of its integer arguments. Exclusive OR means that either operand one is true or operand two is true, but not both.	| (A ^ B) is 1
 |4| ! (Bitwise Not)|	It is a unary operator and operates by reversing all the bits in the operand.	|(!B) is -4
 |5| << (Left Shift)|	It moves all the bits in its first operand to the left by the number of places specified in the second operand. New bits are filled with zeros. Shifting a value left by one position is equivalent to multiplying it by 2, shifting two positions is equivalent to multiplying by 4, and so on.	|(A << 1) is 4
