@@ -13,7 +13,7 @@ enum enum_name{
 
 ## Illustration
 
-The example declares an enum,`GenderCategory`,which have variants as Male and Female . The !print macro displays value of the enum.The compiler will throw an error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`*.The attribute `#[derive(Debug)]` is used to supress this error.
+The example declares an enum,`GenderCategory`,which have variants as Male and Female . The `print!` macro displays value of the enum.The compiler will throw an error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`*.The attribute `#[derive(Debug)]` is used to suppress this error.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -106,7 +106,7 @@ It is possible to add data type to each variant of a enum.In the following examp
 enum GenderCategory {
      Male(String),Female(String)
  }
- 
+
 fn main() {
  let p1 = GenderCategory::Male(String::from("Mohtashim"));
  let p2 = GenderCategory::Female(String::from("Amy"));
@@ -118,12 +118,20 @@ fn main() {
 
 In the example we are passing data as `Mohtashim` and `Amy` while calling Male and Female enums.
 
+output
+
+```rust
+Male("Mohtashim")
+Female("Amy")
+```
+
 ## Option Enum
 
-Option is a predefined enum in the Standard Library .Since Rust doesn't support **null** values  we can return `None` from functions instead of null.If there is data to return from function we can return `Some(data)`. 
+Option is a predefined enum in the Standard Library .Since Rust doesn't support **null** values  we can return `None` from functions instead of null.If there is data to return from function we can return `Some(data)`.
 
 ### Syntax
-The type *T* is a generic type , which means any type. Generics is discussed in detail in a separate chapter.
+
+Following shows declaration of Option enum in the standard library.The type *T* is a generic type , which means any type. Generics is discussed in detail in a separate chapter.
 
 ```rust
   enum Option<T> {
@@ -132,9 +140,10 @@ The type *T* is a generic type , which means any type. Generics is discussed in 
   }
 ```
 
- In the given example functio is_even() is returning an Option<bool> of boolean type.If the even no then Some(true) is retuned otherwise None will be returned.
- 
- ```rust
+ In the given example function `is_even()` is returning an Option<bool> of boolean type.If the input is even  then Some(true) is returned otherwise None will be returned.
+
+```rust
+
 fn main() {
     let result = is_even(3);
     println!("{:?}",result);
@@ -159,11 +168,9 @@ None
 Some(true)
 ```
 
+## Match statement & Enum
 
-
-## Matching Enum Values
-
-The `match` keyword can be used to compare values stored in an enum. The following example defines a function,`print_size`, that takes `CarType` enum as parameter. The function compares the paramter values with a pre-defined set of constants and displays the appropriate message.
+The `match` statement can be used to compare values stored in an enum. The following example defines a function,`print_size`, that takes `CarType` enum as parameter. The function compares the parameter values with a pre-defined set of constants and displays the appropriate message.
 
 ```rust
 
@@ -206,7 +213,7 @@ medium sized car
 
 ```
 
-The `is_even` function which returns Option type can be matched as shown below
+The `is_even` function which returns Option type can be implemented with matched statement as shown below
 
 ```rust
 fn main() {
