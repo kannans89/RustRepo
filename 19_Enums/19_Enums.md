@@ -121,32 +121,36 @@ fn main() {
 
 In the example we are passing data as `Mohtashim` and `Amy` while calling Male and Female enums.
 
-## Optional values in  Enum
+## Option Enum
 
-Rust doesn't support **null** values. The `Option` keyword can be used to//appu: complete this ____________
+Option is a predefined enum in the Standard Library .Since Rust doesn't support **null** values  we can return `None` from functions instead of null.If there is data to return from function we can return `Some(data)`. 
 
 ### Syntax
 The type *T* is a generic type , which means any type. Generics is discussed in detail in a separate chapter.
 
+```rust
   enum Option<T> {
       Some(T),
       None
   }
 ```
-//appu: clartity here 
+
+ In the given example functio is_even() is returning an Option<bool> of boolean type.If the even no then Some(true) is retuned otherwise None will be returned.
  
-The example shows variables of type `Option` . Since they are of Option type we can only assign either `Some` or `None`
+ ```rust
+fn main() {
+    let result = is_even(3);
+    println!("{:?}",result);
+     println!("{:?}",is_even(30));
+}
 
-```rust
-fn main(){
-    let ip:Option<&str> = Some("127.23.81.133");
-    let age:Option<i32> = Some(18);
-    let location:Option<&str> = None;
-
-
-    println!("{:?}",ip);
-    println!("{:?}",age);
-    println!("{:?}",location);
+fn is_even(no:i32)->Option<bool>{
+    if no%2 == 0 {
+       Some(true)
+       }
+    else{
+       None
+       }
 }
 
 ```
@@ -154,10 +158,11 @@ fn main(){
 Output
 
 ```rust
-Some("127.23.81.133")
-Some(18)
 None
+Some(true)
 ```
+
+
 
 ## Matching Enum Values
 
@@ -201,5 +206,35 @@ Output
 Large sized Sports Utility  car
 Small sized car
 medium sized car
+
+```
+
+The `is_even` function which returns Option type can be matched as shwon below
+
+```rust
+
+
+ 
+fn main() {
+     match is_even(5){
+         Some(data) => {
+             if data==true{
+                 println!("Even no");
+             }
+         },
+         None => {
+             println!("not even");
+         }
+     }
+}
+
+fn is_even(no:i32)->Option<bool>{
+    if no%2 == 0 {
+       Some(true)
+       }
+    else{
+       None
+       }
+}
 
 ```
