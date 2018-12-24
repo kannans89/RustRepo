@@ -1,8 +1,17 @@
 # Modules
 
-Modules helps to organize  the code into logical groups.For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages.
+Rust programs are made of **crates**. Each crate is a Rust project itself. It could be binary crate or library crate.Library crates are components which are to be reused in another project,they doesn't have entry point to execute.Binary projects are executable projects they have a `main()` method to execute.Cargo tool is used to manage crates.
 
-The package system in Rust is called **Cargo** and packages themselves are called **Crates** .Rust programs are made of crates. Each crate is a Rust project: all the source code for a single library or executable, plus any associated tests, examples, tools, configuration.Library crates are project which are to be reused in another project,they doesnt have main to execute.
+Modules helps to organize  the code into logical groups inside a crate.For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages.
+
+|Sr No |  term | Description  |
+|:----:|:----------|:----|
+|1|crate	|Is a compilation unit in Rust,Crate is compiled to binary or library|
+|2|cargo	|The official Rust package management tool for crates|
+|3|module	| Logically groups code with in a crate|
+|4|[crates.io](https://crates.io/)	|The official Rust package registry|
+
+Whenever `rustc some_file.rs` is called, `some_file.rs` is treated as the crate file. If some_file.rs has `mod` declarations in it, then the contents of the module files would be inserted in places where mod declarations in the crate file are found, before running the compiler over it. In other words, modules do not get compiled individually, only crates get compiled.
 
 Let us see the syntax of module.
 
@@ -71,7 +80,7 @@ fn main(){
 
 ```
 
-## Create a Library Crate and Consume in another Crate
+## Create a Library Crate and Consume in a Binary Crate
 
 Let us create a library named **movie_lib** which contains a module **movies**.To build the crate library created we will use the tool **cargo**.
 First create a folder *movie-lib* , the source code should go in an *src* folder.The cargo tool will look for a file named *Cargo.toml*,this file will contain the metadata of project ,like version number,author name etc.
