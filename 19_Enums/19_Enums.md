@@ -17,7 +17,7 @@ variant1,variant2 and variant3 represent values in an enum.
 
 ## Illustration
 
-The example declares an enum,`GenderCategory`,which have variants as Male and Female . The compiler will throw an error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`* when the value of enum is displayed print! macro is used to display a enum. Use the attribute `#[derive(Debug)]` as shown in the example, to supress this error.
+The example declares an enum,`GenderCategory`,which have variants as Male and Female . The !print macro displays value of the enum.The compiler will throw an error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`*.The attribute `#[derive(Debug)]` is used to supress this error.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -88,17 +88,19 @@ fn main() {
 
 
 ```
+The example creates objects `p1` and `p2` of type Person and initializes the attributes name and gender for each of these objects.
 
-In the example we are creating two objects of Person `p1` and `p2` with specific values to each attributes . After that we are dispalying it into console . The output is -
+Output
 
 ```rust
 Person { name: "Mohtashim", gender: Male }
 Person { name: "Amy", gender: Female }
 ```
 
-## Passing Data to an enum
+// appu: is this needed?? 
+## 
 
-In Rust it is possible to  add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
+It is possible to add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -113,29 +115,27 @@ fn main() {
  let p2 = GenderCategory::Female(String::from("Amy"));
  println!("{:?}",p1);
  println!("{:?}",p2);
-
-
 }
-
 
 ```
 
 In the example we are passing data as `Mohtashim` and `Amy` while calling Male and Female enums.
 
-## Option Enum
+## Optional values in  Enum
 
-This is another enum defined by the standard library. This is useful in scenarios where value should be something or else nothing.Rust doesn't support **null** values.
+Rust doesn't support **null** values. The `Option` keyword can be used to//appu: complete this ____________
 
-Following is the syntax of Option enum.The type *T* is a generic type , which means any type. We will discuss generics in later chapter.
+### Syntax
+The type *T* is a generic type , which means any type. Generics is discussed in detail in a separate chapter.
 
-```rust
   enum Option<T> {
       Some(T),
       None
   }
 ```
-
-Since Option enum is already included in the standard library we do not have to import it to main function.The example shows variables of type `Option` . Since they are of Option type we can only assign either `Some` or `None`
+//appu: clartity here 
+ 
+The example shows variables of type `Option` . Since they are of Option type we can only assign either `Some` or `None`
 
 ```rust
 fn main(){
@@ -151,18 +151,17 @@ fn main(){
 
 ```
 
-output is shown below
+Output
 
 ```rust
 Some("127.23.81.133")
 Some(18)
 None
-
 ```
 
 ## Matching Enum Values
 
-To compare the values stored in an enum we have to use `match` keyword.In the given example `print_size` function takes CarType enum as a parameter and displays if it is small ,medium or large sized using match statement.
+The `match` keyword can be used to compare values stored in an enum. The following example defines a function,`print_size`, that takes `CarType` enum as parameter. The function compares the paramter values with a pre-defined set of constants and displays the appropriate message.
 
 ```rust
 
@@ -196,7 +195,7 @@ fn main(){
 
 ```
 
-output is :
+Output
 
 ```rust
 Large sized Sports Utility  car
