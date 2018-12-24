@@ -81,7 +81,7 @@ fn main(){
 
 ```
 
-The code will give your error *cannot borrow `a` as immutable because it is also borrowed as mutable*
+The code will give your error *cannot borrow `a`  because it is also borrowed as mutable*
 This ideally means *b* has borrowed value from *a* but it didn't return or release it after use.
 To make this code work we can give a scope for variable *b*
 
@@ -118,3 +118,41 @@ fn main(){
       }
 
 ```
+
+### &mut references
+
+passing string value to function
+
+```rust
+  fn main(){
+     let  name:String = String::from("TutorialsPoint");
+     display(name); //cannot access name after display
+    // println!("The value of name is:{}",name); //Error since name variable is invalidated
+}
+
+fn display(param_name:String){
+    println!("param_name value is :{}",param_name);
+}
+
+```
+
+
+Mutable reference of string 
+
+```rust
+
+ fn main(){
+     let  mut name:String = String::from("TutorialsPoint");
+     display(&mut name); //cannot access name after display
+     println!("The value of name is:{}",name); //Error since name variable is invalidated
+}
+
+fn display(param_name:&mut String){
+    println!("param_name value is :{}",param_name);
+    param_name.push_str(" Rocks");
+}
+
+```
+
+
+
