@@ -1,7 +1,7 @@
 # Reference and Borrowing
 
-It is very inconvenient to pass the ownership of a variable to another function and then return the ownership. Rust supports a concept, borrowing, where the ownership of a value is transferred temporarily to an entity and then returned back to the original owner entity. 
-   
+It is very inconvenient to pass the ownership of a variable to another function and then return the ownership. Rust supports a concept, borrowing, where the ownership of a value is transferred temporarily to an entity and then returned back to the original owner entity.
+
 Consider the following-
 
    ```rust

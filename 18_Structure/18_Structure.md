@@ -1,7 +1,6 @@
 # Structure
 
-Struts are similar to tuples.That means a struct can have data of different types.Each field will
-have a meaningful name in structure . Struts doesn't have an order to get or set values. The structure itself will be given a meaningful name.This makes it very flexible over a tuple.
+Struts are similar to tuples.That means a struct can have data of different types.Each field will have a meaningful name in structure . Struts doesn't have an order to get or set values. The structure itself will be given a meaningful name.This makes it very flexible over a tuple.
 
 ## Syntax
 
