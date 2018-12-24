@@ -1,6 +1,7 @@
 # Enums
+An enumeration defines a set of named integral constants that may be assigned to a variable.An enumerated type is declared using the `enum` keyword. 
 
-In Rust programming when we have to select a value from a list of possible variants we  use enumeration data types.An enumerated type is declared using the `enum` keyword. Following is the syntax of enum.
+ ### Syntax
 
 ```rust
 enum enum_name{
@@ -10,10 +11,13 @@ enum enum_name{
 }
 
 ```
+where,
+
+variant1,variant2 and variant3 represent values in an enum.
 
 ## Illustration
 
-In the given example we have a `GenderCategory` enum which have variants as Male and Female .When we display a enum  using print! macro we will get  error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`* . To supress the error we need to use attribute `#[derive(Debug)]` as shown in the example.
+The example declares an enum,`GenderCategory`,which have variants as Male and Female . The compiler will throw an error *the trait `std::fmt::Debug` is not implemented for `GenderCategory`* when the value of enum is displayed print! macro is used to display a enum. Use the attribute `#[derive(Debug)]` as shown in the example, to supress this error.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -35,8 +39,7 @@ println!("{:?}",female);
 
 }
 ```
-
-ouptut is
+Output
 
 ```
 Male
@@ -45,7 +48,7 @@ Female
 
 ## Struct and Enum
 
-In the example given we are creating a structure Person with gender  type as an enum.
+The example given below declares a structure `Person`, with a field `gender` of type enum.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
