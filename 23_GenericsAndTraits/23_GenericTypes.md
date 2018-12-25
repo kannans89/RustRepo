@@ -20,7 +20,6 @@ Removing duplicate by extracting a function .
           //some contents of method2
       }
   }
- 
  struct Foo{
      x:u32
  }
@@ -48,7 +47,6 @@ fn main(){
     };
 
     b1.print();
-    
 }
 
 struct Book {
@@ -72,12 +70,13 @@ impl Print for Book {
 
 Is a powerful concept in rust which promote code reuse . Generic functions reduce code duplication.They take any type that implements some set of traits,and they can only use the behavior of those traits.
 
-Generics are specified with type parameters such as 
-- fn foo<T>(val:T){}
+Generics are specified with type parameters such as
+ `fn foo<T>(val:T){}`
 - T is the name of the type,which the compiler will fill in later
   
-Let us see an example of  generic function , 
-here two different functions are made to display a u8 and u16 values. 
+Let us see an example of  generic function ,
+here two different functions are made to display a u8 and u16 values.
+
 ```rust
   fn print_u8(val:u8){
     println!("u8 value is :{}",val);
@@ -149,16 +148,13 @@ collections and other data structures.If your are writing a library this will gi
 
 ```rust
  fn main(){
-    
     let mut vector_integer: Vec<i32> = vec![20,30];
     let mut vector_string_slice:Vec<&'static str> = vec!["Tutorials","Point"];
 
    vector_string_slice.push("Mohtahsim");
    vector_integer.push(40);
-
    println!("{:?}",vector_string_slice);
    println!("{:?}",vector_integer);
-    
 }
 ```
 
@@ -181,12 +177,9 @@ fn main(){
     //generic type of i32
     let t:Tagged<i32> = Tagged{value:350,tag_name:"Kannan".to_string()};
     println!("value is :{} name is:{}",t.value,t.tag());
-    
      //generic type of String
-     
     let t2:Tagged<String> = Tagged{value:"Sudhakaran".to_string(),tag_name:"Kannan".to_string()};
     println!("value is :{} name is:{}",t2.value,t2.tag());
-    
 }
 
 ```

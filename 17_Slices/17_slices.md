@@ -10,18 +10,15 @@ Syntax of the string slice function is-
 
 Note that the end_index will not be included in final string .
 
-The  diagram below shows a sample string `Tutorials` which has length 9 and
-index starting from 0 to 8.From the input string we are  slicing out `rials` .
-
+The  diagram below shows a sample string `Tutorials` which has length 9 and index starting from 0 to 8.From the input string we are  slicing out `rials` .
 
 ![string](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/string_slice.png)
 
 The following code shows how to slice the string.
 
-
 ```rust
 
-   fn main(){
+fn main(){
   let n1 = "Tutorials".to_string();
   
   println!("length of string is {}",n1.len());
@@ -39,7 +36,8 @@ Output :
 length of string is 9
 rials
 ```
-.The difference between array and slice is the size of a slice is known only at runtime and not at compile time.
+
+The difference between array and slice is the size of a slice is known only at runtime and not at compile time.
 In the given example the array has five elements . We are taking a slice of three elements and passing into another function `use_slice`. Effectively from main we pass the reference of part of the array or slice.
 So the `user_slice` method is borrowing part of an array for a while.
 
@@ -51,13 +49,22 @@ fn main(){
     use_slice(&data[1..4]);//this is effectively borrowing elements for a while
 }
 
-fn use_slice(slice:&[i32]){ // is takign a slice or borrowing a part of an array of i32s
+fn use_slice(slice:&[i32]){ // is taking a slice or borrowing a part of an array of i32s
 
   println!("length of slice is {:?}",slice.len());
   println!("{:?}",slice);
 
 }
 
+```
+
+output is :
+
+```rust
+length of slice is 3
+[20, 30, 40]
+length of slice is 3
+[20, 30, 40]
 ```
 
 ## Mutable slices
@@ -73,7 +80,7 @@ fn main(){
     println!("{:?}",data);
 }
 
-fn use_slice(slice:&mut [i32]){ // is takign a slice or borrowing a part of an array of i32s
+fn use_slice(slice:&mut [i32]){ // is taking a slice or borrowing a part of an array of i32s
 
   println!("length of slice is {:?}",slice.len());
   println!("{:?}",slice);
@@ -83,13 +90,23 @@ fn use_slice(slice:&mut [i32]){ // is takign a slice or borrowing a part of an a
 
  ```
 
- the following code passes a mutable slice to `use_slice` function , the function mutates the array by changing element of zero index.
+output:
 
+```rust
+
+length of slice is 3
+[20, 30, 40]
+[10, 1010, 30, 40, 50]
+```
+
+ the above code passes a mutable slice to `use_slice` function , the function mutates the array by changing element of zero index.
+
+<!-- 
 ## String Slice
 
 When ever we print text using println!() macro we use double quoted text like "hello" . This actually is a bunch of characters which make a string.
 If the string value is known at compile time , it is called a string literal or it is also called a string slice.
-Both the statements are acxtually the same
+Both the statements are actually the same
 
 -  let s ="Hello Rust";
 -  let s:&'static str ="Hello Rust";
@@ -97,8 +114,6 @@ Both the statements are acxtually the same
 This means s is a reference to static str . &str is a kind of string type in Rust , which we discussed already in String chapter.
 
 So &str is nothing but a slice into a string.It is statically allocated so we use static keyword and unlike other second String type which is dynamically alllocated.
-
-
 
 ```rust
 fn main(){
@@ -152,3 +167,4 @@ H
 Some('H')
 Hello Rust
 ```
+-->

@@ -2,7 +2,7 @@
 
 In Rust, errors are grouped into two major category.
 
-//explain what is recoverable and unrecoverable errors 
+//explain what is recoverable and unrecoverable errors
 
 1. Recoverable
 2. UnRecoverable
@@ -73,6 +73,7 @@ The following program shows how to explicitly use panic macro and throw exceptio
 ```
 
 output for odd no
+
 ```rust
 thread 'main' panicked at 'NOT_AN_EVEN', main.rs:9
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
@@ -100,7 +101,7 @@ syntax shows a generic type Result shows.**T** represents the *Type* of the succ
 
 ```
 
-To demonstrate let us see an example where we loading a file 
+To demonstrate let us see an example where we loading a file
 
 ```rust
 use std::fs::File;
@@ -117,6 +118,5 @@ output is `Ok(File { fd: 3, path: "/home/cg/root/6728626/main.rs", read: true, w
 output after changing the extension to *main.rust* the extension
 
 `Err(Error { repr: Os { code: 2, message: "No such file or directory" } })`
-
 
 ### Unwrap and Expect

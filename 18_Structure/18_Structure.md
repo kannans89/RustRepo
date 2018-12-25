@@ -32,7 +32,6 @@ To access a specific value of field we can use following syntax `instance_name.f
 fn main() {
   
   let emp1 = Employee{
-     
       company:String::from("TutorialsPoint"),
        name:String::from("Mohtashim"),
        age:50
@@ -85,21 +84,15 @@ The full program and output is shown as below.
   fn main() {
   
   let  emp1 = Employee{
-     
       company:String::from("TutorialsPoint"),
        name:String::from("Mohtashim"),
        age:50
   };
- 
  let emp2 = Employee{
-     
       company:String::from("TutorialsPoint"),
        name:String::from("Kannan"),
        age:32
   };
- 
-
- 
  display(emp1);
  display(emp2);
   
@@ -109,7 +102,6 @@ The full program and output is shown as below.
 
 fn display( emp:Employee){
  println!("Name is :{} company is {} age is {}",emp.name,emp.company,emp.age);
-     
 }
 
 struct Employee{
@@ -121,9 +113,6 @@ struct Employee{
 ```
 
 output will be as shown
-
-```rust
-
 
 ```rust
 Name is :Mohtashim company is TutorialsPoint age is 50
@@ -159,13 +148,11 @@ fn main() {
        name:String::from("Mohtashim"),
        age:50
   };
- 
  let emp2 = Employee{
       company:String::from("TutorialsPoint"),
        name:String::from("Kannan"),
        age:32
   };
- 
  let elder = who_is_elder(emp1,emp2);
  println!("elder is:");
  display(elder);
@@ -202,15 +189,10 @@ Name is :Mohtashim company is TutorialsPoint age is 50
 
 ```
 
+<!-- 
 ## Struct Update Syntax
-
-
-<!-- TODO: priting struct directly gives error #[Derive(Debug)] -->
-<!-- TODO:Clone method in Rust -->
-
 ## Method in structure
-
 - Methods are functions inside a structure(similar to class in other OOP languages) or enum
 
 method will take self as argument as given below
-
+-->

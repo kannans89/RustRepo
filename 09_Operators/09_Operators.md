@@ -23,9 +23,9 @@ Assume the values in variables a and b are 10 and 5 respectively.
 |:----:|:----------|:----|:-----------------|
 | 1    | +(Addition)     | returns the sum of the operands|a+b is 15
 | 2    | -(Subtraction)     | returns the difference of the values|a-b is 5
-| 3    | * (Multiplication)     | returns the product of the values	|a*b is 50
-|4|/ (Division)|performs division operation and returns the quotient	|a / b is 2
-|5|% (Modulus)|	performs division operation and returns the remainder	| a % b is 0
+| 3    | * (Multiplication)     | returns the product of the values|a*b is 50
+|4|/ (Division)|performs division operation and returns the quotient|a / b is 2
+|5|% (Modulus)|performs division operation and returns the remainder| a % b is 0
 
 **NOTE** : The ++ and -- operators are not supported in Rust.
 
@@ -36,21 +36,17 @@ fn main() {
 let num1 = 10 ;
 let num2 = 2;
 let mut res:i32;
- 
-res = num1 + num2; 
-println!("Sum:    {}    ",res); 
+res = num1 + num2;
+println!("Sum:    {}    ",res);
 
-res = num1 - num2; 
+res = num1 - num2;
 println!("Difference: {} ",res) ;
-
 res = num1*num2 ;
 println!("Product:  {}  ",res) ;
-
 res = num1/num2 ;
 println!("Quotient: {}  ",res);
-
 res = num1%num2 ;
-println!("Remainder: {}  ",res); 
+println!("Remainder: {}  ",res);
 
 }
 
@@ -75,13 +71,12 @@ Assume the value of A is 10 and B is 20.
 
 |Sr No |  Operator | Description  | Example
 |:----:|:----------|:----|:-----------------|
-|1| >	|Greater than |	(A > B) is False|
-|2| <	| Lesser than |	(A < B) is True|
-|3| >=	|Greater than or equal to|	(A >= B) is False
-|4|<= |	Lesser than or equal to	|(A <= B) is True
-|5|== |	Equality	|(A == B) is false
-|6| !=	|Not equal	|(A != B) is True
-
+|1| >|Greater than |(A > B) is False|
+|2| <| Lesser than |(A < B) is True|
+|3| >=|Greater than or equal to|(A >= B) is False
+|4|<= |Lesser than or equal to|(A <= B) is True
+|5|== |Equality|(A == B) is false
+|6| !=|Not equal|(A != B) is True
 
 ## Illustration
 

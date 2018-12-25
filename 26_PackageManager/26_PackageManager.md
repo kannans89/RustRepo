@@ -72,12 +72,11 @@ after this fire **cargo build**
 
 rand and all transivtive dependencis also downloaed. it automatically downloaed internal dependencies.
 
-
-## //To Merge..
+## //To Merge
 
 Cargo is package manager of rust . Let us create a sample number guessing game using cargo,there by we will look at the dependencies of cargo as well.
 
-you can open a terminal and type command 
+you can open a terminal and type command
 `cargo version` output will be somthing like `cargo 1.29.0 (524a578d7 2018-08-05)`
 
 ## create a new project
@@ -128,8 +127,8 @@ Hello, world!
 
 ## Crate Ecosystem
 
-- Rust devides code into crates
-- There is a centeral repository of public crates called crates.io (https://crates.io/)
+- Rust divides code into crates
+- There is a central repository of public crates called crates.io `(https://crates.io/)`
 - In rust ecosystem version numbers have meanings
 - eg: 1.2.32 (Major.Minor.Patch)
 - Major are for breaking changes
@@ -138,11 +137,11 @@ Hello, world!
   
  //Image from crates.io
 
-  ## Install dependencies
+## Install dependencies
 
-  For a number guessing game we need to use random number functions , which are not available in the standard library.https://crates.io/crates/rand
+  For a number guessing game we need to use random number functions , which are not available in the standard library`.https://crates.io/crates/rand`
 
-  how to use rand in  Cargo.toml 
+  how to use rand in  Cargo.toml
 
   ```rust
     [dependencies]
@@ -194,11 +193,10 @@ fn main() {
     let correct:u8 = random();
     println!("correct value is {}",correct);
 
-    
     loop {
         let guess = get_guess();
         if handle_guess(guess,correct){
-            break; 
+            break;
         }
     }
 

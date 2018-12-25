@@ -6,10 +6,10 @@ Modules helps to organize  the code into logical groups inside a crate.For examp
 
 |Sr No |  term | Description  |
 |:----:|:----------|:----|
-|1|crate	|Is a compilation unit in Rust,Crate is compiled to binary or library|
-|2|cargo	|The official Rust package management tool for crates|
-|3|module	| Logically groups code with in a crate|
-|4|[crates.io](https://crates.io/)	|The official Rust package registry|
+|1|crate|Is a compilation unit in Rust,Crate is compiled to binary or library|
+|2|cargo|The official Rust package management tool for crates|
+|3|module| Logically groups code with in a crate|
+|4|[crates.io](https://crates.io/)|The official Rust package registry|
 
 Whenever `rustc some_file.rs` is called, `some_file.rs` is treated as the crate file. If some_file.rs has `mod` declarations in it, then the contents of the module files would be inserted in places where mod declarations in the crate file are found, before running the compiler over it. In other words, modules do not get compiled individually, only crates get compiled.
 
@@ -110,6 +110,7 @@ authors = ["Mohtashim"]
 ```rust
   pub mod movies;
 ```
+
 This means current project has a module moives but its definition is in another file **movies.rs** as given below
 
 ```rust
@@ -130,7 +131,6 @@ D:\Rust\movie-lib> cargo build
 ```
 
 - Now to consume this library we need to create another project.Let us call project as **movie-lib-test** create this in same root of **movie-lib**. This project should have main method as this will be hosting the library. The folder structre is as shown.
-
 
 ```rust
   movie-lib // already completed
@@ -175,7 +175,6 @@ fn main(){
 
 In this code we are importing an external package called *movies_lib*.Check the Cargo.toml of current project to verify the crate name.
 
-- Now we need to build this binary project and execute it as shown
-using cargo build and cargo run.
+- Now we need to build this binary project and execute it as shown using cargo build and cargo run.
 
 ![output](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/20_modules.PNG)

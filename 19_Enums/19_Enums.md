@@ -25,10 +25,8 @@ enum GenderCategory {
 
 fn main() {
 
-
 let male = GenderCategory::Male;
 let female = GenderCategory::Female;
-
 
 println!("{:?}",male);
 println!("{:?}",female);
@@ -38,7 +36,7 @@ println!("{:?}",female);
 
 ouptut is
 
-```
+```rust
 Male
 Female
 ```
@@ -71,20 +69,20 @@ fn main() {
      name:String::from("Mohtashim"),
      gender:GenderCategory::Male
  };
- 
+
  let p2 = Person{
       name:String::from("Amy"),
      gender:GenderCategory::Female
  };
- 
+
  println!("{:?}",p1);
  println!("{:?}",p2);
-
 
 }
 
 
 ```
+
 The example creates objects `p1` and `p2` of type Person and initializes the attributes name and gender for each of these objects.
 
 Output
@@ -93,9 +91,6 @@ Output
 Person { name: "Mohtashim", gender: Male }
 Person { name: "Amy", gender: Female }
 ```
-
-// appu: is this needed?? 
-## 
 
 It is possible to add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
 
@@ -140,7 +135,7 @@ Following shows declaration of Option enum in the standard library.The type *T* 
   }
 ```
 
- In the given example function `is_even()` is returning an Option<bool> of boolean type.If the input is even  then Some(true) is returned otherwise None will be returned.
+ In the given example function `is_even()` is returning an Option of boolean type.If the input is even  then Some(true) is returned otherwise None will be returned.
 
 ```rust
 
