@@ -34,7 +34,7 @@ println!("{:?}",female);
 }
 ```
 
-ouptut is
+Output
 
 ```rust
 Male
@@ -43,7 +43,7 @@ Female
 
 ## Struct and Enum
 
-In the example given we are creating a structure Person with gender  type as an enum.
+The following example defines a structure Person. The field `gender` is of the type `GenderCategory` (which is an enum) and can be assigned either `Male` or `Female` as value.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -83,7 +83,7 @@ fn main() {
 
 ```
 
-The example creates objects `p1` and `p2` of type Person and initializes the attributes name and gender for each of these objects.
+The example creates objects `p1` and `p2` of type Person and initializes the attributes, name and gender for each of these objects.
 
 Output
 
@@ -92,50 +92,25 @@ Person { name: "Mohtashim", gender: Male }
 Person { name: "Amy", gender: Female }
 ```
 
-It is possible to add data type to each variant of a enum.In the following example Male and Female variants of the enum are of String type.
-
-```rust
-// The `derive` attribute automatically creates the implementation
-// required to make this `enum` printable with `fmt::Debug`.
-#[derive(Debug)]
-enum GenderCategory {
-     Male(String),Female(String)
- }
-
-fn main() {
- let p1 = GenderCategory::Male(String::from("Mohtashim"));
- let p2 = GenderCategory::Female(String::from("Amy"));
- println!("{:?}",p1);
- println!("{:?}",p2);
-}
-
-```
-
-In the example we are passing data as `Mohtashim` and `Amy` while calling Male and Female enums.
-
-output
-
-```rust
-Male("Mohtashim")
-Female("Amy")
-```
-
 ## Option Enum
 
-Option is a predefined enum in the Standard Library .Since Rust doesn't support **null** values  we can return `None` from functions instead of null.If there is data to return from function we can return `Some(data)`.
+Option is a predefined enum in the Rust standard library . This enum has two values `Some(data)` and `None`.  
 
 ### Syntax
 
-Following shows declaration of Option enum in the standard library.The type *T* is a generic type , which means any type. Generics is discussed in detail in a separate chapter.
-
 ```rust
   enum Option<T> {
-      Some(T),
-      None
+      Some(T),          //used to return a value
+      None                 // used to return null, as Rust doesn't support the null keyword
   }
 ```
+, where, the type *T* represents value of any type.
 
- In the given example function `is_even()` is returning an Option of boolean type.If the input is even  then Some(true) is returned otherwise None will be returned.
+Rust doesn't support the `null` keyword. The value `None`,in the enum`Option`, can be used by a function to return a null value. If there is data to return, the function can return `Some(data)`.
+
+Let us understand this with an example - 
+
+The program defines a function `is_even()`, with a return type Option. The function verifies if the value passed is an even number. If the input is even ,then a value true is returned, else the function returns `None`.
 
 ```rust
 
@@ -237,31 +212,33 @@ fn is_even(no:i32)->Option<bool>{
 
 ```
 
-output `not even`
+Output
+
+`not even`
 
 ## Match & Enum with Data
 
-Following example shows enumerations with data and use of match statement.
+It is possible to add data type to each variant of a enum.In the following example Name and Usr_ID variants of the enum are of String and integer types respectively.Following example shows enumerations with data and use of match statement.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
 // required to make this `enum` printable with `fmt::Debug`.
 #[derive(Debug)]
 enum GenderCategory {
-     Male(String),Female(i32)
+     Name(String),Usr_ID(i32)
  }
 
 fn main() {
- let p1 = GenderCategory::Male(String::from("Mohtashim"));
- let p2 = GenderCategory::Female(100);
+ let p1 = GenderCategory::Name(String::from("Mohtashim"));
+ let p2 = GenderCategory::Usr_ID(100);
  println!("{:?}",p1);
  println!("{:?}",p2);
 
  match p1 {
-     GenderCategory::Male(val)=>{
+     GenderCategory::Name(val)=>{
          println!("{}",val);
      }
-     GenderCategory::Female(val)=>{
+     GenderCategory::Usr_ID(val)=>{
          println!("{}",val);
      }
  }
