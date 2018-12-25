@@ -1,8 +1,10 @@
-# Structure
+# Structure 
 
-Struts are similar to tuples.That means a struct can have data of different types.Each field will have a meaningful name in structure . Struts doesn't have an order to get or set values. The structure itself will be given a meaningful name.This makes it very flexible over a tuple.
+Structs are similar to tuples.A struct can contain  data of different data types.Each field will have a meaningful name in structure . Structs doesn't have an order to get or set values. 
+//appu: clarification
+The structure itself will be given a meaningful name.This makes it very flexible over a tuple.
 
-## Syntax
+### Syntax : Declaring s structure
 
 ```rust
  struct Name_of_structure {
@@ -12,7 +14,9 @@ Struts are similar to tuples.That means a struct can have data of different type
  }
 ```
 
-After declaring a struct we need to instantiate it,that is we need to provide concrete values to each field.Following shows the syntax
+After declaring a struct we need to instantiate it,that is we need to provide concrete values to each field.
+
+### Syntax: Initializing a structure
 
 ```rust
 let instance_name =Name_of_structure {
@@ -23,10 +27,14 @@ let instance_name =Name_of_structure {
 
 ```
 
-Accessing values using  *dot* notation
-To access a specific value of field we can use following syntax `instance_name.field1`
+### Syntax : Accessing values in a structure
 
-## Example
+Use the dot notation to access a specific field's value 
+
+`instance_name.field1`
+
+
+## Illustration
 
 ```rust
 fn main() {
@@ -50,9 +58,13 @@ struct Employee{
 
 ```
 
-### How to modify struct instance created
+The above example declares a struct Employee with three fields-name,company and age. The main() initializes the structure. It uses the println() to print values of the fields defined in the structure.
 
-To modify an instance, the instance variable should be marked mutable for example initial age of **emp1** was 50 and its mutated to 40.
+//appu: output
+
+### Modifying a struct instance
+
+To modify an instance, the instance variable should be marked mutable. The below example declares and initializes a structur named `Employee` and later modify value of the `age` field to 40 from 50. 
 
 ```rust
  let mut emp1 = Employee{
@@ -64,7 +76,7 @@ To modify an instance, the instance variable should be marked mutable for exampl
   println!("Name is :{} company is {} age is {}",emp1.name,emp1.company,emp1.age);
   
 ```
-
+//appu: output
 ## Passing Stuct to a function
 
 The following example shows how to pass instance of struct as a parameter
