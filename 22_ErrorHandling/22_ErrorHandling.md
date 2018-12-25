@@ -2,12 +2,14 @@
 
 In Rust, errors are grouped into two major category.
 
-//explain what is recoverable and unrecoverable errors
-
 1. Recoverable
 2. UnRecoverable
 
-## Panic Macro
+For a recoverable error, such as a file not found error, it’s reasonable to report the problem to the user and retry the operation. Unrecoverable errors are always symptoms of bugs, like trying to access a location beyond the end of an array.
+
+Rust doesn't have exceptions unlike other programming languages.Instead it used ` Result<T, E> ` for recoverable errors and the `panic! `macro that stops execution when the program encounters an unrecoverable error.
+
+## Panic Macro and Unrecoverable Errors
 
 `panic!` macro allows a program to to terminate immediately and provide feedback to the caller of the program. It should be used when a program reaches an unrecoverable problem.
 
@@ -86,11 +88,11 @@ Thank you , number is even
 End of main
 ```
 
-## Recoverable errors with Result
+## Result Enum and Recoverable errors
 
-Enum result can be used to handle recoverable errors
+Enum Result<T,E> can be used to handle recoverable errors
 
-syntax shows a generic type Result shows.**T** represents the *Type* of the success result  and **E** represents the *Error* type result.
+Syntax shows a generic type Result enumeration.**T** represents the *Type* of the success result  and **E** represents the *Error* type result.
 
 ```rust
  enum Result<T,E> {
@@ -107,16 +109,18 @@ To demonstrate let us see an example where we loading a file
 use std::fs::File;
 fn main() {
 
- let f  = File::open("main.rs"); // change extension to main.rust
+ let f  = File::open("main.rs"); // edit extension to main.jpg
  println!("{:?}",f);
 
 }
 ```
 
+The program returns  `OK(File)` if file already exists and `Err(Error)` incase of file not found.
+
 output is `Ok(File { fd: 3, path: "/home/cg/root/6728626/main.rs", read: true, write: false })`
 
-output after changing the extension to *main.rust* the extension
+output after changing the extension to *main.jpg* the extension
 
 `Err(Error { repr: Os { code: 2, message: "No such file or directory" } })`
 
-### Unwrap and Expect
+### Shortcuts for Panic on Error: unwrap and expect
