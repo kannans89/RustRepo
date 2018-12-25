@@ -208,6 +208,8 @@ medium sized car
 
 ```
 
+## Match with Option
+
 The `is_even` function which returns Option type can be implemented with matched statement as shown below
 
 ```rust
@@ -236,3 +238,37 @@ fn is_even(no:i32)->Option<bool>{
 ```
 
 output `not even`
+
+## Match & Enum with Data
+
+Following example shows enumerations with data and use of match statement.
+
+```rust
+// The `derive` attribute automatically creates the implementation
+// required to make this `enum` printable with `fmt::Debug`.
+#[derive(Debug)]
+enum GenderCategory {
+     Male(String),Female(i32)
+ }
+
+fn main() {
+ let p1 = GenderCategory::Male(String::from("Mohtashim"));
+ let p2 = GenderCategory::Female(100);
+ println!("{:?}",p1);
+ println!("{:?}",p2);
+ 
+
+ match p1 {
+     
+     GenderCategory::Male(val)=>{
+         println!("{}",val);
+     }
+     GenderCategory::Female(val)=>{
+         println!("{}",val);
+     }
+ }
+ 
+ 
+}
+
+```
