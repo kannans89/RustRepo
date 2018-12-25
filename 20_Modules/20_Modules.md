@@ -158,6 +158,10 @@ movies_lib = { path = "../movie-lib" }
 
 Note that in dependencies we are giving path of the library folder.Make sure both projects are in same folder as shown in hierarchy.
 
+The following diagram shows the contents of both projects
+
+![movie-lib](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/movie_lib.jpg)
+
 Now let us complete the **main.rs** file as below
 
 ```rust
