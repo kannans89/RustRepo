@@ -185,7 +185,7 @@ medium sized car
 
 ## Match with Option
 
-The `is_even` function which returns Option type can be implemented with matched statement as shown below
+The example of `is_even` function which returns Option type can also be implemented with match statement as shown below-
 
 ```rust
 fn main() {
@@ -216,9 +216,9 @@ Output
 
 `not even`
 
-## Match & Enum with Data
+## Match & Enum with Data Type
 
-It is possible to add data type to each variant of a enum.In the following example Name and Usr_ID variants of the enum are of String and integer types respectively.Following example shows enumerations with data and use of match statement.
+It is possible to add data type to each variant of an enum.In the following example Name and Usr_ID variants of the enum are of String and integer types respectively.Following example shows use of  match statement with an enum having a data type.
 
 ```rust
 // The `derive` attribute automatically creates the implementation
@@ -247,3 +247,12 @@ fn main() {
 }
 
 ```
+ Output 
+ 
+ ```rust
+
+Name("Mohtashim")
+Usr_ID(100)
+Mohtashim
+
+ ```
