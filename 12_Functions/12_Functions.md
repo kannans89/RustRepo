@@ -39,14 +39,15 @@ The output will be-
 
 `hello from function fn_hello`
 
-
 ## Returning value from a Function
 
 Functions may also return a value along with control,back to the caller. Such functions are called as returning functions.
 
 ### Syntax
 
-1. Returning Function
+Either of the following syntax can be used to define a function with return type.
+
+1. With return statement
 
 ```rust
 // Syntax1
@@ -56,19 +57,17 @@ function function_name()  -> return_type {
 }
 ```
 
-2. Non- Returning Function
+2. Shorthand syntax without return statement
 
 ```rust
 //Syntax2
 function function_name()  -> return_type {
-    value  //no semicolon ,no return
+    value  //no semicolon means this value is returned
 }
 ```
 
 ## Illustration
 
-
-//include a non -returning function and explain it in short 
 ```rust
 fn main(){
     println!("pi value is {}",get_pi());
