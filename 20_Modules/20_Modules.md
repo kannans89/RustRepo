@@ -1,8 +1,9 @@
 # Modules
 
-Rust programs are made of **crates**. Each crate is a Rust project itself. It could be binary crate or library crate.Library crates are components which are to be reused in another project,they doesn't have entry point to execute.Binary projects are executable projects they have a `main()` method to execute.Cargo tool is used to manage crates.
+A logical group of code is called a Module. Multiple modules are compiled into a unit called **crate**. 
+Rust programs may contain a binary crate or a library crate.A binary crate is an executable project that has a `main()` method. A library crate is a group of components that can be reused in other projects.Unlike a binary crate, a libray crate doesn't have an entry point (main() method). The Cargo tool is used to manage crates in Rust.
 
-Modules helps to organize  the code into logical groups inside a crate.For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages.
+inside a crate.For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages.
 
 |Sr No |  term | Description  |
 |:----:|:----------|:----|
