@@ -157,7 +157,7 @@ D:\Rust\movie-lib> cargo build
 
 ```
 
-### Step 6: Create another folder **movie-lib-test** in the MovieAPP folder. Create a Cargo.toml file and the src folder. This project should have main method as this is a binary crate which will consume the library crate created previously. The folder structre will be  as shown.
+### Step 6: Create another folder **movie-lib-test** in the MovieAPP folder. Create a Cargo.toml file and the src folder.This project should have main method as this is a binary crate which will consume the library crate created previously.Create a main.rs file in the src folder. The folder structre will be  as shown.
 
 ```rust
   movie-lib // already completed
@@ -168,9 +168,8 @@ D:\Rust\movie-lib> cargo build
            main.rs
 ```
 
-Since this is binary project src folder will contain main.rs and not lib.rs.
 
-Add contents of **Cargo.toml** as below
+### Step 7: Add the following in the **Cargo.toml** file.
 
 ```rust
  [package]
@@ -183,13 +182,13 @@ movies_lib = { path = "../movie-lib" }
 
 ```
 
-Note that in dependencies we are giving path of the library folder.Make sure both projects are in same folder as shown in hierarchy.
+Note the path to the library folder is set as dependencies.
 
 The following diagram shows the contents of both projects
 
 ![movie-lib](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/movie_lib.jpg)
 
-Now let us complete the **main.rs** file as below
+### Step 8: Add the following to **main.rs** file
 
 ```rust
   
@@ -204,8 +203,8 @@ fn main(){
 
 ```
 
-In this code we are importing an external package called *movies_lib*.Check the Cargo.toml of current project to verify the crate name.
+The above code imports an external package called *movies_lib*.Check the Cargo.toml of current project to verify the crate name.
 
-- Now we need to build this binary project and execute it as shown using cargo build and cargo run.
+### Step 9: Use cargo build and cargo run to build the binary project and execute it as shown below 
 
 ![output](https://raw.githubusercontent.com/kannans89/RustRepo/master/Images/20_modules.PNG)
