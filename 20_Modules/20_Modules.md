@@ -2,8 +2,7 @@
 
 A logical group of code is called a Module. Multiple modules are compiled into a unit called **crate**. 
 Rust programs may contain a binary crate or a library crate.A binary crate is an executable project that has a `main()` method. A library crate is a group of components that can be reused in other projects.Unlike a binary crate, a libray crate doesn't have an entry point (main() method). The Cargo tool is used to manage crates in Rust.
-
-inside a crate.For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages.
+For example *network* module contains networking related functions and *graphics* module contains drawing related functions.Modules are similar to  namespaces in other programming languages. Third-party crates can be downloaded using cargo from [crates.io](https://crates.io/).
 
 |Sr No |  term | Description  |
 |:----:|:----------|:----|
@@ -12,9 +11,8 @@ inside a crate.For example *network* module contains networking related function
 |3|module| Logically groups code with in a crate|
 |4|[crates.io](https://crates.io/)|The official Rust package registry|
 
-Whenever `rustc some_file.rs` is called, `some_file.rs` is treated as the crate file. If some_file.rs has `mod` declarations in it, then the contents of the module files would be inserted in places where mod declarations in the crate file are found, before running the compiler over it. In other words, modules do not get compiled individually, only crates get compiled.
 
-Let us see the syntax of module.
+### Syntax
 
 ```rust
      //public module
@@ -37,7 +35,9 @@ Let us see the syntax of module.
 
 ```
 
-Modules should be prefixed with `pub` keyword to make it public so that it can be accessible outside the module.Let us see an example.
+Modules can be public or private. Components in a private module cannot be accessed by other modules. Modules in Rust are private by default. On the contrary, functions in a public module can be accessed by other modules. Modules should be prefixed with `pub` keyword to make it public. Functions within a public module must also be made public.
+
+### Illustration 
 
 ```rust
   
@@ -52,10 +52,27 @@ fn main(){
 }
 
 ```
+The example defines a public module `movies`. The module contains a function `play()` that accepts a parameter and prints its value.
+
+Output
+
+```rust
+Playing  movie Herold and Kumar
+```
 
 ## Use Keyword
+The `use` keyword helps to import a public module.
 
-Modules can also be nested as shown below example .If we want to call play method it will be difficult to remember the full module path like `movies::english::comedy::play`.There is an easy way to solve this problem with `use` keyword.
+### Syntax
+```rust
+use public_module_name;
+
+```
+### Illustration
+//appu: paste an example 
+
+## Nested Modules 
+Modules can also be nested. The `comedy` module is nested within the `english` module, which is further nested in the `movies` module.The below example defines a function `play ` inside the `movies/english/comedy` module.
 
 ```rust
 pub mod movies {
@@ -68,7 +85,7 @@ pub mod movies {
     }
 }
 
-use movies::english::comedy::play;
+use movies::english::comedy::play;      // importing a public module
 
 fn main(){
    // short path syntax
@@ -81,12 +98,19 @@ fn main(){
 
 ```
 
+Output:
+```rust
+//appu: output here 
+
+```
+
 ## Create a Library Crate and Consume in a Binary Crate
 
-Let us create a library named **movie_lib** which contains a module **movies**.To build the crate library created we will use the tool **cargo**.
-First create a folder *movie-lib* , the source code should go in an *src* folder.The cargo tool will look for a file named *Cargo.toml*,this file will contain the metadata of project ,like version number,author name etc.
+Let us create a library crate named **movie_lib** which contains a module **movies**.To build the **movie_lib** library crate, we will use the tool **cargo**.
 
-Project structure is shown below ,src folder has lib.rs and moives.rs
+### Step 1: Create a folder MovieAPP.Create a sub-folder *movie-lib*.Create an **src** folder and a Cargo.toml file in this directory. The source code should go in the *src* folder.Create the files lib.rs and movies.rs in the src folder.The *Cargo.toml* file will contain the metadata of the project ,like version number,author name etc.
+
+The project directory structure will be as shown below:
 
 ```rust
   movie-lib/
@@ -96,7 +120,7 @@ Project structure is shown below ,src folder has lib.rs and moives.rs
            movies.rs
 ```
 
-- Now let us first add metadata to project so edit Cargo.toml as below
+### Step 2:Edit the Cargo.toml file to add project metadata:
 
 ```rust
 [package]
@@ -106,13 +130,14 @@ authors = ["Mohtashim"]
 
 ```
 
-- now we will edit the **lib.rs** file , which will contain the module definition
+### Step 3: Edit the **lib.rs** file. Add the following module definition to this file.
 
 ```rust
   pub mod movies;
 ```
+The above line creates a public module **movies**.
 
-This means current project has a module moives but its definition is in another file **movies.rs** as given below
+### Step 4: Edit the **movies.rs** file. This file will define all functions for the movies module.
 
 ```rust
 
@@ -121,8 +146,9 @@ pub fn play(name:String){
             }
 
 ```
+The above code defines a function play() that accepts a parameter and prints it to the console.
 
-After completing all this do a **cargo build** to make sure library is structured propertly.Make sure you should be at root of project , that is movie-app folder  to fire the command . You will get compiling and finished info on the terminal as shown.
+### Step 5: Build the library crate using the **cargo build** command to make verify if the library crate is structured propertly.Make sure you should be at root of project ,i.e. the movie-app folder. The following message will be displayed in the terminal if the build succeeds.
 
 ```rust
 D:\Rust\movie-lib> cargo build
@@ -131,7 +157,7 @@ D:\Rust\movie-lib> cargo build
 
 ```
 
-- Now to consume this library we need to create another project.Let us call project as **movie-lib-test** create this in same root of **movie-lib**. This project should have main method as this will be hosting the library. The folder structre is as shown.
+### Step 6: Create another folder **movie-lib-test** in the MovieAPP folder. Create a Cargo.toml file and the src folder. This project should have main method as this is a binary crate which will consume the library crate created previously. The folder structre will be  as shown.
 
 ```rust
   movie-lib // already completed
