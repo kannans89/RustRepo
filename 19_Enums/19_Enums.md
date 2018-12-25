@@ -256,10 +256,8 @@ fn main() {
  let p2 = GenderCategory::Female(100);
  println!("{:?}",p1);
  println!("{:?}",p2);
- 
 
  match p1 {
-     
      GenderCategory::Male(val)=>{
          println!("{}",val);
      }

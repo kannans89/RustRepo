@@ -256,21 +256,16 @@ print!("{}",arr[10])
 ```
 The compiler will result in an exception. This is because an array's length must be known at compile time.Here value of the variable "N" will be determined at runtime. In other words, variables cannot be used to define the size of an array.
 
-
-
 However, the following program is valid:
 
 ```rust
  fn main() {
 
-const N: usize = 20;
+const N: usize = 20; // pointer sized
 let arr = [0; N];
 
 print!("{}",arr[10])
-
-    
 }
 ```
 
-The value of an identifier prefixed with the "const" keyword is defined at compile time, and cannot be changed at runtime.
-//what is usize?
+The value of an identifier prefixed with the *const* keyword is defined at compile time, and cannot be changed at runtime.*usize* is pointer-sized, thus its actual size depends on the architecture your are compiling your program for.
