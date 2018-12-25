@@ -54,7 +54,7 @@ fn print_vector(x:&Vec<i32>){
 
 ```
 
-output
+Output
 
 ```rust
 
@@ -64,67 +64,48 @@ Printing the value from main() v[0]=10
 
 ```
 
-### &mut references
+## Mutable References
 
-There’s a second kind of reference: `&mut` . A *mutable reference* allows you to mutate the resource you’re borrowing .In the below example we are passing string value to function `display` . The ownership is passed to the display method ,after executing display the ownership is invalidated.
+A function can modify a borrowed resource by using a *mutable reference* to such resource. A mutable reference is prefixed with `&mut`. Mutable references can operate only on mutable variables.
+
+### Illustration : Mutating an integer reference
 
 ```rust
-  fn main(){
-     let  name:String = String::from("TutorialsPoint");
-     display(name); //cannot access name after display
-     println!("The value of name is:{}",name); //line 4:Error since name variable is invalidated
+ fn add_one(e: &mut i32) {
+   *e+= 1;
 }
 
-fn display(param_name:String){
-    println!("param_name value is :{}",param_name);
+fn main() {
+   let mut i = 3;
+   add_one(&mut i);
+   println!("{}", i);
 }
 
 ```
-
-When we execute we get error at line 4 `^^^^ value borrowed here after move` . This means value is already moved so we cannot borrow.
-
-In the below example we modified program to use **&** references .
-
-```rust
-fn main(){
-     let  name:String = String::from("TutorialsPoint");
-     display(&name); //cannot access name after display
-     println!("The value of name is:{}",name);
-}
-
-fn display(param_name:&String){
-    println!("param_name value is :{}",param_name);
-}
-
-```
-output is :
-
-```rust
-param_name value is :TutorialsPoint
-The value of name is:TutorialsPoint
-```
-
-Finally we modified program to use **&mut** references (mutable reference) to modify the passed value as below.
+The `main()` function  declares a mutable integer variable `i `and passes a mutable reference of `i` to the add_one(). The add_one() increments the value of the variable `i` by one.
+ 
+### Illustration : Mutating a string reference
 
 ```rust
 
  fn main(){
-     let  mut name:String = String::from("TutorialsPoint");
-     display(&mut name); //cannot access name after display
-     println!("The value of name is:{}",name);
+     let  mut name:String = String::from("TutorialsPoint"); 
+     display(&mut name); //pass a mutable reference of name
+     println!("The value of name after modification is:{}",name);
 }
 
 fn display(param_name:&mut String){
     println!("param_name value is :{}",param_name);
-    param_name.push_str(" Rocks"); //Modify the value passed
+    param_name.push_str(" Rocks"); //Modify the actual string,name
 }
 
 ```
+The `main()` function passes a mutable reference of the variable `name` to the `display()`function. The display function appends an additional string to the original `name` variable.
 
-output:
+Output
 
 ```rust
 param_name value is :TutorialsPoint
-The value of name is:TutorialsPoint Rocks
+The value of name after modification is:TutorialsPoint Rocks
 
 ```
