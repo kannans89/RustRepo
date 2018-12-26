@@ -1,22 +1,24 @@
 # PackageManager
 
-## Introduction to Cargo
+Cargo is Rust's build system and package manager.This is a tool to manage Rust projects.The following are common cargo commands.
 
-Cargo is Rust's build system and package manager.This is a tool to manage Rust projects.Cargo commands
- `cargo build` - to build or compile projects.
- `cargo check`
- `cargo run`
-Cargo helps to dowload third party libraries also . So it acts like a package manager.
-You can also build your own libraries. Cargo is installed by default when you install rust.
-`cargo --version`
-create a new project using cargo
-`cargo new project_name --bin or --lib`
---bin applications can be executed
---lib cannot be executed , it is re usable like a DLL in windows.
+ |Sr No |  command    | description|
+|:----:|:----------|:-------|
+| 1    | cargo build     | compile the current project     |
+| 2    | cargo check     | Analyze the current project and report errors, but don't build object files     |
+| 3    | cargo run     | Build and execute src/main.rs
+|4   | cargo clean |     Remove the target directory
+|5|cargo update|  Update dependencies listed in Cargo.lock
+|6|cargo new |  Create a new cargo project
+
+To create a new cargo project we can use command `cargo new project_name --bin or --lib` .To create a binary crate project use option --bin and to create a library crate use option --lib.
+
+Cargo helps to download third party libraries also . So it acts like a package manager.You can also build your own libraries. Cargo is installed by default when you install rust.
+`cargo --version` command will give the current version of cargo.
 
 ## Create a binary Cargo project
 
-step 1: open terminal and type the following command
+**step 1**: open terminal and type the following command
 `cargo new guess-game-app --bin` this will create following folder structure.
 
 ```rust
@@ -26,21 +28,21 @@ step 1: open terminal and type the following command
            main.rs
 ```
 
-## Crates
+ When you do a `cargo new` you are creating a crate.`--bin` flag creates binary crate .
 
-- Crate is a package of Rust code
-- Crate can be binary or library. When you do a `cargo new` you are creating a crate.`--bin` flag creates binary crate and  `--lib` creates library.
+There is a central repository of public crates called crates.io `(https://crates.io/)`.
+In this porject we have to use random number.Since the internal standard library doesnot provide random no gereneration logic we need to look at external libraries or crates. Lets use `rand` crate which is available at crates.io website [crates.io](https://crates.io/)
 
-Lets use `rand` crate which is available at crates.io website [crates.io](https://crates.io/)
-
- [rand crate](https://crates.io/crates/rand)
- A Rust library for random number generation.
+ The [rand crate](https://crates.io/crates/rand) is a rust library for random number generation.
 
 Rand provides utilities to generate random numbers, to convert them to useful types and distributions, and some randomness-related algorithms
 
+Following diagram shows crate.io website and search result for rand crate.
+
 ![crates_io](https://user-images.githubusercontent.com/9062443/47617238-2f44ae00-daeb-11e8-876b-70a4f1248bb6.png)
 
-copy this to the Cargo.toml file `rand = "0.5.5"`
+Step2:
+copy the version of rand crate to the Cargo.toml file `rand = "0.5.5"`
 
 ```rust
 [package]
@@ -53,7 +55,7 @@ rand = "0.5.5"
 
 ```
 
-after this fire **cargo build**
+step 3:after this fire **cargo build**
 
 ```rust
  Updating registry `https://github.com/rust-lang/crates.io-index`
@@ -70,8 +72,94 @@ after this fire **cargo build**
 
 ```
 
-rand and all transivtive dependencis also downloaed. it automatically downloaed internal dependencies.
+rand and all transitive dependencies(inner dependencies of rand) also downloaed. it automatically downloaed internal dependencies.
 
+step 4:
+ The number guessing game business logic is 
+  - Game initially generates an random number
+  - Ask user to enter input and guess that number
+  - If number is less than acutal it says too low
+  - if number is greater than actual it say too high
+  - If same number game exits
+
+
+step 5: Edit the main.rs
+
+```rust
+
+use std::io;
+extern  crate rand;
+use rand::random;
+
+fn get_guess() -> u8 {
+    loop{
+         println!("Input guess") ;
+         let mut guess = String::new();
+         io::stdin().read_line(&mut guess)
+                   .expect("could not read from stdin");
+         match guess.trim().parse::<u8>(){ //remember to trim input to avoid enter spaces
+              Ok(v) => return v,
+              Err(e) => println!("could not understand input {}",e)
+         }
+    }
+}
+
+fn handle_guess(guess:u8,correct:u8)-> bool {
+    if guess < correct {
+        println!("Too low");
+        false
+
+    }else if guess> correct{
+         println!("Too high");
+        false
+
+    }
+    else {
+        println!("You go it ..");
+        true
+    }
+
+}
+
+fn main() {
+    println!("Welcome to no guessing  game");
+
+    let correct:u8 = random();
+    println!("correct value is {}",correct);
+
+    loop {
+        let guess = get_guess();
+        if handle_guess(guess,correct){
+            break;
+        }
+    }
+
+}
+
+
+```
+
+step 5: Do `cargo run` from project folder to compile and execute.
+
+
+
+```rust
+Welcome to no guessing  game
+correct value is 97
+Input guess
+20
+Too low
+Input guess
+100
+Too high
+Input guess
+97
+You go it ..
+
+
+````
+
+<!-- 
 ## //To Merge
 
 Cargo is package manager of rust . Let us create a sample number guessing game using cargo,there by we will look at the dependencies of cargo as well.
@@ -150,75 +238,4 @@ Hello, world!
   ```
 
 After this do a `cargo build` to download all the dependencies including `rand`
-
-```rust
-
-use std::io;
-extern  crate rand;
-use rand::random;
-
-fn get_guess() -> u8 {
-    loop{
-         println!("Input guess") ;
-         let mut guess = String::new();
-         io::stdin().read_line(&mut guess)
-                   .expect("could not read from stdin");
-         match guess.trim().parse::<u8>(){ //remember to trim input to avoid enter spaces
-              Ok(v) => return v,
-              Err(e) => println!("could not understand input {}",e)
-         }
-    }
-}
-
-fn handle_guess(guess:u8,correct:u8)-> bool {
-    if guess < correct {
-        println!("Too low");
-        false
-
-    }else if guess> correct{
-         println!("Too high");
-        false
-
-    }
-    else {
-        println!("You go it ..");
-        true
-    }
-
-}
-
-fn main() {
-    println!("Welcome to no guessing  game");
-
-    let correct:u8 = random();
-    println!("correct value is {}",correct);
-
-    loop {
-        let guess = get_guess();
-        if handle_guess(guess,correct){
-            break;
-        }
-    }
-
-}
-
-
-```
-
-output is shown below
-
-```rust
-Welcome to no guessing  game
-correct value is 97
-Input guess
-20
-Too low
-Input guess
-100
-Too high
-Input guess
-97
-You go it ..
-
-
-````
+-->
