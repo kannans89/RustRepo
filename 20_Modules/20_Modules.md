@@ -52,6 +52,7 @@ fn main(){
 }
 
 ```
+
 The example defines a public module `movies`. The module contains a function `play()` that accepts a parameter and prints its value.
 
 Output
@@ -64,14 +65,34 @@ Playing  movie Herold and Kumar
 The `use` keyword helps to import a public module.
 
 ### Syntax
+
 ```rust
-use public_module_name;
+use public_module_name::function_name;
 
 ```
-### Illustration
-//appu: paste an example 
 
-## Nested Modules 
+### Illustration
+
+```rust
+  
+pub mod movies {
+            pub fn play(name:String){
+                println!("Playing  movie {}",name);
+            }
+}
+
+use movies::play;
+
+fn main(){
+    play("Herold and Kumar ".to_string());
+}
+
+```
+
+output: `Playing  movie Herold and Kumar`
+
+## Nested Modules
+
 Modules can also be nested. The `comedy` module is nested within the `english` module, which is further nested in the `movies` module.The below example defines a function `play ` inside the `movies/english/comedy` module.
 
 ```rust
@@ -100,27 +121,31 @@ fn main(){
 
 Output:
 ```rust
-//appu: output here 
-
+Playing comedy movie Herold and Kumar
+Playing comedy movie The Hangover
+Playing comedy movie Airplane!
 ```
 
 ## Create a Library Crate and Consume in a Binary Crate
 
 Let us create a library crate named **movie_lib** which contains a module **movies**.To build the **movie_lib** library crate, we will use the tool **cargo**.
 
-### Step 1: Create a folder MovieAPP.Create a sub-folder *movie-lib*.Create an **src** folder and a Cargo.toml file in this directory. The source code should go in the *src* folder.Create the files lib.rs and movies.rs in the src folder.The *Cargo.toml* file will contain the metadata of the project ,like version number,author name etc.
+### Step 1:Create Project folder
+
+ Create a folder *movie-app*.Create a sub-folder *movie-lib*.Create an **src** folder and a Cargo.toml file in this directory. The source code should go in the *src* folder.Create the files lib.rs and movies.rs in the src folder.The *Cargo.toml* file will contain the metadata of the project ,like version number,author name etc.
 
 The project directory structure will be as shown below:
 
 ```rust
-  movie-lib/
+movie-app
+    movie-lib/
          -->Cargo.toml
          -->src/
            lib.rs
            movies.rs
 ```
 
-### Step 2:Edit the Cargo.toml file to add project metadata:
+### Step 2:Edit the Cargo.toml file to add project metadata
 
 ```rust
 [package]
@@ -130,14 +155,19 @@ authors = ["Mohtashim"]
 
 ```
 
-### Step 3: Edit the **lib.rs** file. Add the following module definition to this file.
+### Step 3: Edit the **lib.rs** file. 
+
+Add the following module definition to this file.
 
 ```rust
   pub mod movies;
 ```
+
 The above line creates a public module **movies**.
 
-### Step 4: Edit the **movies.rs** file. This file will define all functions for the movies module.
+### Step 4: Edit the movies.rs file
+
+This file will define all functions for the movies module.
 
 ```rust
 
@@ -146,9 +176,12 @@ pub fn play(name:String){
             }
 
 ```
+
 The above code defines a function play() that accepts a parameter and prints it to the console.
 
-### Step 5: Build the library crate using the **cargo build** command to make verify if the library crate is structured propertly.Make sure you should be at root of project ,i.e. the movie-app folder. The following message will be displayed in the terminal if the build succeeds.
+### Step 5: Build the library crate
+
+Build app using the **cargo build** command to make verify if the library crate is structured propertly.Make sure you should be at root of project ,i.e. the movie-app folder. The following message will be displayed in the terminal if the build succeeds.
 
 ```rust
 D:\Rust\movie-lib> cargo build
@@ -157,17 +190,19 @@ D:\Rust\movie-lib> cargo build
 
 ```
 
-### Step 6: Create another folder **movie-lib-test** in the MovieAPP folder. Create a Cargo.toml file and the src folder.This project should have main method as this is a binary crate which will consume the library crate created previously.Create a main.rs file in the src folder. The folder structre will be  as shown.
+### Step 6:Create a test application
+
+ Create another folder **movie-lib-test** in the movie-app folder. Create a Cargo.toml file and the src folder.This project should have main method as this is a binary crate which will consume the library crate created previously.Create a main.rs file in the src folder. The folder structre will be  as shown.
 
 ```rust
-  movie-lib // already completed
+movie-app
+    movie-lib // already completed
 
-  movie-lib-test/
-         -->Cargo.toml
-         -->src/
-           main.rs
+    movie-lib-test/
+            -->Cargo.toml
+            -->src/
+                main.rs
 ```
-
 
 ### Step 7: Add the following in the **Cargo.toml** file.
 
