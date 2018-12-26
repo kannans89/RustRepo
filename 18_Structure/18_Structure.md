@@ -201,6 +201,52 @@ Name is :Mohtashim company is TutorialsPoint age is 50
 
 ```
 
+## Method in structure
+
+Methods are similar to function as it is declared with `fn` keyword.Methods are defined within the construct of a struct.
+To use a method we need to first instantiated the struct and through
+the instance we can call the method.The first parameter of method will be always self,which represents the calling instance of structure.
+
+### Syntax
+
+```rust
+ struct My_struct {}
+
+ impl My_struct{
+     fn method_name(){
+
+     }
+ }
+
+```
+To undserstand methods we are creating a structure `Rectangle` with method `area` which will calculate the area of Rectangle. Following is code.
+
+```rust
+struct Rectangle{
+    width:u32,
+    height:u32
+}
+
+impl Rectangle{
+    fn area(&self)->u32 {
+        self.width * self.height
+    }
+}
+
+fn main(){
+    let small = Rectangle{
+        width:10,
+        height:20
+    };
+
+    println!("width is {} height is {} area of Rectangle is {}",small.width,small.height,small.area());
+}
+
+```
+
+output `width is 10 height is 20 area of Rectangle is 200`
+
+
 <!-- 
 ## Struct Update Syntax
 ## Method in structure
