@@ -1,8 +1,6 @@
-# Structure 
+# Structure
 
-Structs are similar to tuples.A struct can contain  data of different data types.Each field will have a meaningful name in structure . Structs doesn't have an order to get or set values. 
-//appu: clarification
-The structure itself will be given a meaningful name.This makes it very flexible over a tuple.
+Arrays allow to define type of variables that can hold several data items of the same kind. Similarly **structure** is another user defined data type available in C that allows to combine data items of different kinds.
 
 ### Syntax : Declaring s structure
 
@@ -37,6 +35,13 @@ Use the dot notation to access a specific field's value
 ## Illustration
 
 ```rust
+
+struct Employee{
+    name:String,
+    company:String,
+    age:u32
+}
+
 fn main() {
   
   let emp1 = Employee{
@@ -47,24 +52,20 @@ fn main() {
   
   println!("Name is :{} company is {} age is {}",emp1.name,emp1.company,emp1.age);
   
-  
 }
 
-struct Employee{
-    name:String,
-    company:String,
-    age:u32
-}
 
 ```
 
 The above example declares a struct Employee with three fields-name,company and age. The main() initializes the structure. It uses the println() to print values of the fields defined in the structure.
 
-//appu: output
+output:
+
+`Name is :Mohtashim company is TutorialsPoint age is 50`
 
 ### Modifying a struct instance
 
-To modify an instance, the instance variable should be marked mutable. The below example declares and initializes a structur named `Employee` and later modify value of the `age` field to 40 from 50. 
+To modify an instance, the instance variable should be marked mutable. The below example declares and initializes a structure named `Employee` and later modify value of the `age` field to 40 from 50. 
 
 ```rust
  let mut emp1 = Employee{
@@ -76,7 +77,9 @@ To modify an instance, the instance variable should be marked mutable. The below
   println!("Name is :{} company is {} age is {}",emp1.name,emp1.company,emp1.age);
   
 ```
-//appu: output
+
+`Name is :Mohtashim company is TutorialsPoint age is 40`
+
 ## Passing Stuct to a function
 
 The following example shows how to pass instance of struct as a parameter
@@ -93,6 +96,13 @@ fn display( emp:Employee){
 The full program and output is shown as below.
 
 ```rust
+ struct Employee{
+    name:String,
+    company:String,
+    age:u32
+}
+
+
   fn main() {
   
   let  emp1 = Employee{
@@ -116,11 +126,6 @@ fn display( emp:Employee){
  println!("Name is :{} company is {} age is {}",emp.name,emp.company,emp.age);
 }
 
-struct Employee{
-    name:String,
-    company:String,
-    age:u32
-}
 
 ```
 
@@ -219,6 +224,7 @@ the instance we can call the method.The first parameter of method will be always
  }
 
 ```
+
 To undserstand methods we are creating a structure `Rectangle` with method `area` which will calculate the area of Rectangle. Following is code.
 
 ```rust
