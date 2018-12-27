@@ -2,8 +2,10 @@
 
 In Rust, errors are grouped into two major category.
 
-1. Recoverable
-2. UnRecoverable
+|Sr No |  name    |Description|UsedWith
+|:----:|:----------|:-------|:-------
+| 1    | Recoverable     | Errors which can be  handled | panic macro
+| 2    | UnRecoverable     | Errors which cannot be handled |Result enum
 
 For a recoverable error, such as a file not found error, it’s reasonable to report the problem to the user and retry the operation. Unrecoverable errors are always symptoms of bugs, like trying to access a location beyond the end of an array.
 
@@ -123,4 +125,49 @@ output after changing the extension to *main.jpg* the extension
 
 `Err(Error { repr: Os { code: 2, message: "No such file or directory" } })`
 
-### Shortcuts for Panic on Error: unwrap and expect
+### unwrap() and expect()
+
+The standard library contains a couple of helper methods that both enums `Result<T,E>` and `Option<T>`  implement. You can use them to simplify error cases where you really do not expect things to fail.
+
+|Sr No |  method    |Signature |Description
+|:----:|:----------|:-------|:----------|
+| 1    | unwrap     | unwrap(self): T     | expects self to be Ok/Some and returns the value contained within. If it's Err or None instead, it raises a panic with the contents of the error displayed.
+| 2    | expect     | expect(self, msg: &str): T   | behaves like unwrap, except that it outputs a custom message before panicking in addition to the contents of the error.
+
+- Following shows example to use unwrap
+
+```rust
+use std::fs::File;
+fn main(){
+    let f = File::open("pqr.txt").unwrap();
+    println!("end of main");
+}
+```
+
+The program will not reach till `println!("end of main");` since no file is found the program will
+panic . So unwrap() is a short hand for panic if file opening fails. Following error will be displayed.
+
+```rust
+thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+```
+
+- Following shows example to use `expect`
+
+```rust
+use std::fs::File;
+fn main(){
+    let f = File::open("pqr.txt").expect("File not able to open");
+    println!("end of main");
+}
+
+```
+
+expect() works same as unwrap() only difference is error message can be passed.The error is displayed as shown.
+
+```rust
+
+thread 'main' panicked at 'File not able to open: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+```
