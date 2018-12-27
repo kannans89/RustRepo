@@ -1,14 +1,17 @@
-#Input Output
+# Input Output
 
+In this chapter we will discuss how to take user input from keyboard and display output to console.We will also discuss passing command line arguments.
 
 ## CommandLine Arguments
 
-CommandLine arguments are passed to a program before executing it. CommandLine arguments are similar to parameters passed to functions. CommandLIne arguments can be used to pass values before the execution of a program. Commandline parameters can be used to pass values to the main() function.
+CommandLine arguments are passed to a program before executing it. They are similar to parameters passed to functions. Commandline parameters can be used to pass values to the `main()` function.
 
 ### Illustration
-The following example passes values as commandLine arguments to the main() function. 
+
+The following example passes values as commandLine arguments to the main() function. The program is created in a file name `main.rs`
 
 ```rust
+//main.rs
 
 fn main(){
     let cmd_line = std::env::args();
@@ -22,9 +25,10 @@ fn main(){
 
 ```
 
-Run the above program as file name followed by the commandline arguments separated by space. (Here, `main.exe   hello    tutorialspoint` )
+The program will generate a file `main.exe` once compiled.Multiple command line parameters should be separated by space.
+Execute main.exe from from the terminal as  `main.exe   hello    tutorialspoint` . Note *hello* and *tutorialspoint* are commandline arguments.
 
-Output 
+Output
 
 ```rust
 No of elements in arguments is :3
@@ -34,9 +38,11 @@ No of elements in arguments is :3
 
 ```
 
+The output shows 3 arguments as the `main.exe` is the first argument.
+
 ### Illustration
 
-The following program prints the sum of values passed as commandline arguments.
+The following program calculates the sum of values passed as commandline arguments.A list integer values separated by space is passed to program.
 
 ```rust
 
@@ -69,9 +75,40 @@ No of elements in arguments is :5
 sum is 10
 ```
 
-## Reading from the Console
+## Reader and Writer Types
 
-The program might have to accept values from the user at runtime. The following example reads values from the standard input  (Keyboard) and prints it to the console.
+Rust’s standard library features for input and output are organized around two traits
+
+ 1. Read
+ 2. Write
+
+|Sr No |  trait    | description| example  |
+|:----:|:----------|:-------|:--------- |
+| 1    |  Read     | Types that implement Read have methods for byte-oriented input. They’re called readers     | Stdin,File
+| 2   |  Write     | Types that implement Write support both byte-oriented and UTF-8 text output. They’re called writers.   | Stdout,Stderr,File
+
+**Readers** are values that your program can read bytes from.Examples
+
+- Files opened using std::fs::File::open(filename)
+- std::io::stdin(), for reading from the process’s standard input stream
+
+**Writers** are values that your program can write bytes to. Examples
+
+- Files opened using std::fs::File::create(filename)
+- std::io::stdout() and std::io:stderr(), for writing to the terminal
+
+Table shows  read_line() and write() methods in Read and Write traits.
+
+|Sr No |  trait | method    | description|
+|:-----|:-------|:---------| :----------|
+| 1| Read | read_line(&mut line)->Result|reads a line of text and appends it to line, which is a String.The return value is an io::Result<usize>, the number of bytes read
+| 2| Write | write(&buf)->Result|writes some of the bytes in the slice buf to the underlying stream. It returns an io::Result<usize>,  the number of bytes written
+
+Let use now see how to use  std::io::stdin() and std::io::stdout()
+
+## stdin() and Reading from the Console
+
+Rust programs might have to accept values from the user at runtime. The following example reads values from the standard input  (Keyboard) and prints it to the console.
 
 ```rust
 
@@ -84,7 +121,7 @@ fn main(){
 
 ```
 
-The "stdin" function returns a handle to the standard input stream of the current process, to which the "read_line" function can be applied. It waits for an end-of-line character from the standard input stream and tries to read all the characters present in the input buffer.
+The `stdin()` function returns a handle to the standard input stream of the current process, to which the `read_line` function can be applied. It waits for an end-of-line character from the standard input stream and tries to read all the characters present in the input buffer.
 
 Output
 
@@ -95,10 +132,9 @@ Hello , Mohtashim
 
 ```
 
+## stdout() and Writing to Console
 
-## Writing to Console
-
-We have used the  "print" or "println" macros to display text on the console. However, you can also use  the write() standard library function to display some text to the standard output .
+We have used the  `print` or `println` macros to display text on the console. However, you can also use  the `write()` standard library function to display some text to the standard output .
 
 Let us see an example.
 
@@ -112,9 +148,4 @@ fn main(){
 }
 ```
 
-The "stdout" standard library function returns a handle to the standard output stream of the current process, to which the "write" function can be applied.
-
-The "write" function gets an argument of "&[u8]" type, which is a reference to a slice of bytes. Such bytes are printed to the console as an UTF-8 string. So, if you want to print an object that is not a slice of bytes in UTF-8 format, use the "as_bytes" function. 
-
-//explanation for wrap() function goes here 
-<!-- .unwrap() function significance , what is fallible?? -->
+The `stdout()` standard library function returns a handle to the standard output stream of the current process, to which the `write` function can be applied.The unwrap() method will send panic if any error happens.

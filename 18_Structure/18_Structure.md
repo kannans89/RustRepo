@@ -251,7 +251,39 @@ fn main(){
 
 output `width is 10 height is 20 area of Rectangle is 200`
 
+## Static Method in structure
 
+Static methods don't need to be called by an instance.This method will not take &self parameter.
+
+We are creating a Point structure with instance and static method.The `getInstance()` is static method which creates a point object and returns.
+
+```rust
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl Point {
+
+    fn getInstance(x: i32, y: i32) -> Point {
+        Point { x: x, y: y }
+    }
+
+    fn display(&self){
+        println!("x ={} y={}",self.x,self.y );
+    }
+}
+
+
+fn main(){
+    let p1 = Point::getInstance(10,20);
+    p1.display();
+
+}
+
+```
+
+output is : `x =10 y=20`
 <!-- 
 ## Struct Update Syntax
 ## Method in structure
