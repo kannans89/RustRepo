@@ -1,14 +1,17 @@
-#Input Output
+# Input Output
 
+In this chapter we will discuss how to take user input from keyboard and display output to console.We will also discuss passing command line arguments.
 
 ## CommandLine Arguments
 
-CommandLine arguments are passed to a program before executing it. CommandLine arguments are similar to parameters passed to functions. CommandLIne arguments can be used to pass values before the execution of a program. Commandline parameters can be used to pass values to the main() function.
+CommandLine arguments are passed to a program before executing it. They are similar to parameters passed to functions. Commandline parameters can be used to pass values to the `main()` function.
 
 ### Illustration
-The following example passes values as commandLine arguments to the main() function. 
+
+The following example passes values as commandLine arguments to the main() function. The program is created in a file name `main.rs`
 
 ```rust
+//main.rs
 
 fn main(){
     let cmd_line = std::env::args();
@@ -22,9 +25,10 @@ fn main(){
 
 ```
 
-Run the above program as file name followed by the commandline arguments separated by space. (Here, `main.exe   hello    tutorialspoint` )
+The program will generate a file `main.exe` once compiled.Multiple command line parameters should be separated by space.
+Execute main.exe from from the terminal as  `main.exe   hello    tutorialspoint` . Note *hello* and *tutorialspoint* are commandline arguments.
 
-Output 
+Output
 
 ```rust
 No of elements in arguments is :3
@@ -34,9 +38,11 @@ No of elements in arguments is :3
 
 ```
 
+The output shows 3 arguments as the `main.exe` is the first argument.
+
 ### Illustration
 
-The following program prints the sum of values passed as commandline arguments.
+The following program calculates the sum of values passed as commandline arguments.A list integer values separated by space is passed to program.
 
 ```rust
 
@@ -71,7 +77,7 @@ sum is 10
 
 ## Reading from the Console
 
-The program might have to accept values from the user at runtime. The following example reads values from the standard input  (Keyboard) and prints it to the console.
+Rust programs might have to accept values from the user at runtime. The following example reads values from the standard input  (Keyboard) and prints it to the console.
 
 ```rust
 
@@ -84,7 +90,7 @@ fn main(){
 
 ```
 
-The "stdin" function returns a handle to the standard input stream of the current process, to which the "read_line" function can be applied. It waits for an end-of-line character from the standard input stream and tries to read all the characters present in the input buffer.
+The `stdin()` function returns a handle to the standard input stream of the current process, to which the `read_line` function can be applied. It waits for an end-of-line character from the standard input stream and tries to read all the characters present in the input buffer.
 
 Output
 
@@ -95,10 +101,9 @@ Hello , Mohtashim
 
 ```
 
-
 ## Writing to Console
 
-We have used the  "print" or "println" macros to display text on the console. However, you can also use  the write() standard library function to display some text to the standard output .
+We have used the  `print` or `println` macros to display text on the console. However, you can also use  the `write()` standard library function to display some text to the standard output .
 
 Let us see an example.
 
@@ -112,7 +117,7 @@ fn main(){
 }
 ```
 
-The "stdout" standard library function returns a handle to the standard output stream of the current process, to which the "write" function can be applied.
+The `stdout()` standard library function returns a handle to the standard output stream of the current process, to which the `write` function can be applied.
 
 The "write" function gets an argument of "&[u8]" type, which is a reference to a slice of bytes. Such bytes are printed to the console as an UTF-8 string. So, if you want to print an object that is not a slice of bytes in UTF-8 format, use the "as_bytes" function. 
 
