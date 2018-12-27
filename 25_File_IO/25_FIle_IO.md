@@ -1,10 +1,19 @@
 # File Input/Output
 
-In addition to reading and writing to console,Rust allows reading and writing to files. 
+In addition to reading and writing to console,Rust allows reading and writing to files.
+
+The File struct represents a file that has been opened , and gives read or write access to the underlying file.Since many things can go wrong when doing file I/O, all the File methods return the io::Result<T> .
+
+
+|Sr No |  method    | description|  
+|:----:|:----------|:-------|
+| 1    |  open()  | The open static method can be used to open a file in read-only mode
+| 2    |  create()  | static method opens a file in write-only mode. If the file already existed, the old content is destroyed. Otherwise, a new file is created.
 
 ## Write to File
 
 Let us understand this with an example.
+
 The following program creates a file 'data.txt'in the current folder of the file system.The create() method is used to create a file. The method returns a file handle if the file is created successfully.The last line *write_all* function will write bytes in newly created file.
 
 //clarity 
@@ -39,9 +48,6 @@ fn main(){
 }
 
 ```
-
-
-
 
 ## Copy a file
 
