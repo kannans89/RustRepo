@@ -27,10 +27,9 @@ let instance_name =Name_of_structure {
 
 ### Syntax : Accessing values in a structure
 
-Use the dot notation to access a specific field's value 
+Use the dot notation to access a specific field's value
 
 `instance_name.field1`
-
 
 ## Illustration
 
@@ -225,7 +224,7 @@ the instance we can call the method.The first parameter of method will be always
 
 ```
 
-To undserstand methods we are creating a structure `Rectangle` with method `area` which will calculate the area of Rectangle. Following is code.
+To understand methods we are creating a structure `Rectangle` with method `area` which will calculate the area of Rectangle. Following is code.
 
 ```rust
 struct Rectangle{
