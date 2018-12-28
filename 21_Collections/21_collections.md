@@ -1,16 +1,7 @@
 # Collections
 
 <!--https://doc.rust-lang.org/std/collections/index.html -->
-Rust's standard collection library provides efficient implementations of the most common general purpose programming data structures
-This chapter discusses commonly used collections in Rust. 
-
-Rust's collections can be grouped into four major categories:
-
-- Sequences: Vec, VecDeque, LinkedList
-- Maps: HashMap, BTreeMap
-- Sets: HashSet, BTreeSet
-- Misc: BinaryHeap
-
+Rust's standard collection library provides efficient implementations of the most common general purpose programming data structures.  
 This chapter discusses implementation of the commonly used collections- Vector, HashMap and HashSet
 
 ## Vector
@@ -19,7 +10,7 @@ A Vector is a resizable array. It stores values in contiguous memory blocks. The
 - A Vector can grow or shrink at runtime.
 - A Vector is a homogeneous collection.
 - A Vector stores data as sequence of elements in a particular order. Every element in a Vector is assigned a unique index number. The index starts from 0 and goes upto `n-1` where, `n` is the size of the collection. For example, in a collection of 5 elements, the first element will be at index 0 and the lsat element will be at index 4.
-- A Vector will only append values to (or near) the end. In other words,a Vector is an implementation of stack.
+- A Vector will only append values to (or near) the end. In other words,a Vector an be used to implement a stack.
 - Memory for a Vector is allocated in the heap.
 
 ### Syntax: Creating  a Vector 
@@ -31,7 +22,7 @@ let mut instance_name = Vec::new();
 ```
 The static method `new()` of the `Vec` structure is used to create a vector instance.
 
-Alternatively, a vector can also beb created using the `vec!` macro. The syntax is as given below-
+Alternatively, a vector can also be created using the `vec!` macro. The syntax is as given below-
 
 ```rust
 
@@ -177,7 +168,7 @@ size of vector is :3
 
 ### Accessing values from a Vector
 
-Individual elements in a vector can be accessed using their corrsponding index numbers. The following example creates a vector ad prints the value of the first element.
+Individual elements in a vector can be accessed using their corresponding index numbers. The following example creates a vector ad prints the value of the first element.
 
 ```rust
 fn main() {
@@ -205,18 +196,15 @@ Values in a vector can also be fetched using reference to the collection.
     v.push(40);
     v.push(500);
     
-    //vector scope is not moved
+    
    for i in &v {
        println!("{}",i);
    }
-   //since scope not moved ,its is accessible here
+   
    println!("{:?}",v);
 }
 
 ```
-//appu: rephrase this
-if we use `for i in v` this program will move the scope to v with in the for loop. As the for loop ends the values will be moved and we cannot run the last line of code `println!("{:?}",v)` as this will give error
-
 Output:
 
 ```rust
@@ -231,8 +219,8 @@ Output:
 
 <!-- https://www.youtube.com/watch?v=sTK8fagTsMk&index=31&list=PLVvjrrRCBy2JSHf9tGxGKJ-bYAN_uDCUL -->
 
-A map is a collection of key-value pairs (called entries). No two entries can have the same key, and the entries are kept organized so that if you have a key, you can efficiently look up the corresponding value in a map. In short, a map is a lookup table.
-A HashMap stores the keys and values in a hash table, so it requires a key type K that implements Hash and Eq, the standard traits for hashing and equality. Looking up a value by its key is fast. The entries are stored in an arbitrary order.
+A map is a collection of key-value pairs (called entries).  No two entries in a map can have the same key. In short, a map is a lookup table.
+A HashMap stores the keys and values in a hash table. The entries are stored in an arbitrary order.The key is used to search for values in the HashMap.The HashMap structure is defined in the std::collections module.This module should be explicitly imported to acces the HashMap structure.
 
 ### Syntax: Creating  a HashMap
 
@@ -413,7 +401,7 @@ length of the hashmap after remove() 2
 
 ## HashSet
 
-HashSet<T> is a set of unique values of type T. Adding and removing values is fast, and it’s fast to ask whether a given value is in the set or not. 
+HashSet<T> is a set of unique values of type T. Adding and removing values is fast, and it’s fast to ask whether a given value is in the set or not. The HashSet structure is defined in the std::collections module.This module should be explicitly imported to acces the HashSet structure.
 
 ### Syntax: Creating  a HashSet 
 
@@ -429,7 +417,6 @@ Sr No | method |  signature    |Description|
 |:----:|:-----|:----------|:-------|
 |1|insert()|pub fn insert(&mut self, value: T) -> bool|Adds a value to the set.If the set did not have this value present, true is returned else false
 |2|len()|pub fn len(&self) -> usize|Returns the number of elements in the set.
-
 |3|get() |pub fn get<Q:?Sized>(&self, value: &Q) -> Option<&T> where T: Borrow<Q>,Q: Hash + Eq,|Returns a reference to the value in the set, if any, that is equal to the given value.
 |4|iter() |pub fn iter(&self) -> Iter<T>|Retruns an iterator visiting all elements in arbitrary order. The iterator element type is &'a T.
 |5|contains()|pub fn contains<Q: ?Sized>(&self, value: &Q) -> bool |Returns true if the set contains a value.
