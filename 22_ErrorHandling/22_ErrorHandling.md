@@ -127,7 +127,7 @@ output after changing the extension to *main.jpg* the extension
 
 ### unwrap() and expect()
 
-The standard library contains a couple of helper methods that both enums `Result<T,E>` and `Option<T>`  implement. You can use them to simplify error cases where you really do not expect things to fail.
+The standard library contains a couple of helper methods that both enums `Result<T,E>` and `Option<T>`  implement. You can use them to simplify error cases where you really do not expect things to fail.In case of success from a method, the "unwrap" function is used to extract the actual result.
 
 |Sr No |  method    |Signature |Description
 |:----:|:----------|:-------|:----------|
@@ -171,3 +171,7 @@ expect() works same as unwrap() only difference is error message can be passed.T
 thread 'main' panicked at 'File not able to open: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
+
+## Fallible Function
+
+A fallible function is a function which return error if it fails or result if it is success
