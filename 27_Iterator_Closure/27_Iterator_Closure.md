@@ -1,16 +1,15 @@
-#Iterator and Closure
+# Iterator and Closure
 
-Iterator allows the for...in ..syntax to work.
-Lots of collections implement this trait like
+Iterator allows the for...in ..syntax to work.Lots of collections implement this trait like
+
 - Vect
 - HashMap
 - LinkedList
 
-Functional programming fundamental is functions. We will look at now how to 
-use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
+Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
 
 ## Closure
- 
+
  A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
 
   Syntax

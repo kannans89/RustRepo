@@ -2,10 +2,10 @@
 
 In Rust, errors are grouped into two major category.
 
-|Sr No |  name    |Description|UsedWith
+|Sr No |  name    |Description|Usage
 |:----:|:----------|:-------|:-------
-| 1    | Recoverable     | Errors which can be  handled | panic macro
-| 2    | UnRecoverable     | Errors which cannot be handled |Result enum
+| 1    | Recoverable     | Errors which can be  handled |Result enum
+| 2    | UnRecoverable     | Errors which cannot be handled |panic macro
 
 For a recoverable error, such as a file not found error, it’s reasonable to report the problem to the user and retry the operation. Unrecoverable errors are always symptoms of bugs, like trying to access a location beyond the end of an array.
 
