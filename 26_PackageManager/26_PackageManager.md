@@ -11,15 +11,30 @@ Cargo is Rust's build system and package manager.This is a tool to manage Rust p
 |5|cargo update|  Update dependencies listed in Cargo.lock
 |6|cargo new |  Create a new cargo project
 
-To create a new cargo project we can use command `cargo new project_name --bin or --lib` .To create a binary crate project use option --bin and to create a library crate use option --lib.
+Cargo helps to download third party libraries also . So it acts like a package manager.You can also build your own libraries. Cargo is installed by default when you install Rust.
 
-Cargo helps to download third party libraries also . So it acts like a package manager.You can also build your own libraries. Cargo is installed by default when you install rust.
-`cargo --version` command will give the current version of cargo.
+To create a new cargo project we can use the following commands: 
+ 
+ ### Create  a binary crate
+ 
+ `cargo new project_name --bin `
+ 
+ ### Create a library crate 
+`cargo new project_name  --lib`
 
-## Create a binary Cargo project
+To check the current version of cargo
+`cargo --version`
 
-**step 1**: open terminal and type the following command
-`cargo new guess-game-app --bin` this will create following folder structure.
+## Illustration: Create a Binary Cargo project
+
+The game  generates an random number and prompts the user to guess the number.
+
+### Step 1: Create a project folder.
+
+Open the terminal and type the following command
+`cargo new guess-game-app --bin` .
+
+This will create following folder structure.
 
 ```rust
   guess-game-app/
@@ -28,10 +43,12 @@ Cargo helps to download third party libraries also . So it acts like a package m
            main.rs
 ```
 
- When you do a `cargo new` you are creating a crate.`--bin` flag creates binary crate .
+The  `cargo new` command is used to create a crate. The `--bin` flag indicates that the crate being created is a binary crate.
+Public crates are stored in a central repository called crates.io `(https://crates.io/)`.
 
-There is a central repository of public crates called crates.io `(https://crates.io/)`.
-In this porject we have to use random number.Since the internal standard library doesnot provide random no gereneration logic we need to look at external libraries or crates. Lets use `rand` crate which is available at crates.io website [crates.io](https://crates.io/)
+### Step 2: Include references to external libraries
+
+In this porject we have to use random number.Since the internal standard library does not provide random no gereneration logic we need to look at external libraries or crates. Lets use `rand` crate which is available at crates.io website [crates.io](https://crates.io/)
 
  The [rand crate](https://crates.io/crates/rand) is a rust library for random number generation.
 
@@ -41,8 +58,7 @@ Following diagram shows crate.io website and search result for rand crate.
 
 ![crates_io](https://user-images.githubusercontent.com/9062443/47617238-2f44ae00-daeb-11e8-876b-70a4f1248bb6.png)
 
-Step2:
-copy the version of rand crate to the Cargo.toml file `rand = "0.5.5"`
+ Copy the version of rand crate to the Cargo.toml file `rand = "0.5.5"`
 
 ```rust
 [package]
@@ -55,7 +71,9 @@ rand = "0.5.5"
 
 ```
 
-step 3:after this fire **cargo build**
+### Step 3: Compile the Project 
+
+Navigate to the project folder. Execute the command **cargo build** on the terminal window : 
 
 ```rust
  Updating registry `https://github.com/rust-lang/crates.io-index`
@@ -72,9 +90,10 @@ step 3:after this fire **cargo build**
 
 ```
 
-rand and all transitive dependencies(inner dependencies of rand) also downloaed. it automatically downloaed internal dependencies.
+The rand crate and  and all transitive dependencies(inner dependencies of rand) wil be automatically downloaded. 
 
-step 4:
+### Step 4: The Business Logic
+
  The number guessing game business logic is 
   - Game initially generates an random number
   - Ask user to enter input and guess that number
@@ -83,7 +102,9 @@ step 4:
   - If same number game exits
 
 
-step 5: Edit the main.rs
+### Step 5: Edit the main.rs file
+
+Add the business logic to main.rs file.
 
 ```rust
 
@@ -139,9 +160,9 @@ fn main() {
 
 ```
 
-step 5: Do `cargo run` from project folder to compile and execute.
+### Step 6: Compile and Execute the Project
 
-
+Execute the command `cargo run` on the terminal. Make sure that the terminal points to the Project directory.
 
 ```rust
 Welcome to no guessing  game
@@ -158,84 +179,3 @@ You go it ..
 
 
 ````
-
-<!-- 
-## //To Merge
-
-Cargo is package manager of rust . Let us create a sample number guessing game using cargo,there by we will look at the dependencies of cargo as well.
-
-you can open a terminal and type command
-`cargo version` output will be somthing like `cargo 1.29.0 (524a578d7 2018-08-05)`
-
-## create a new project
-
-Fire the command on termainal `cargo new guess-game` , this will create a folder guess-game with following folder structure
-
-```rust
-      guess-game
-       - src
-          main.rs
-       - Cargo.toml
-
-```
-
-This will be contents of the Cargo.toml file
-
-```rust
-  [package]
-name = "guess-game"
-version = "0.1.0"
-authors = ["mohtashim <mohtashim@tutorialspoint.com>"]
-
-[dependencies]
-
-
-```
-
-Also the main.rs will contain following contents
-
-```rust
-fn main() {
-    println!("Hello, world!");
-}
-
-```
-
-To run the program we could use `cargo run` after changing directory in terminal to folder `cd guess-game`
-
-output is as shown first program will be compiled and then executed as below.
-
-```rust
-  Compiling guess-game v0.1.0 (file:///E:/RustWorks/guess-game)
-    Finished dev [unoptimized + debuginfo] target(s) in 1.15s
-     Running `target\debug\guess-game.exe`
-Hello, world!
-
-```
-
-## Crate Ecosystem
-
-- Rust divides code into crates
-- There is a central repository of public crates called crates.io `(https://crates.io/)`
-- In rust ecosystem version numbers have meanings
-- eg: 1.2.32 (Major.Minor.Patch)
-- Major are for breaking changes
-- Minor are for new APIs
-- Patch versions are for  fixes
-  
- //Image from crates.io
-
-## Install dependencies
-
-  For a number guessing game we need to use random number functions , which are not available in the standard library`.https://crates.io/crates/rand`
-
-  how to use rand in  Cargo.toml
-
-  ```rust
-    [dependencies]
-    rand = "0.6"
-
-  ```
-
-After this do a `cargo build` to download all the dependencies including `rand`
--->
