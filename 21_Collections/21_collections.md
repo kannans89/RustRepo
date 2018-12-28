@@ -1,6 +1,5 @@
 # Collections
 
-//why use collections??
 <!--https://doc.rust-lang.org/std/collections/index.html -->
 Rust's standard collection library provides efficient implementations of the most common general purpose programming data structures
 This chapter discusses commonly used collections in Rust. 
