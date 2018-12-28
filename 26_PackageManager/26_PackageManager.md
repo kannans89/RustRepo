@@ -101,7 +101,6 @@ The rand crate and  and all transitive dependencies(inner dependencies of rand) 
   - if number is greater than actual it say too high
   - If same number game exits
 
-
 ### Step 5: Edit the main.rs file
 
 Add the business logic to main.rs file.
@@ -109,7 +108,7 @@ Add the business logic to main.rs file.
 ```rust
 
 use std::io;
-extern  crate rand;
+extern  crate rand; //importing external crate
 use rand::random;
 
 fn get_guess() -> u8 {

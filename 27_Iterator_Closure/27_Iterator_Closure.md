@@ -1,14 +1,26 @@
 # Iterator and Closure
 
-Iterator allows the for...in ..syntax to work.Lots of collections implement this trait like
+The standard library defines an Iterator as a trait as shown.
+
+```rust
+trait Iterator {
+     type Item;
+     fn next(&mut self) -> Option<Self::Item>
+}
+
+```
+
+The Iterator trait is used to implement iterators over collections such as arrays.If a collection like array or Vect implements Iterator trait then it can be traversed using the  `for...in` syntax .Lots of collections implement this trait like
 
 - Vect
 - HashMap
 - LinkedList
 
-Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
+
 
 ## Closure
+
+Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
 
  A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
 
