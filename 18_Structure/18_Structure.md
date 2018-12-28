@@ -305,7 +305,7 @@ impl Structure_Name {
 
 ```
 
-### Syntax: Invoking s static method
+### Syntax: Invoking a static method
 
 The `structure_name ::` syntax is used to access a static method.
 
