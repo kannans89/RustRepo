@@ -171,7 +171,7 @@ expect() works same as unwrap() only difference is error message can be passed.T
 thread 'main' panicked at 'File not able to open: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
-
+<!--
 ## Fallible Function
 
-A fallible function is a function which return error if it fails or result if it is success
+A fallible function is a function which return error if it fails or result if it is success-->
