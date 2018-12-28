@@ -11,7 +11,7 @@ The `struct` keyword is used to declare a structure. Since structures are static
      field1:data_type,
      field2:data_type,
      field3:data_type
- };
+ }
 ```
 
 ### Syntax: Initializing a structure
