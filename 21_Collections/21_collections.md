@@ -411,43 +411,37 @@ Output:
 length of the hashmap 3
 length of the hashmap after remove() 2
 ```
-### Illustration: or_insert
-
-In Hashmap if the same key is inserted twice the last value will be updated.To avoid this use `or_insert`
-
-```rust
-
-use std::collections::HashMap;
-fn main() {
-
- let mut locations = HashMap::new();
- locations.insert("Mumbai",101);
- locations.entry("Mumbai").or_insert(201);
- locations.entry("Pune").or_insert(301);
- println!("{:?}",locations);
-
-```
-
-output : `{"Pune": 301, "Mumbai": 101}`
 
 ## HashSet
 
-HashSet<T> is a set of unique values of type T. Adding and removing values is fast, and it’s fast to ask whether a given value is in the set or not.
+HashSet<T> is a set of unique values of type T. Adding and removing values is fast, and it’s fast to ask whether a given value is in the set or not. 
+
+### Syntax: Creating  a HashSet 
+
+```rust 
+let mut hash_set_name = HashSet::new();
+
+```
+The static method ,`new`, of HashSet structure is used to create a hashset. This method creates an empty HashSet.
+
+The following table lists some of the commonly used methods of the HashSet structure.
 
 Sr No | method |  signature    |Description|
 |:----:|:-----|:----------|:-------|
-|1|new()|pub fn new() -> HashSet<T, RandomState>|Creates an empty HashSet.The hash set is initially created with a capacity of 0, so it will not allocate until it is first inserted into
+|1|insert()|pub fn insert(&mut self, value: T) -> bool|Adds a value to the set.If the set did not have this value present, true is returned else false
 |2|len()|pub fn len(&self) -> usize|Returns the number of elements in the set.
-|3|insert()|pub fn insert(&mut self, value: T) -> bool|Adds a value to the set.If the set did not have this value present, true is returned else false
-|4|get() |pub fn get<Q:?Sized>(&self, value: &Q) -> Option<&T> where T: Borrow<Q>,Q: Hash + Eq,|Returns a reference to the value in the set, if any, that is equal to the given value.
-|5|remove()|pub fn remove<Q: ?Sized>(&mut self, value: &Q) -> bool |Removes a value from the set. Returns true if the value was present in the set.
-|6|contains()|pub fn contains<Q: ?Sized>(&self, value: &Q) -> bool |Returns true if the set contains a value.
 
-### Illustraion:new and length
+|3|get() |pub fn get<Q:?Sized>(&self, value: &Q) -> Option<&T> where T: Borrow<Q>,Q: Hash + Eq,|Returns a reference to the value in the set, if any, that is equal to the given value.
+|4|iter() |pub fn iter(&self) -> Iter<T>|Retruns an iterator visiting all elements in arbitrary order. The iterator element type is &'a T.
+|5|contains()|pub fn contains<Q: ?Sized>(&self, value: &Q) -> bool |Returns true if the set contains a value.
+|6|remove()|pub fn remove<Q: ?Sized>(&mut self, value: &Q) -> bool |Removes a value from the set. Returns true if the value was present in the set.
 
-Note from example duplicates values are not added.
+
+### Illustration:insert()
+Adds a value to the set. A HashSet does not add duplicate values to the collection.
 
 ```rust
+
 use std::collections::HashSet;
 
 fn main() {
@@ -459,26 +453,43 @@ names.insert("Kannan");
 names.insert("TutorialsPoint");
 names.insert("Mohtashim");//duplicates not added
 
+println!("{:?}",names);}
+
+```
+Output
+```
+{"TutorialsPoint", "Kannan", "Mohtashim"}
+
+```
+### Illustraion:len()
+Returns the number of elements in the set
+
+```rust
+use std::collections::HashSet;
+
+fn main() {
+
+let mut names = HashSet::new();
+
+names.insert("Mohtashim");
+names.insert("Kannan");
+names.insert("TutorialsPoint");
+
 println!("size of the set is {}",names.len());
-println!("{:?}",names);
-
-
 
 }
 
-
 ```
 
-output is :
+Output
 
 ```rust
 size of the set is 3
-{"Kannan", "TutorialsPoint", "Mohtashim"}
 
 ```
 
-### Illustration: Displaying values
-
+### Illustration:iter()
+Retruns an iterator visiting all elements in arbitrary order
 
 ```rust
 use std::collections::HashSet;
@@ -502,7 +513,7 @@ for name in names.iter(){
 
 ```
 
-ouput:
+Output:
 
 ```rust
 TutorialsPoint
@@ -511,9 +522,8 @@ Kannan
 
 ```
 
-### Illustration:get
-
-
+### Illustration:get()
+Returns a reference to the value in the set, if any, that is equal to the given value.
 ```rust
 use std::collections::HashSet;
 
@@ -543,7 +553,7 @@ println!("{:?}",names);
 
 ```
 
-output:
+Output
 
 ```rust
 found Mohtashim
@@ -551,7 +561,8 @@ found Mohtashim
 ```
 
 
-### Illustraion:contains() and remove()
+### Illustraion:contains() 
+Returns true if the set contains a value
 
 ```rust
 
@@ -565,22 +576,43 @@ names.insert("Mohtashim");
 names.insert("Kannan");
 names.insert("TutorialsPoint");
 
-
-
 if names.contains(&"Kannan"){
- println!("found name to remove");
-  names.remove(&"Kannan");    
-}
+ println!("found name");
 
-println!("{:?}",names);
+}  }
 
-}
 ```
 
-output: 
+Output
 
 ```rust
-found name to remove
-{"TutorialsPoint", "Mohtashim"}
+found name
+```
+
+### Illustration:remove()
+Removes a value from the set
+
+```rust
+use std::collections::HashSet;
+
+fn main() {
+
+let mut names = HashSet::new();
+
+names.insert("Mohtashim");
+names.insert("Kannan");
+names.insert("TutorialsPoint");
+println!("length of the Hashset: {}",names.len());
+names.remove(&"Kannan");    
+println!("length of the Hashset after remove() : {}",names.len());
+}
+
+```
+
+Output
+
+```rust
+length of the Hashset: 3
+length of the Hashset after remove() : 2
 
 ```
