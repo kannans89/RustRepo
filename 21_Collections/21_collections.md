@@ -1,15 +1,46 @@
 # Collections
 
+//why use collections??
 <!--https://doc.rust-lang.org/std/collections/index.html -->
 Rust's standard collection library provides efficient implementations of the most common general purpose programming data structures
+This chapter discusses commonly used collections in Rust. 
 
- - Vector
- - HashMap
- - HashSet
+Rust's collections can be grouped into four major categories:
+
+- Sequences: Vec, VecDeque, LinkedList
+- Maps: HashMap, BTreeMap
+- Sets: HashSet, BTreeSet
+- Misc: BinaryHeap
+
+This chapter discusses implementation of the commonly used collections- Vector, HashMap and HashSet
 
 ## Vector
 
-A contiguous growable array type, written Vec<T> but pronounced 'vector'.
+A Vector is a resizable array. It stores values in contiguous memory blocks. The predefined structure `Vec` can be used to create vectors. Some important features of a Vector are:
+- A Vector can grow or shrink at runtime.
+- A Vector is a homogeneous collection.
+- A Vector stores data as sequence of elements in a particular order. Every element in a Vector is assigned a unique index number. The index starts from 0 and goes upto `n-1` where, `n` is the size of the collection. For example, in a collection of 5 elements, the first element will be at index 0 and the lsat element will be at index 4.
+- A Vector will only append values to (or near) the end. In other words,a Vector is an implementation of stack.
+- Memory for a Vector is allocated in the heap.
+
+### Syntax: Creating  a Vector 
+
+```rust
+
+let mut instance_name = Vec::new();
+
+```
+The static method `new()` of the `Vec` structure is used to create a vector instance.
+
+Alternatively, a vector can also beb created using the `vec!` macro. The syntax is as given below-
+
+```rust
+
+let  vector_name = vec![val1,val2,val3]
+
+```
+
+The following table lists some commonly used functions of the `Vec` structure. 
 
 |Sr No | method |  signature    |Description|
 |:----:|:-----|:----------|:-------|
@@ -19,7 +50,7 @@ A contiguous growable array type, written Vec<T> but pronounced 'vector'.
 |4|contains()|pub fn contains(&self, x: &T) -> bool|Returns true if the slice contains an element with the given value.
 |5|len()|pub fn len(&self) -> usize|Returns the number of elements in the vector, also referred to as its 'length'.
 
- ### Syntax 1 :
+ ### Illustration : Creating a Vector -`new()`
 
  To create a vector we use the static method `new`
 
@@ -34,16 +65,20 @@ fn main() {
     println!("{:?}",v);
 }
 ```
-output: 
+
+The above example creates a Vector using the static method `new()` that is defined in structure `Vec`. The `push(val)` function appends the value passed as parameter to the collection. The len() function returns the length of the vector.
+
+Output: 
+
 ```rust
 size of vector is :3
 [20, 30, 40]
 
 ```
 
-### Syntax 2:
+### Illustration : Creating a Vector -`vec!` macro
 
-A simple syntax is using Macro .The type is inferred from value we assign to right.
+The following code creates a vector using the vec! macro.The data type of the vector is inferred the first value that is assigned to it.
 
 ```rust
 fn main() {
@@ -53,9 +88,12 @@ fn main() {
 }
 ```
 
-output: `[1, 2, 3]`
+Output: 
 
-Following code is not valid as we cannot add different types to vector.
+`[1, 2, 3]`
+
+
+As metioned earlier, a vector can only contain values of the same data type. The following snippet will throw a `error[E0308]: mismatched types` error.
 
 ```rust
 fn main() {
@@ -63,8 +101,30 @@ fn main() {
     println!("{:?}",v);
 }
 ```
+### Illustration: push()
 
-### Removing element of vector
+Appends an element to the end of a collection.
+
+```rust
+fn main() {
+    let mut v = Vec::new();
+    v.push(20);
+    v.push(30);
+    v.push(40);
+    
+  println!("{:?}",v);
+}
+```
+
+Output
+
+```rust
+[20, 30, 40]
+
+```
+
+### Illustration: remove()
+Removes and returns the element at position index within the vector, shifting all elements after it to the left.
 
 ```rust
 fn main() {
@@ -75,9 +135,13 @@ fn main() {
 }
 
 ```
-output: `[10, 30]`
 
-### Checking value is present
+Output
+
+`[10, 30]`
+
+### Illustration:contains()
+Returns true if the slice contains an element with the given value
 
 ```rust
 fn main() {
@@ -89,15 +153,32 @@ fn main() {
 }
 
 ```
-
-output:
+Output
 
 ```rust
 found 10
 [10, 20, 30]
 ```
 
+### Illustration: len()
+Returns the number of elements in the vector, also referred to as its 'length'
+
+```rust
+fn main() {
+    let  v = vec![1,2,3];
+    println!("size of vector is :{}",v.len());
+    
+    }
+```
+Output
+
+```rust
+size of vector is :3
+```
+
 ### Accessing values from a Vector
+
+Individual elements in a vector can be accessed using their corrsponding index numbers. The following example creates a vector ad prints the value of the first element.
 
 ```rust
 fn main() {
@@ -110,9 +191,10 @@ fn main() {
     println!("{:?}",v[0]);
 }
 
-ouput is : `20`
+Output: `20`
+```
 
-Display values in vector using reference
+Values in a vector can also be fetched using reference to the collection.
 
 ```rust
 
@@ -133,10 +215,10 @@ Display values in vector using reference
 }
 
 ```
-
+//appu: rephrase this
 if we use `for i in v` this program will move the scope to v with in the for loop. As the for loop ends the values will be moved and we cannot run the last line of code `println!("{:?}",v)` as this will give error
 
-output:
+Output:
 
 ```rust
 20
@@ -146,53 +228,36 @@ output:
 [20, 30, 40, 500]
 ```
 
-### Dereference operator with Vector
-
-When iterating through the list of values, we can use dereference operator to change values of the mutable vector.
-
-```rust
-fn main() {
-    
-    let mut v = Vec::new();
-    v.push(20);
-    v.push(30);
-    v.push(40);
-    v.push(500);
-    
-   for i in &mut v {
-       *i+=1; // dereference operator
-   }
-   
-   println!("{:?}",v);
-}
-```
-
-output: `[21, 31, 41, 501]`
-
-## HashMaps
+## HashMap
 
 <!-- https://www.youtube.com/watch?v=sTK8fagTsMk&index=31&list=PLVvjrrRCBy2JSHf9tGxGKJ-bYAN_uDCUL -->
 
-
-
-A map is a collection of key-value pairs (called entries). No two entries have the same key, and the entries are kept organized so that if you have a key, you can efficiently look up the corresponding value in a map. In short, a map is a lookup table.
-
+A map is a collection of key-value pairs (called entries). No two entries can have the same key, and the entries are kept organized so that if you have a key, you can efficiently look up the corresponding value in a map. In short, a map is a lookup table.
 A HashMap stores the keys and values in a hash table, so it requires a key type K that implements Hash and Eq, the standard traits for hashing and equality. Looking up a value by its key is fast. The entries are stored in an arbitrary order.
 
+### Syntax: Creating  a HashMap
 
+```rust
+let mut instance_name = HashMap::new();
+
+```
+The static method `new()` of the `HashMap` structure is used to create a Hashmap object. This method creates an empty hashmap.
+
+The commonly used functions of HashMap are : 
 
 |Sr No | method |  signature    |Description|
 |:----:|:-----|:----------|:-------|
-| 1   |new() | pub fn new() -> HashMap<K, V, RandomState>    | Empty hashmap is created with a capacity of 0, so it will not allocate until it is first inserted into.
-|2|len()|pub fn len(&self) -> usize|Returns the number of elements in the map.
-|3|insert()|pub fn insert(&mut self, k: K, v: V) -> Option<V>|Inserts a key/value pair,if no key then None is returned . After update old value is returned.
-|4|get()|pub fn get<Q: ?Sized>(&self, k: &Q) -> Option<&V> where K:Borrow<Q> Q:Hash+ Eq|Returns a reference to the value corresponding to the key.
+|1|insert()|pub fn insert(&mut self, k: K, v: V) -> Option<V>|Inserts a key/value pair,if no key then None is returned . After update old value is returned.
+|2|len()|pub fn len(&self) -> usize|Returns the number of elements in the map
+|3|get()|pub fn get<Q: ?Sized>(&self, k: &Q) -> Option<&V> where K:Borrow<Q> Q:Hash+ Eq|Returns a reference to the value corresponding to the key.
+|4|iter()|pub fn iter(&self) -> Iter<K, V>|An iterator visiting all key-value pairs in arbitrary order. The iterator element type is (&'a K, &'a V).
 |5|contains_key|pub fn contains_key<Q: ?Sized>(&self, k: &Q) -> bool |Returns true if the map contains a value for the specified key.
 |6|remove()|pub fn remove_entry<Q: ?Sized>(&mut self, k: &Q) -> Option<(K, V)>|Removes a key from the map, returning the stored key and value if the key was previously in the map.
-|7|iter()|pub fn iter(&self) -> Iter<K, V>|An iterator visiting all key-value pairs in arbitrary order. The iterator element type is (&'a K, &'a V).
 
-### Illustration:new and insert
 
+### Illustration:insert()
+Inserts a key/value pair into the hashmap.
+//appu:why use the use statement
 ```rust
 
  use std::collections::HashMap;
@@ -200,22 +265,48 @@ A HashMap stores the keys and values in a hash table, so it requires a key type 
     let mut stateCodes = HashMap::new();
     stateCodes.insert("KL","Kerala");
     stateCodes.insert("MH","Maharashtra");
-
-   println!("size of map is {}",stateCodes.len());
-   println!("{:?}",stateCodes);
+  
+     println!("{:?}",stateCodes);
 }
 
-```rust
-output: ```rust
+```
+The  above program creates a hashmap and initializes it with 2 key-value pairs.
 
-size of map is 2
+Output
+
+```rust
+
 {"KL": "Kerala", "MH": "Maharashtra"}
 
 ```
 
-### Illustration: get
+## Illustration:len()
+Returns the number of elements in the map
 
-In this example we are trying to retrieve the value for key *KL* in the map.
+```rust
+use std::collections::HashMap;
+ fn main(){
+    let mut stateCodes = HashMap::new();
+   stateCodes.insert("KL","Kerala");
+  stateCodes.insert("MH","Maharashtra");
+
+   println!("size of map is {}",stateCodes.len());
+  
+    }
+```
+The above example creates a hashmap and prints the total number of elements in it. 
+
+Output
+
+```
+size of map is 2
+
+```
+
+
+### Illustration: get()
+Returns a reference to the value corresponding to the key.
+The following example retrieves the value for key *KL* in the hashmap.
 
 ```rust
 
@@ -240,7 +331,7 @@ fn main(){
 
   ```
 
-output
+Output
 
 ```rust
 size of map is 2
@@ -249,8 +340,9 @@ Value for key KL is Kerala
 
 ```
 
-### Illustration: iterator
-
+### Illustration: iter()
+Returns an iterator containing reference to all key-value pairs in arbitrary order.
+  
   ```rust
    use std::collections::HashMap;
    fn main(){
@@ -265,14 +357,15 @@ Value for key KL is Kerala
 
   ```
 
-output:
+Output:
 
 ```rust
 key: MH val: Maharashtra
 key: KL val: Kerala
 ```
 
-### Illustraion: remove and contains_key
+### Illustration:contains_key()
+Returns true if the map contains a value for the specified key.
 
 ```rust
  use std::collections::HashMap;
@@ -284,26 +377,40 @@ fn main(){
   
     if stateCodes.contains_key(&"GJ"){
      println!("found key");
-     stateCodes.remove(&"GJ");
+        }
+
     }
 
-    for (key, val) in stateCodes.iter() {
-    println!("key: {} val: {}", key, val);
-  }
-}
-
 
 ```
 
-output:
-
+Output
 ```rust
 found key
-key: MH val: Maharashtra
-key: KL val: Kerala
-
 ```
 
+### Illustration:remove()
+Removes a key from the map
+```rust
+use std::collections::HashMap;
+fn main(){
+    let mut stateCodes = HashMap::new();
+    stateCodes.insert("KL","Kerala");
+    stateCodes.insert("MH","Maharashtra");
+    stateCodes.insert("GJ","Gujarat");
+  
+    println!("length of the hashmap {}",stateCodes.len());
+    stateCodes.remove(&"GJ");
+    println!("length of the hashmap after remove() {}",stateCodes.len());
+     
+}
+```
+Output:
+
+```rust
+length of the hashmap 3
+length of the hashmap after remove() 2
+```
 ### Illustration: or_insert
 
 In Hashmap if the same key is inserted twice the last value will be updated.To avoid this use `or_insert`
