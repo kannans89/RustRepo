@@ -15,14 +15,14 @@ Rust’s standard library features for input and output are organized around two
 | 2   |  Write     | Types that implement Write support both byte-oriented and UTF-8 text output. They’re called writers.   | Stdout,File
 
 ## Read Trait
+
 **Readers** are components that your program can read bytes from. Examples include reading input from the keyboard, files etc.
 The read_line() method of this trait can be used to read data ,one line at a time,from a file or standard input stream. 
 
 |Sr No |  trait | method    | description|
 |:-----|:-------|:---------| :----------|
 | 1| Read | read_line(&mut line)->Result|reads a line of text and appends it to line, which is a String.The return value is an io::Result<usize>, the number of bytes read
-    
-    
+
 ### Illustration: Reading from the Console- stdin()
 
 Rust programs might have to accept values from the user at runtime. The following example reads values from the standard input  (Keyboard) and prints it to the console.
@@ -32,10 +32,10 @@ Rust programs might have to accept values from the user at runtime. The followin
 fn main(){
     let mut line = String::new();
     println!("Enter your name :");
-    std::io::stdin().read_line(&mut line);
+    let b1 =std::io::stdin().read_line(&mut line).unwrap();
     println!("Hello , {}", line);
+     println!("no of bytes read , {}", b1);
 }
-
 ```
 
 The `stdin()` function returns a handle to the standard input stream of the current process, to which the `read_line` function can be applied. This function tries to read all the characters present in the input buffer when it encounters an end-of-line character.
@@ -45,11 +45,11 @@ Output
 Enter your name :
 Mohtashim
 Hello , Mohtashim
-
+no of bytes read , 10
 ```
 
-
 ## Write Trait
+
 **Writers** are components that your program can write bytes to. Examples include printing values to the console, writing to files etc.The write() method of this trait can be used to write data to a file or standard output stream.
 
 Sr No |  trait | method    | description|
@@ -63,19 +63,23 @@ The `print` or `println` macros can be used to display text on the console. Howe
 Let us see an example.
 
 ```rust
-    use std::io::Write;
+use std::io::Write;
 
 fn main(){
 
-        std::io::stdout().write("Tutorials ".as_bytes()).unwrap();
-        std::io::stdout().write(String::from("Point").as_bytes()).unwrap();
+     let b1=   std::io::stdout().write("Tutorials ".as_bytes()).unwrap();
+      let b2=  std::io::stdout().write(String::from("Point").as_bytes()).unwrap();
+      std::io::stdout().write(format!("\nbytes written {}",(b1+b2)).as_bytes()).unwrap();
 }
 ```
-Output
+
+output
 
 ```rust
 Tutorials Point
+bytes written 15
 ```
+
 The `stdout()` standard library function returns a handle to the standard output stream of the current process, to which the `write` function can be applied. The write() method returns an enum, Result.The unwrap() is a helper method to extract actual result from the enumeration. The unwrap method will send panic if an error occurs.
 
 Note: File IO is discussed in the next chapter.
