@@ -12,7 +12,7 @@ Rust’s standard library features for input and output are organized around two
 |Sr No |  trait    | description| example  |
 |:----:|:----------|:-------|:--------- |
 | 1    |  Read     | Types that implement Read have methods for byte-oriented input. They’re called readers     | Stdin,File
-| 2   |  Write     | Types that implement Write support both byte-oriented and UTF-8 text output. They’re called writers.   | Stdout,Stderr,File
+| 2   |  Write     | Types that implement Write support both byte-oriented and UTF-8 text output. They’re called writers.   | Stdout,File
 
 ## Read Trait
 **Readers** are components that your program can read bytes from. Examples include reading input from the keyboard, files etc.
