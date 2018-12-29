@@ -33,8 +33,8 @@ fn main(){
 From the above example it is clear that a vector of integer type can only store integer values.So if we try to push a string value into the collection, the compiler will return an error.Generics make collections more type safe.
 
 ### Illustration : Generic Structure
-The <T> type paramter represents some type. The data type can be decided at runtime.
-
+The <T> type paramter represents some type ,which the compiler will fill in later.
+ 
 ```rust
   struct Data<T> {
     value:T,
@@ -61,11 +61,11 @@ value is :Tom
 
 ## Generic Functions
 
-Is a powerful concept in rust which promote code reuse . Generic functions reduce code duplication.They take any type that implements some set of traits,and they can only use the behavior of those traits.
+Generics is a concept in Rust which promotes code reuse . Generic functions reduce code duplication. The type parameter can 
 
 Generics are specified with type parameters such as
  `fn foo<T>(val:T){}`
-- T is the name of the type,which the compiler will fill in later
+
   
 Let us see an example of  generic function ,
 here two different functions are made to display a u8 and u16 values.
@@ -87,52 +87,7 @@ fn main(){
 
 We can improve this code with help of Display trait as shown below.Here we have a generic function print_pro which can print intergers and string. Since integer and string implemnted Display trait , this is possible
 
-```rust
-
-use std::fmt::Display;
-
-fn main(){
-    print_pro(10 as u8);
-    print_pro(20 as u16);
-    print_pro("Hello TutorialsPoint");
-}
-
-fn print_pro<T:Display>(t:T){
-    println!("Inside print_pro generic function:");
-    println!("{}",t);
-}
-
-
-```
-
-Now let us create a type Book which isA Display trait as shown below.This will allow as to pass Book object directly to print_pro directly.
-
-```rust
-use std::fmt::Display;
-use std::fmt::Formatter;
-use std::fmt::Result;
-
-struct Book{
-    id:u32
-}
-impl Display for Book {
-    fn fmt(&self, f: &mut Formatter) -> Result {
-        write!(f, "Book id {}", self.id)
-    }
-}
-
-fn main(){
-    print_pro(10);
-    print_pro("Hello TutorialsPoint");
-    print_pro(Book{id:1001});
-}
-
-fn print_pro<T:Display>(t:T){
-    println!("Inside print_pro generic function:");
-    println!("{}",t);
-}
-
-```
+`
 ## Traits
 
  Define (isA) Relationship between types . Traits specify behavior.Traits allows us to group types based on behavior. For example anything that can be read from such as a file or a network connection has the Read trait.This is similar to **interfaces** in OOP.
