@@ -2,39 +2,28 @@
 
 # Iterators
 
+An iterator helps to iterate over a collection of values such as arrays, vectors,maps etc.Iterators implement the Iterator trait that is  defined in the Rust standard library.
+The `iter()` method returns an iterator object of the collection. Values in an iterator object are called items. The `next()` method of the iterator can be used to traverse through the items. The `next` method returns a value None when it reaches the end of the collection.
 
-Iterators gives a way of processing a series of elements.An iterator is responsible for the logic of iterating over each item and determining when the sequence has finished.Iterators implement the Iterator trait.
-The standard library defines an Iterator as a trait as shown.
-
-```rust
-trait Iterator {
-     type Item;
-     fn next(&mut self) -> Option<Self::Item>
-}
-
-```
-
-The associated type `Item` is returned when we call next() method on an iterator.The Iterator trait is used to implement iterators over collections such as arrays,vector,maps.
-
-To access iterator from a collection we can use `iter()` method. Example is shown below
+The following example uses an iterator to read values from an array.
 
 ```rust
  fn main() {
+   
+    //declare an array
     let a = [10,20,30];
-    let mut iter = a.iter();
+    
+    let mut iter = a.iter(); // fetch an iterator object for the array
     println!("{:?}",iter);
 
-    // a call to next returns next value
-
-    println!("{:?}",iter.next());
-    println!("{:?}",iter.next());
-    println!("{:?}",iter.next());
-    println!("{:?}",iter.next());
+    //fetch individual values from the iterator object
+     println!("{:?}",iter.next());
+     println!("{:?}",iter.next());
+     println!("{:?}",iter.next());
+     println!("{:?}",iter.next());
 }
 
 ```
-
-In the above program we are accessing the iterator and manully calling the next method.Since the next method is returning option type,if no data is found it returns None as shown in output
 
 ```rust
 Iter([10, 20, 30])
@@ -44,7 +33,7 @@ Some(30)
 None
 ```
 
-If a collection like array or Vect implements Iterator trait then it can be traversed using the  `for...in` syntax as shown.
+If a collection like array or Vector implements Iterator trait then it can be traversed using the  `for...in` syntax as shown below.
 
 ```rust
 fn main() {
@@ -56,16 +45,16 @@ fn main() {
 }
 ```
 
-ouput is `10	20	30`
+Output: `10	20	30`
 
 
-There are 3 methods which generally crate iterators.Given x is a collection of some type T:
+The following 3 methods return an iterator object for a collection.
 
 Sr No |  methods    | description|
 |:-----|:-------|:---------|
-|1|x.iter()|gives an iterator over &T|
-|2|x.into_iter()|gives an iterator over T|
-|3|x.iter_mut()|gives an iterator over &mut T|
+|1|iter()|gives an iterator over &T|
+|2|into_iter()|gives an iterator over T|
+|3|iter_mut()|gives an iterator over &mut T|
 
 
 ### Illustraion:for and iter()
@@ -165,7 +154,7 @@ Iterators are lazy , means evaluation are not done util the results are actully 
 
 ## Closure
 
- Closures are essentially functions that can be defined inline and close over variables in their scope.A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
+Closures are essentially functions that can be defined inline and close over variables in their scope.A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
 
   Syntax
 
