@@ -1,5 +1,9 @@
 # Iterator and Closure
 
+# Iterators
+
+
+Iterators gives a way of processing a series of elements.An iterator is responsible for the logic of iterating over each item and determining when the sequence has finished.Iterators implement the Iterator trait.
 The standard library defines an Iterator as a trait as shown.
 
 ```rust
@@ -10,57 +14,50 @@ trait Iterator {
 
 ```
 
-The Iterator trait is used to implement iterators over collections such as arrays.If a collection like array or Vect implements Iterator trait then it can be traversed using the  `for...in` syntax .Lots of collections implement this trait like
+The associated type `Item` is returned when we call next() method on an iterator.The Iterator trait is used to implement iterators over collections such as arrays,vector,maps.
 
-- Vect
-- HashMap
-- LinkedList
+To access iterator from a collection we can use `iter()` method. Example is shown below
 
+```rust
+ fn main() {
+    let a = [10,20,30];
+    let mut iter = a.iter();
+    println!("{:?}",iter);
 
+    // a call to next returns next value
 
-## Closure
-
-Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
-
- A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
-
-  Syntax
-    - A closure is written with two vertical bars surrounding its arguments.
-    - A closure implements one of the **Fn** family of traits , meaning it can be called with **()** syntax like a function.
-
-
- ```rust
-  fn main(){
-
-    let is_even = |x| {
-        x%2==0
-    };
-   let no = 13;
-    println!("{} is even ? {}",no,is_even(no));
-
+    println!("{:?}",iter.next());
+    println!("{:?}",iter.next());
+    println!("{:?}",iter.next());
+    println!("{:?}",iter.next());
 }
 
+```
 
- ```
+In the above program we are accessing the iterator and manully calling the next method.Since the next method is returning option type,if no data is found it returns None as shown in output
 
- closing over variable  example , here variable val is declared outside of the closure function but can be accessed with in the scope.
+```rust
+Iter([10, 20, 30])
+Some(10)
+Some(20)
+Some(30)
+None
+```
 
- ```rust
- fn main(){
-    let val = 10;
-    let closure2 = |x| {
-        x + val
-    };
-    println!("{}",closure2(2));
+If a collection like array or Vect implements Iterator trait then it can be traversed using the  `for...in` syntax as shown.
+
+```rust
+fn main() {
+    let a = [10,20,30];
+    let  iter = a.iter();
+    for data in iter{
+        print!("{}\t",data);
+    }
 }
+```
 
- ```
+ouput is `10	20	30`
 
- We cannot give a type to the closure variable use `closure2` variable its type is always anonymous type or unspeakable type.To return it or accept it as a function we must use generics or a dynamic trait object.Let us see an example
-
-# Iterators
-
-Iterators are types which implement the Iterator trait,requiring a .next() method , this has an associated type, which further specifies what that .next() method produces.
 
 There are 3 methods which generally crate iterators.Given x is a collection of some type T:
 - x.into_iter() gives an iterator over T
@@ -136,3 +133,63 @@ fn main() {
 Iterators are lazy , means evaluation are not done util the results are actully required. This means you can have an iterator of 1 to 100 million and you wont exhaus your memeory.
 
 The collect() method turns an iterator into a vector or some other collection that implements the Formlter trait.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================
+
+
+
+## Closure
+
+Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
+
+ A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
+
+  Syntax
+    - A closure is written with two vertical bars surrounding its arguments.
+    - A closure implements one of the **Fn** family of traits , meaning it can be called with **()** syntax like a function.
+
+
+ ```rust
+  fn main(){
+
+    let is_even = |x| {
+        x%2==0
+    };
+   let no = 13;
+    println!("{} is even ? {}",no,is_even(no));
+
+}
+
+
+ ```
+
+ closing over variable  example , here variable val is declared outside of the closure function but can be accessed with in the scope.
+
+ ```rust
+ fn main(){
+    let val = 10;
+    let closure2 = |x| {
+        x + val
+    };
+    println!("{}",closure2(2));
+}
+
+ ```
+
+ We cannot give a type to the closure variable use `closure2` variable its type is always anonymous type or unspeakable type.To return it or accept it as a function we must use generics or a dynamic trait object.Let us see an example
+
