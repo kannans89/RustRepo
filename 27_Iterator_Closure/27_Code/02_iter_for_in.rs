@@ -4,4 +4,6 @@ fn main() {
     for data in iter{
         print!("{}\t",data);
     }
+
+     println!("{:?}",a);
 }

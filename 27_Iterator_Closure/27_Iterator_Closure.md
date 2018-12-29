@@ -60,108 +60,129 @@ ouput is `10	20	30`
 
 
 There are 3 methods which generally crate iterators.Given x is a collection of some type T:
-- x.into_iter() gives an iterator over T
-- x.iter_mut() gives an iterator over &mut T
-- x.iter() gives an iterator over &T
 
-The next() method returns an **Option**
+Sr No |  methods    | description|
+|:-----|:-------|:---------|
+|1|x.iter()|gives an iterator over &T|
+|2|x.into_iter()|gives an iterator over T|
+|3|x.iter_mut()|gives an iterator over &mut T|
 
-Let us see an example , if the iteratio returns None that means the iteration is over.
+
+### Illustraion:for and iter()
+
+This borrows each element of the collection through each iteration. Thus leaving the collection untouched and available for reuse after the loop.
+
+```rust
+fn main() {
+     let names = vec!["Kannan", "Mohtashim", "Kiran"];
+
+    for name in names.iter() {
+        match name {
+            &"Mohtashim" => println!("There is a rustacean among us!"),
+            _ => println!("Hello {}", name),
+        }
+    }
+
+    println!("{:?}",names);
+}
+
+
+```
+
+output
+
+```rust
+Hello Kannan
+There is a rustacean among us!
+Hello Kiran
+["Kannan", "Mohtashim", "Kiran"]
+
+
+```
+
+### Illustraion:for and into_iter()
+
+This consumes the collection so that on each iteration the exact data is provided. Once the collection has been consumed it is no longer available for reuse as it has been 'moved' within the loop.
 
 ```rust
 fn main(){
+    let names = vec!["Kannan", "Mohtashim", "Kiran"];
 
-    let mut iterator = (1..5).into_iter();
-    println!("{:?}",iterator.next()); // Some(1)
-    println!("{:?}",iterator.next()); // Some(2)
-    println!("{:?}",iterator.next()); // Some(3)
-    println!("{:?}",iterator.next()); // Some(4)
-    println!("{:?}",iterator.next()); // None
-    println!("{:?}",iterator.next()); // None
+    for name in names.into_iter() {
+        match name {
+            "Mohtashim" => println!("There is a rustacean among us!"),
+            _ => println!("Hello {}", name),
+        }
+    }
+
+   // println!("{:?}",names); //Error:Cannot access after ownership move
 }
 
 ```
 
-### take() method
+ouput: 
 
-The skip() and take() methods allow traversing forward along iterators.
-skip() returns nothing , while take() returns an iterator over the number of
-elements specified.
+```rust
+Hello Kannan
+There is a rustacean among us!
+Hello Kiran
+```
 
-skip method example
+### Illustraion: for and iter_mut()
+
+This mutably borrows each element of the collection, allowing for the collection to be modified in place.
 
 ```rust
 fn main() {
-   let mut iterator = (1..10).into_iter();
-    for arg in iterator.skip(5) {
-     println!("{:?}",arg);
-   }
-}
+      let mut names = vec!["Kannan", "Mohtashim", "Kiran"];
 
-```
-
-take() method example
-
-```rust
- fn main() {
-       let mut iterator = (1..10).into_iter();
+    for name in names.iter_mut() {
+        match name {
+            &mut "Mohtashim" => println!("There is a rustacean among us!"),
+            _ =>  println!("Hello {}", name),
+        }
     
-    let mut taken = iterator.take(2); 
-    println!("{:?}",taken.next()); // Some(1)
-    println!("{:?}",taken.next()); // Some(2)
-    println!("{:?}",taken.next()); //None
-  
- }
+    }
 
-```
-
-enumerate() method adds indices to the elements iterated over.This is especially useful when iterating over slices,vectors and arrays.
-
-example
-```rust
-fn main() {
-    let mut iterator = vec!["A","B","C"].into_iter();
-    let mut enumerated = iterator.enumerate();
-
-    println!("{:?}",enumerated.next());
-    println!("{:?}",enumerated.next());
-    println!("{:?}",enumerated.next());
+    println!("{:?}",names);
 }
 
+
 ```
 
-Iterators are lazy , means evaluation are not done util the results are actully required. This means you can have an iterator of 1 to 100 million and you wont exhaus your memeory.
+output:
 
-The collect() method turns an iterator into a vector or some other collection that implements the Formlter trait.
+```rust
+Hello Kannan
+There is a rustacean among us!
+Hello Kiran
+["Kannan", "Mohtashim", "Kiran"]
 
-
-
-
-
-
-
-
+```
 
 
-
-
-
-
-
-
-=============================
-
-
+Iterators are lazy , means evaluation are not done util the results are actully required. This means you can have an iterator of 1 to 100 million and you wont exhaust your memory.
 
 ## Closure
 
-Functional programming fundamental is functions. We will look at now how to use functions as values. Closures are essentially functions that can be defined inline and close over variables in their scope.
-
- A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
+ Closures are essentially functions that can be defined inline and close over variables in their scope.A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
 
   Syntax
-    - A closure is written with two vertical bars surrounding its arguments.
-    - A closure implements one of the **Fn** family of traits , meaning it can be called with **()** syntax like a function.
+
+  ```rust
+     let closure_function = |parameter| {
+         //logic
+     }
+
+     closure_function('somedavalue');//invoking
+  ```
+  
+A closure is written with two vertical bars surrounding its arguments.
+A closure implements one of the **Fn** family of traits , meaning it can be invoked with **()** syntax like a function.
+
+### Illustraion
+
+ Here we have a function within a funciton as closure named `is_evn`.
 
 
  ```rust
@@ -178,7 +199,11 @@ Functional programming fundamental is functions. We will look at now how to use 
 
  ```
 
- closing over variable  example , here variable val is declared outside of the closure function but can be accessed with in the scope.
+output:`13 is even ? false`
+
+### Illustraion :closing over variable
+
+Here variable val is declared outside of the closure function but can be accessed with in the scope.
 
  ```rust
  fn main(){
@@ -191,5 +216,6 @@ Functional programming fundamental is functions. We will look at now how to use 
 
  ```
 
- We cannot give a type to the closure variable use `closure2` variable its type is always anonymous type or unspeakable type.To return it or accept it as a function we must use generics or a dynamic trait object.Let us see an example
+ We cannot give a type to the closure variable used  `closure2` variable its type is always anonymous type or unspeakable type.
 
+ output:`12`

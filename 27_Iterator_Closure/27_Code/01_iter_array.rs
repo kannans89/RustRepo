@@ -9,4 +9,6 @@ fn main() {
     println!("{:?}",iter.next());
     println!("{:?}",iter.next());
     println!("{:?}",iter.next());
+
+     println!("{:?}",iter);//empty iterator
 }
