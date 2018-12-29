@@ -50,6 +50,8 @@ Output: `10	20	30`
 
 The following 3 methods return an iterator object for a collection.
 
+//appu: change description
+
 Sr No |  methods    | description|
 |:-----|:-------|:---------|
 |1|iter()|gives an iterator over &T|
@@ -57,9 +59,8 @@ Sr No |  methods    | description|
 |3|iter_mut()|gives an iterator over &mut T|
 
 
-### Illustraion:for and iter()
-
-This borrows each element of the collection through each iteration. Thus leaving the collection untouched and available for reuse after the loop.
+### Illustration:iter()
+The iter() function uses the concept of borrowing. It returns a reference to each element of the collection,leaving the collection untouched and available for reuse after the loop.
 
 ```rust
 fn main() {
@@ -78,7 +79,7 @@ fn main() {
 
 ```
 
-output
+Output
 
 ```rust
 Hello Kannan
@@ -89,7 +90,7 @@ Hello Kiran
 
 ```
 
-### Illustraion:for and into_iter()
+### Illustration:into_iter()
 
 This consumes the collection so that on each iteration the exact data is provided. Once the collection has been consumed it is no longer available for reuse as it has been 'moved' within the loop.
 
