@@ -122,8 +122,8 @@ fn main(){
 
 Execute the above program as *main.exe data.txt datacopy.txt* . Two command line agruments are passed while executing the file- the path to the source file and the destination file respectively.
 
-<!-->
-##  Modify contents..
+<!--
+ Modify contents..
 The lines from the third to the sixth one assign to the "source" variable the contents of the first argument, and to the "destination" variable the contents of the second argument.
 The next two lines open the two files. First the source file is opened, and the new handle is assigned to the "file_in" variable. Then the destination file is created (or truncated, if already existing), and the new handle is assigned to the "file_out" variable.
 Then a 4096-byte buffer is allocated in the stack.
