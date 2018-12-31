@@ -25,6 +25,8 @@ The following example uses an iterator to read values from an array.
 
 ```
 
+Output :
+
 ```rust
 Iter([10, 20, 30])
 Some(10)
@@ -33,7 +35,7 @@ Some(30)
 None
 ```
 
-If a collection like array or Vector implements Iterator trait then it can be traversed using the  `for...in` syntax as shown below.
+If a collection like array or Vector implements Iterator trait then it can be traversed using the  `for...in` syntax as shown below-
 
 ```rust
 fn main() {
@@ -45,21 +47,18 @@ fn main() {
 }
 ```
 
-Output: `10	20	30`
+Output: `10 20 30`
 
-
-The following 3 methods return an iterator object for a collection.
-
-//appu: change description
+The following 3 methods return an iterator object from a collection,where T represents the elements in a collection.
 
 Sr No |  methods    | description|
 |:-----|:-------|:---------|
-|1|iter()|gives an iterator over &T|
+|1|iter()|gives an iterator over &T(reference to T)|
 |2|into_iter()|gives an iterator over T|
 |3|iter_mut()|gives an iterator over &mut T|
 
-
 ### Illustration:iter()
+
 The iter() function uses the concept of borrowing. It returns a reference to each element of the collection,leaving the collection untouched and available for reuse after the loop.
 
 ```rust
@@ -73,7 +72,7 @@ fn main() {
         }
     }
 
-    println!("{:?}",names);
+    println!("{:?}",names); // reusing the collection after iteration
 }
 
 
@@ -92,7 +91,7 @@ Hello Kiran
 
 ### Illustration:into_iter()
 
-This consumes the collection so that on each iteration the exact data is provided. Once the collection has been consumed it is no longer available for reuse as it has been 'moved' within the loop.
+This function uses the concept of ownership. It moves values in the collection into an iter object i.e. it consumes the collection.ce the collection has been consumed it is no longer available for reuse.
 
 ```rust
 fn main(){
@@ -105,12 +104,13 @@ fn main(){
         }
     }
 
+         // cannot  reuse the collection after iteration
    // println!("{:?}",names); //Error:Cannot access after ownership move
 }
 
 ```
 
-ouput: 
+Output:
 
 ```rust
 Hello Kannan
@@ -118,9 +118,9 @@ There is a rustacean among us!
 Hello Kiran
 ```
 
-### Illustraion: for and iter_mut()
+### Illustration: for and iter_mut()
 
-This mutably borrows each element of the collection, allowing for the collection to be modified in place.
+This function is similar to the `iter()` function.However, this function can modify elements within the collection.
 
 ```rust
 fn main() {
@@ -134,13 +134,13 @@ fn main() {
     
     }
 
-    println!("{:?}",names);
+    println!("{:?}",names);//// reusing the collection after iteration
 }
 
 
 ```
 
-output:
+Output:
 
 ```rust
 Hello Kannan
@@ -150,29 +150,30 @@ Hello Kiran
 
 ```
 
-
-Iterators are lazy , means evaluation are not done util the results are actully required. This means you can have an iterator of 1 to 100 million and you wont exhaust your memory.
-
 ## Closure
+Closure refers to a function within another function.These are anonymous functions,i.e. functions without a name.
+Closure can be used to assign a function to a variable. This allows a program to pass a function as a parameter to other functions.Closure is also known as an inline  function.Variables in the outer function can be accessed by inline functions.
 
-Closures are essentially functions that can be defined inline and close over variables in their scope.A closure is a function that closes over or captures its environment.This means it is defined in line with other code and can access bindings declared in that code.closures are anonymous and their types cannot be named.
+Syntax : Defining a Closure
 
-  Syntax
+A closure definition may optionally have parameters.Parameters are enclosed within two vertical bars.
 
   ```rust
      let closure_function = |parameter| {
          //logic
      }
+```
 
-     closure_function('somedavalue');//invoking
-  ```
+Syntax: Invoking a Closure
+Closure implements **Fn** traits.So, it can be invoked with **()** syntax. 
+```
+     closure_function(parameter);//invoking
+ ```
   
-A closure is written with two vertical bars surrounding its arguments.
-A closure implements one of the **Fn** family of traits , meaning it can be invoked with **()** syntax like a function.
 
-### Illustraion
+### Illustration
 
- Here we have a function within a funciton as closure named `is_evn`.
+ The following example defines a closure `is_even` within the function `main()`. The closure returns true if a number is even and returns false if the number is odd.
 
  ```rust
   fn main(){
@@ -185,26 +186,23 @@ A closure implements one of the **Fn** family of traits , meaning it can be invo
 
 }
 
-
  ```
 
-output:`13 is even ? false`
+Output:`13 is even ? false`
 
-### Illustraion :closing over variable
-
-Here variable val is declared outside of the closure function but can be accessed with in the scope.
+### Illustration
 
  ```rust
  fn main(){
-    let val = 10;
+    let val = 10; // declared outside
     let closure2 = |x| {
-        x + val
+        x + val           //inner function accessing outer fn variable
     };
     println!("{}",closure2(2));
 }
 
  ```
 
- We cannot give a type to the closure variable used  `closure2` variable its type is always anonymous type or unspeakable type.
+The `main()` function declares a variable `val` and a closure. The closure accesses the variable declared in the outer function `main()`.
 
- output:`12`
+ Output:`12`

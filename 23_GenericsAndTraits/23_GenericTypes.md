@@ -1,10 +1,12 @@
 # Generic Types
+
 Generics are a facility to write code for multiple contexts with different types. In Rust, generics refer to the parameterization of datatypes and traits.Generics allows to write more concise and clean code by reducing code duplication and providing type-safety.
 The concept of Generics an be applied to methods, functions, structures,enumerations,collections and traits.
 
 The `<T>` syntax ,known as the type parameter, is used to declare a generic construct. `T` represents any data-type.
 
 ### Illustration : Generic Collection
+
 The following example declares a vector that can store only integers.
 
 ```rust
@@ -76,6 +78,7 @@ Traits can be used to implement a standard set of behaviours (methods) across mu
   }
  
 ```
+
 Traits can contain concrete methods(methods with body)or abstract methods(methods without a body). Use a concrete method if the method definition will be shared by all structures implementing the Trait. However, a structure can choose to override a function defined by the trait.Use abstract methods if the method definition varies for the implementing structures.  
  
 ### Syntax: Implement a Trait
@@ -90,6 +93,7 @@ Traits can contain concrete methods(methods with body)or abstract methods(method
   }
 
  ```
+
 The following examples defines a trait `Printable` with a method `print()`,which is implemented by the structure `book`.
 
 ```rust
@@ -130,6 +134,9 @@ Output:
 `Printing book with id:1001 and name Rust in Action`
 
 ## Generic Functions
+
+The example defines a generic function that displays a parameter passed to it . The parameter can be of any type which implements Display trait as println! macro requires values to implement Display trait.
+
 ```rust
 use std::fmt::Display;
 
@@ -144,9 +151,8 @@ println!("Inside print_pro generic function:");
 println!("{}",t);
 }
 ```
-The example defines a generic function that displays a parameter passed to it . The parameter can be of any type which implements Display trait as println! macro requires values to implement Display trait.
 
-Output 
+Output
 
 ```rust
 Inside print_pro generic function:
