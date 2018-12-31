@@ -1,19 +1,21 @@
 # Error Handling
 
-In Rust, errors are grouped into two major category.
+In Rust, errors are grouped into two major categories-
 
 |Sr No |  name    |Description|Usage
 |:----:|:----------|:-------|:-------
 | 1    | Recoverable     | Errors which can be  handled |Result enum
 | 2    | UnRecoverable     | Errors which cannot be handled |panic macro
 
-For a recoverable error, such as a file not found error, it’s reasonable to report the problem to the user and retry the operation. Unrecoverable errors are always symptoms of bugs, like trying to access a location beyond the end of an array.
+A recoverable error is an error that can be corrected. A program can  retry the failed operation or specify an alternate course of action when it encounters a recoverable error.Recoverable errors do not cause a program to fail abruptly.An example of a recoverable error is `File Not Found` error.
 
-Rust doesn't have exceptions unlike other programming languages.Instead it used ` Result<T, E> ` for recoverable errors and the `panic! `macro that stops execution when the program encounters an unrecoverable error.
+Unrecoverable errors, cause a program to fail abruptly.A program cannot revert to its normal state if an unrecoverable error occurs.It cannot retry the failed operation or undo the error.An example of an unrecoverable error is trying to access a location beyond the end of an array.
+
+Unlike other programming languages,Rust doesn't have exceptions .It returns an enum` Result<T, E> ` for recoverable errors, while it calls the `panic` macro if the program encounters an unrecoverable error. The `panic` macro causes the program to exit abruptly.
 
 ## Panic Macro and Unrecoverable Errors
 
-`panic!` macro allows a program to to terminate immediately and provide feedback to the caller of the program. It should be used when a program reaches an unrecoverable problem.
+`panic!` macro allows a program to terminate immediately and provide feedback to the caller of the program. It should be used when a program reaches an unrecoverable state.
 
 ```rust
 fn main() {
@@ -23,24 +25,22 @@ fn main() {
 
 ```
 
-In the above example `println` will not be called as after panic the program will terminate immediately.
+In the above example,the program will terminate immediately when it encounters the `panic!` macro.
 
-output `thread 'main' panicked at 'Hello', main.rs:3`
+Output:  `thread 'main' panicked at 'Hello', main.rs:3`
 
 ### Illustration
-
-Following program shows panic at runtime . The program on compilation will give a warning *index out of bounds* and run time it throws a panic.
 
 ```rust
 fn main() {
   
    let a = [10,20,30];
-   a[10];
+   a[10]; //invokes a panic since index 10 cannot be reached
 }
 
 ```
 
-output is shown below
+Output is shown as below
 
 ```rust
 warning: this expression will panic at run-time
@@ -56,7 +56,7 @@ note: Run with `RUST_BACKTRACE=1` for a backtrace.
 
 ```
 
-The following program shows how to explicitly use panic macro and throw exception
+A program can invoke the `panic!` macro if business rules are violated as shown in the below example: 
 
 ```rust
 
@@ -76,25 +76,18 @@ The following program shows how to explicitly use panic macro and throw exceptio
 
 ```
 
-output for odd no
+The above example returns an error if the value assigned to the varaible is odd.
+
+Output:
 
 ```rust
 thread 'main' panicked at 'NOT_AN_EVEN', main.rs:9
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
 
-output for even no
-
-```rust
-Thank you , number is even
-End of main
-```
-
 ## Result Enum and Recoverable errors
 
-Enum Result<T,E> can be used to handle recoverable errors
-
-Syntax shows a generic type Result enumeration.**T** represents the *Type* of the success result  and **E** represents the *Error* type result.
+Enum Result<T,E> can be used to handle recoverable errors.It has two variants **OK** and  **Err**.**T** and **E** are generic type parameters. **T** represents the type of the value that will be returned in a success case within the Ok variant, and **E** represents the type of the error that will be returned in a failure case within the Err variant.
 
 ```rust
  enum Result<T,E> {
@@ -105,27 +98,110 @@ Syntax shows a generic type Result enumeration.**T** represents the *Type* of th
 
 ```
 
-To demonstrate let us see an example where we loading a file
+Let us understand this with the help of an example: 
 
 ```rust
 use std::fs::File;
 fn main() {
 
- let f  = File::open("main.rs"); // edit extension to main.jpg
+ let f  = File::open("main.jpg"); //this file does not exist
  println!("{:?}",f);
 
 }
 ```
 
-The program returns  `OK(File)` if file already exists and `Err(Error)` incase of file not found.
-
-output is `Ok(File { fd: 3, path: "/home/cg/root/6728626/main.rs", read: true, write: false })`
-
-output after changing the extension to *main.jpg* the extension
+The program returns  `OK(File)` if file already exists and `Err(Error)` if the file is not found.
 
 `Err(Error { repr: Os { code: 2, message: "No such file or directory" } })`
 
-### unwrap() and expect()
+Let us now see how to handle the Err variant-
+
+The following example handles an error returned while opening file using `match` statement-
+
+ ```rust
+  use std::fs::File;
+
+fn main() {
+
+ let f  = File::open("main.jpg"); // main.jpg doesn't exist
+
+ match f {
+
+     Ok(f)=>{
+              println!("file found {:?}",f);
+     },
+     Err(e)=>{
+            println!("file not found \n{:?}",e); //handled error
+     }
+ }
+
+println!("end of main");
+
+}
+
+
+ ```
+
+Note the program prints *end of the main* event though file was not found. This means the program has handled error gracefully.
+
+Output :
+
+```rust
+file not found 
+Os { code: 2, kind: NotFound, message: "The system cannot find the file specified." }
+end of main
+
+```
+
+### Illustration
+
+ The `is_even` function returns an error if the number is not an even number, which is handled by the main() function.
+
+```rust
+
+fn main(){
+
+    let result = is_even(13);
+
+    match result {
+
+        Ok(d)=>{
+            println!("no is even {}",d);
+        },
+        Err(msg)=>{
+            println!("Error msg is {}",msg);
+        }
+
+    }
+      println!("end of main");
+}
+
+fn is_even(no:i32)->Result<bool,String>{
+
+   if no%2==0 {
+       return Ok(true);
+   }
+   else  {
+    return Err("NOT_AN_EVEN".to_string());
+   }
+
+}
+
+
+
+```
+
+Note since the main handles error gracefully, the *end of main* statement is printed.
+
+Output:
+
+```rust
+
+Error msg is NOT_AN_EVEN
+end of main
+```
+
+## unwrap() and expect()
 
 The standard library contains a couple of helper methods that both enums `Result<T,E>` and `Option<T>`  implement. You can use them to simplify error cases where you really do not expect things to fail.In case of success from a method, the "unwrap" function is used to extract the actual result.
 
@@ -134,43 +210,70 @@ The standard library contains a couple of helper methods that both enums `Result
 | 1    | unwrap     | unwrap(self): T     | expects self to be Ok/Some and returns the value contained within. If it's Err or None instead, it raises a panic with the contents of the error displayed.
 | 2    | expect     | expect(self, msg: &str): T   | behaves like unwrap, except that it outputs a custom message before panicking in addition to the contents of the error.
 
-- Following shows example to use unwrap
+### unwrap()
+
+The unwrap() function returns the actual result an operation succeeds. It returns a panic with a default error message if an operation fails. This function is a shorthand for match statement.This is shown in the example below:
 
 ```rust
-use std::fs::File;
+
 fn main(){
-    let f = File::open("pqr.txt").unwrap();
+
+    let result = is_even(10).unwrap();
+    println!("result is {}",result);
     println!("end of main");
+
 }
-```
 
-The program will not reach till `println!("end of main");` since no file is found the program will
-panic . So unwrap() is a short hand for panic if file opening fails. Following error will be displayed.
+fn is_even(no:i32)->Result<bool,String>{
 
-```rust
-thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
-note: Run with `RUST_BACKTRACE=1` for a backtrace.
+   if no%2==0 {
+       return Ok(true);
+   }
+   else  {
+    return Err("NOT_AN_EVEN".to_string());
+   }
 
-```
-
-- Following shows example to use `expect`
-
-```rust
-use std::fs::File;
-fn main(){
-    let f = File::open("pqr.txt").expect("File not able to open");
-    println!("end of main");
 }
 
 ```
 
-expect() works same as unwrap() only difference is error message can be passed.The error is displayed as shown.
+```rust
+result is true
+end of main
+
+```
+
+Modify the above code to pass an odd number to the is_even() function. The `unwrap()` function will panic and return a default error message as shown below:
+
+```rust
+thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: "NOT_AN_EVEN"', libcore\result.rs:945:5
+note: Run with `RUST_BACKTRACE=1` for a backtrace
+
+```
+
+### expect()
+
+The program can return a custom error message in case of a panic. This is shown in the following example:
+
+```rust
+use std::fs::File;
+fn main(){
+    let f = File::open("pqr.txt").expect("File not able to open");//file does not exist
+    println!("end of main");
+}
+
+```
+
+The function expect()  is similar to  unwrap(). The  only difference is that a custom error message can be displayed using expect.
+
+Output:
 
 ```rust
 
 thread 'main' panicked at 'File not able to open: Error { repr: Os { code: 2, message: "No such file or directory" } }', src/libcore/result.rs:860
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
+
 <!--
 ## Fallible Function
 
