@@ -91,7 +91,7 @@ Hello Kiran
 
 ### Illustration:into_iter()
 
-This function uses the concept of ownership. It moves values in the collection into an iter object i.e. it consumes the collection.ce the collection has been consumed it is no longer available for reuse.
+This function uses the concept of ownership. It moves values in the collection into an iter object i.e. it consumes the collection and it is no longer available for reuse.
 
 ```rust
 fn main(){
