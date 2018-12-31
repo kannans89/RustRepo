@@ -33,6 +33,8 @@ fn main(){
 }
 ```
 
+output : `data written to file`
+
 ## Read from a File
 
 The following program reads the contents in a file *data.txt* and prints it to the console.
@@ -53,6 +55,13 @@ fn main(){
 
 }
 
+```
+
+output:
+
+```rust
+Hello World
+TutorialsPoint
 ```
 
 ## Delete a file
@@ -87,10 +96,12 @@ fn main(){
   let mut file = OpenOptions::new().append(true).open("data.txt").expect("cannot open file");
   file.write_all("Hello World".as_bytes()).expect("write failed");
   file.write_all("\nTutorialsPoint".as_bytes()).expect("write failed");
-
+  println!("file append success");
 }
 
 ```
+
+output: `file append success`
 
 ## Copy a file
 
@@ -120,7 +131,7 @@ fn main(){
 
 ```
 
-Execute the above program as *main.exe data.txt datacopy.txt* . Two command line agruments are passed while executing the file- the path to the source file and the destination file respectively.
+Execute the above program as *main.exe data.txt datacopy.txt* . Two command line arguments are passed while executing the file- the path to the source file and the destination file respectively.
 
 <!--
  Modify contents..
