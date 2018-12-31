@@ -184,7 +184,6 @@ A closure implements one of the **Fn** family of traits , meaning it can be invo
 
  Here we have a function within a funciton as closure named `is_evn`.
 
-
  ```rust
   fn main(){
 
