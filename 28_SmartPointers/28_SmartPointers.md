@@ -58,51 +58,16 @@ true
 
 ```
 
-## Defining a Custom Smart Pointer
-
-While Rust provides an inbuilt smart pointer, it also allows us to create custom smart pointers.
-
-The Box<T> type is  defined as a tuple struct  with one element.So let us define a MyBox<T> type in same way as shown. Also we need to add a function with name new() similar to Box<T>.
-
-### Step 1 : Create a structure
-
-```rust
-struct MyBox<T>(T);
-
-impl<T> MyBox<T> {
-    fn new(x:T)->MyBox<T>{
-        MyBox(x)
-    }
-}
-
-```
-
- The MyBox::new function takes one parameter of type T  and returns a MyBox instance that holds the value passed in.If we create a MyBox variable and check equality using dereference operator as below will give error.*error[E0614]: type `MyBox<{integer}>` cannot be dereferenced*
-
- ```rust
-  fn main() {
-    let x = 5;
-    let y = MyBox::new(x);
-
-    println!("{}",5==x);
-    println!("{}",5==*y); // ILLEGAL
-}
-
- ```
-
- Our MyBox<T> type can’t be dereferenced because we haven’t implemented that ability on our type. To enable dereferencing with the * operator, we implement the Deref trait.
-
-### Step 2 : Deref Trait Implementation
+### Illustraion : Deref Trait
 
  The Deref trait, provided by the standard library, requires us to implement one method named *deref* that borrows *self* and returns a reference to the inner data
-So the full implementation is as shwon below
 
 ```rust
 use std::ops::Deref;
 
 struct MyBox<T>(T);
 
-impl<T> MyBox<T> {
+impl<T> MyBox<T> { // Generic structure with static method new
     fn new(x:T)->MyBox<T>{
         MyBox(x)
     }
@@ -112,21 +77,23 @@ impl<T> Deref for MyBox<T> {
   type Target = T;
 
     fn deref(&self) -> &T {
-      &self.0
+      &self.0  //returns data
     }
 }
 
 fn main() {
     let x = 5;
-    let y = MyBox::new(x);
+    let y = MyBox::new(x); // calling static method
 
     println!("5==x is {}",5==x);
-    println!("5==*y is {}",5==*y);
-     println!("x==*y is {}",x==*y);
+    println!("5==*y is {}",5==*y); // dereferencing y
+     println!("x==*y is {}",x==*y);//dereferencing y
 }
 
 
 ```
+
+In the above example we creating a structure `MyBox` which is generic type.It implements the trait `Deref`,because of this trait we can access heap values wrapped by `y` using `*y`.
 
 output is shown below
 
@@ -136,12 +103,9 @@ output is shown below
 x==*y is true
 ```
 
-### Step 3: Implement Drop Trait
+### Illustraion : Drop Trait
 
-Drop is similar to destructor.
-
-In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. If they forget, the system might become overloaded and crash. In Rust, you can specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically. As a result, you don’t need to be careful about placing cleanup code everywhere in a program that an instance of a particular type is finished with—you still won’t leak resources!
-
+The Drop trait has `drop` method . This method will be called when a structure which implemented this trait goes out of scope .In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. In Rust, you can achieve automatic memory de allocation using Drop trait.
 
 ```rust
 
@@ -175,9 +139,10 @@ fn main() {
     let x = 50;
     MyBox::new(x);
     MyBox::new("Hello");
-    
 }
 ```
+
+In the above example the drop method will be called twice as we are creating two objects in the heap.
 
 output:
 
