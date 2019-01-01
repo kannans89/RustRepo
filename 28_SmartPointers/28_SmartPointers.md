@@ -1,22 +1,14 @@
 # Smart Pointers
 
-
-Rust is very much like C++, it will put everything on the stack by default. To store things on the heap you have to do so explicitly (usually by wrapping them in smart pointers like Box or Rc).
-Note however that (also as in C++) some types may "implicitly" perform heap allocations e.g. String or Vec
+Rust allocates everything on the stack by default. To store things on the heap you have to do so explicitly ,usually by wrapping them in smart pointers like `Box`.Types like Vec and String implicitly does heap allocation..The characteristic that distinguishes a smart pointer from an ordinary struct is that smart pointers implement following traits
 
 
-============================================================
-A pointer contains the address of a variable in the memory.The most common kind of pointer in Rust is a reference.References are indicated by the `&` symbol and borrow the value they point to. They don’t have any special capabilities other than referring to data. Also, they don’t have any overhead and are the kind of pointer we use most often.
+|Sr.No|trait name|package|description
+|:---|:---|:---|:-------|
+|1|Deref|std::ops::Deref|Used for immutable dereferencing operations, like *v.
+|2|Drop|std::ops::Drop|Used to run some code when a value goes out of scope. This is sometimes called a *destructor*
 
-Smart pointers are data structures that not only act like a pointer but also have additional metadata and capabilities. The difference between a pointer and smart pointers is that pointers only borrow data; in contrast, in many cases, smart pointers own the data they point to.
-The types String and Vec<T> are examples of smart pointers.The characteristic that distinguishes a smart pointer from an ordinary struct is that smart pointers implement the *Deref* and *Drop* traits
-
-This chapter discusses about one of the smart pointers **Box** and how to create custom smart pointer.
-<!--
-Common smart pointers include
-1. Box<T>  Allocating values on the heap
-2. Rc<T>   A reference counting type that enables multiple ownership
-3. RefCell<T> A type that enforces the borrowing rules at runtime instead of compile time-->
+This chapter discusses on  **Box** smart pointer and how to create a custom smart pointer like Box.
 
 ## Box<T>
 
@@ -27,8 +19,8 @@ Let us see how to use a box to store an i32 value on the heap.
 ```rust
 
     fn main() {
-        let var_i32 = 5;
-        let b = Box::new(var_i32);
+        let var_i32 = 5; //stack
+        let b = Box::new(var_i32); //heap
         println!("b = {}", b);
     }
 
@@ -65,8 +57,6 @@ true
 true
 
 ```
-
-//appu: add content for Rc or one more example 
 
 ## Defining a Custom Smart Pointer
 
