@@ -64,6 +64,8 @@ While Rust provides an inbuilt smart pointer, it also allows us to create custom
 
 The Box<T> type is  defined as a tuple struct  with one element.So let us define a MyBox<T> type in same way as shown. Also we need to add a function with name new() similar to Box<T>.
 
+### Step 1 : Create a structure
+
 ```rust
 struct MyBox<T>(T);
 
@@ -90,7 +92,7 @@ impl<T> MyBox<T> {
 
  Our MyBox<T> type can’t be dereferenced because we haven’t implemented that ability on our type. To enable dereferencing with the * operator, we implement the Deref trait.
 
- ## Deref Trait Implmentation
+### Step 2 : Deref Trait Implementation
 
  The Deref trait, provided by the standard library, requires us to implement one method named *deref* that borrows *self* and returns a reference to the inner data
 So the full implementation is as shwon below
@@ -134,9 +136,9 @@ output is shown below
 x==*y is true
 ```
 
-## Drop Trait
+### Step 3: Implement Drop Trait
 
-Drop is similar to destrcutor.
+Drop is similar to destructor.
 
 In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. If they forget, the system might become overloaded and crash. In Rust, you can specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically. As a result, you don’t need to be careful about placing cleanup code everywhere in a program that an instance of a particular type is finished with—you still won’t leak resources!
 
