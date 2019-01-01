@@ -1,6 +1,6 @@
 # Smart Pointers
 
-Rust allocates everything on the stack by default. To store things on the heap you have to do so explicitly ,usually by wrapping them in smart pointers like `Box`.Types like Vec and String implicitly does heap allocation..The characteristic that distinguishes a smart pointer from an ordinary struct is that smart pointers implement following traits
+Rust allocates everything on the stack by default. To store things on the heap you have to do so explicitly ,usually by wrapping them in smart pointers like `Box`.Types like Vec and String implicitly does heap allocation.The characteristic that distinguishes a smart pointer from an ordinary struct is that smart pointers implement following traits
 
 
 |Sr.No|trait name|package|description
@@ -36,8 +36,6 @@ b = 5
 
 In order to access a value pointed by a variable,use deferencing.The `*` is used as a dereference operator.Let us see how to use dereference with Box.
 
-The following example shows a value type `x` is boxed to an object type.
-
 ```rust
  fn main() {
     let x = 5; //value type variable
@@ -48,7 +46,7 @@ The following example shows a value type `x` is boxed to an object type.
     }
 
 ```
-The variable x is a value-type with the value 5. So, the expression `5==x` will return true. Variable `y` points to the heap and to access the value in heap we need to dereference using `*y`. ``*y` returns value 5. So, the expression `5==*y` returns true.
+The variable x is a value-type with the value 5. So, the expression `5==x` will return true. Variable `y` points to the heap and to access the value in heap we need to dereference using `*y`. `*y` returns value 5. So, the expression `5==*y` returns true.
 
 Output:
 
@@ -58,9 +56,9 @@ true
 
 ```
 
-### Illustraion : Deref Trait
+### Illustration : Deref Trait
 
- The Deref trait, provided by the standard library, requires us to implement one method named *deref* that borrows *self* and returns a reference to the inner data
+The Deref trait, provided by the standard library, requires us to implement one method named *deref*, that borrows *self* and returns a reference to the inner data.The following example creates a structure `MyBox` which is generic type.It implements the trait `Deref`,because of this trait we can access heap values wrapped by `y` using `*y`.
 
 ```rust
 use std::ops::Deref;
@@ -92,10 +90,7 @@ fn main() {
 
 
 ```
-
-In the above example we creating a structure `MyBox` which is generic type.It implements the trait `Deref`,because of this trait we can access heap values wrapped by `y` using `*y`.
-
-output is shown below
+Output
 
 ```rust
 5==x is true
@@ -103,9 +98,9 @@ output is shown below
 x==*y is true
 ```
 
-### Illustraion : Drop Trait
+### Illustration : Drop Trait
 
-The Drop trait has `drop` method . This method will be called when a structure which implemented this trait goes out of scope .In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. In Rust, you can achieve automatic memory de allocation using Drop trait.
+The Drop trait has `drop` method . This method will be called when a structure which implemented this trait goes out of scope .In some languages, the programmer must call code to free memory or resources every time they finish using an instance of a smart pointer. In Rust, you can achieve automatic memory deallocation using Drop trait.
 
 ```rust
 
