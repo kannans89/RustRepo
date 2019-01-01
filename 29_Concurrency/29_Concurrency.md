@@ -1,7 +1,7 @@
 
-# What is Concurrency?
+# Concurrency
 
-In Concurrent programming,  different parts of a program execute independently.On the other hand,in parallel programming,  different parts of a program execute at the same time. Both models are becoming increasingly important as more computers take advantage of their multiple processors. 
+In Concurrent programming,  different parts of a program execute independently.On the other hand,in parallel programming,  different parts of a program execute at the same time. Both models are becoming increasingly important as more computers take advantage of their multiple processors.
 
 ## Threads
 
@@ -9,7 +9,7 @@ We can use threads to run code simultaneously.In most current operating systems,
 
 ### Creating a Thread
 
-The thread::spawn function is used to create a new thread.The spawn function takes a closure as parameter. The closure defines code that shouldd be executed by the thread.The following example prints some text from a main thread and other text from a new thread.
+The thread::spawn function is used to create a new thread.The spawn function takes a closure as parameter. The closure defines code that should be executed by the thread.The following example prints some text from a main thread and other text from a new thread.
 
 ```rust
 //import the necessary modules
@@ -57,9 +57,9 @@ The thread::sleep function forces a thread to stop its execution for a short dur
 
 ## Join Handles
 
-As discussed, a spawned thread may not get a chance to run or run completely to run.
-//appu: make the explanation simple
-by saving the return value of thread::spawn in a variable. The return type of thread::spawn is JoinHandle. A JoinHandle is an owned value that, when we call the join method on it, will wait for its thread to finish.
+As discussed, a spawned thread may not get a chance to run or run completely to run.This is because the main thread completes quickly.The function `spawn<F, T>(f: F) -> JoinHandle<T> ` returns a JoinHandle.The `join()` method on JoinHandle waits for the associated thread to finish.
+<!-- //appu: make the explanation simple
+by saving the return value of thread::spawn in a variable. The return type of thread::spawn is JoinHandle. A JoinHandle is an owned value that, when we call the join method on it, will wait for its thread to finish. -->
 
 ```rust
 use std::thread;
@@ -103,7 +103,5 @@ hi number 9 from the spawned thread!
 
 
 ```
-The join() function called on a thread handle blocks the thread currently running until the thread represented by the handle terminates. Blocking a thread means that the thread is prevented from performing work or exiting.The above example calls the join
-() function after the main thread’s for loop.
 
-The two threads continue alternating, but the main thread waits because of the call to the join() function and does not end until the spawned thread is finished.
+From the output it is clear that main thead and spawned thread  continue switching. Note the main thread waits for spawned thread to complete because of the call to the join() method.
